@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react";
 import { Dialog, Menu, Transition } from "@headlessui/react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   Bars3Icon,
   BellIcon,
@@ -19,30 +19,15 @@ import {
 } from "@heroicons/react/20/solid";
 
 const navigation = [
-  { name: "Dashboard", to: "/dashboard", icon: HomeIcon, current: true },
-  { name: "Courses", to: "/courses", icon: UsersIcon, current: false },
-  { name: "Resource", to: "/resource", icon: FolderIcon, current: false },
-  {
-    name: "Counselling",
-    to: "/counselling",
-    icon: CalendarIcon,
-    current: false,
-  },
-  {
-    name: "Study Plan",
-    to: "/study-plan",
-    icon: DocumentDuplicateIcon,
-    current: false,
-  },
-  { name: "F.A.Q Bot", to: "/faq-bot", icon: ChartPieIcon, current: false },
-  { name: "Messages", to: "/messages", icon: ChartPieIcon, current: false },
-  {
-    name: "Group Study",
-    to: "/group-study",
-    icon: ChartPieIcon,
-    current: false,
-  },
-  { name: "AI Tutor", to: "/ai-tutor", icon: ChartPieIcon, current: false },
+  { name: "Dashboard", to: "/Dashboard", icon: HomeIcon },
+  { name: "Courses", to: "/Dashboard/test-course", icon: UsersIcon },
+  { name: "Resource", to: "/resource", icon: FolderIcon },
+  { name: "Counselling", to: "/counselling", icon: CalendarIcon },
+  { name: "Study Plan", to: "/study-plan", icon: DocumentDuplicateIcon },
+  { name: "F.A.Q Bot", to: "/faq-bot", icon: ChartPieIcon },
+  { name: "Messages", to: "/messages", icon: ChartPieIcon },
+  { name: "Group Study", to: "/group-study", icon: ChartPieIcon },
+  { name: "AI Tutor", to: "/ai-tutor", icon: ChartPieIcon },
 ];
 
 const userNavigation = [
@@ -56,6 +41,7 @@ function classNames(...classes) {
 
 export default function STdashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const location = useLocation();
 
   return (
     <>
@@ -125,14 +111,14 @@ export default function STdashboard() {
                                 <Link
                                   to={item.to}
                                   className={classNames(
-                                    item.current
+                                    item.to === location.pathname
                                       ? "bg-gray-50 text-indigo-600"
                                       : "text-gray-700 hover:text-indigo-600 hover:bg-gray-50",
                                     "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                                   )}>
                                   <item.icon
                                     className={classNames(
-                                      item.current
+                                      item.to === location.pathname
                                         ? "text-indigo-600"
                                         : "text-gray-400 group-hover:text-indigo-600",
                                       "h-6 w-6 shrink-0"
@@ -184,14 +170,14 @@ export default function STdashboard() {
                         <Link
                           to={item.to}
                           className={classNames(
-                            item.current
+                            item.to === location.pathname
                               ? "bg-gray-50 text-indigo-600"
                               : "text-gray-700 hover:text-indigo-600 hover:bg-gray-50",
                             "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                           )}>
                           <item.icon
                             className={classNames(
-                              item.current
+                              item.to === location.pathname
                                 ? "text-indigo-600"
                                 : "text-gray-400 group-hover:text-indigo-600",
                               "h-6 w-6 shrink-0"

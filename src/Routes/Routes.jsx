@@ -1,32 +1,31 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main/Main";
-import Home from "../Pages/Home/Home/Home";
 import Login from "../components/Auth/Login/Login";
 import SignUp from "../components/Auth/Sign UP/SignUp";
-import STdashboard from "../components/Student/Dashboard/STdashboard";
-
+import StudentDash from "../Layout/StudentDash/StudentDash";
+import TestCourse from "../components/TestCourse";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Main></Main>,
-    children: [
-      {
-        path: "/",
-        element: <Home></Home>,
-      },
-    ],
+    element: <Main />,
   },
   {
     path: "/SignUp",
-    element: <SignUp></SignUp>
+    element: <SignUp />,
   },
   {
     path: "/LogIn",
-    element: <Login></Login>
+    element: <Login />,
   },
   {
     path: "/Dashboard",
-    element:<STdashboard></STdashboard>
-}
+    element: <StudentDash />,
+    children: [
+      {
+        path: "/Dashboard/test-course", // Corrected relative path
+        element: <TestCourse></TestCourse>,
+      },
+    ],
+  },
 ]);
