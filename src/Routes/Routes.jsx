@@ -3,7 +3,10 @@ import Main from "../Layout/Main/Main";
 import Login from "../components/Auth/Login/Login";
 import SignUp from "../components/Auth/Sign UP/SignUp";
 import StudentDash from "../Layout/StudentDash/StudentDash";
-import TestCourse from "../components/TestCourse";
+
+import Courses from "../components/Student/Courses/Courses";
+import Resource from "../components/Student/Resource/Resource";
+import STDashboardContent from "../components/Student/STDashboardContent/STDashboardContent";
 
 export const router = createBrowserRouter([
   {
@@ -23,8 +26,16 @@ export const router = createBrowserRouter([
     element: <StudentDash />,
     children: [
       {
-        path: "/Dashboard/test-course", // Corrected relative path
-        element: <TestCourse></TestCourse>,
+        path: "/Dashboard",
+        element:<STDashboardContent></STDashboardContent>,
+      },
+      {
+        path: "/Dashboard/courses",
+        element: <Courses></Courses>,
+      },
+      {
+        path: "/Dashboard/resource",
+        element: <Resource></Resource>,
       },
     ],
   },

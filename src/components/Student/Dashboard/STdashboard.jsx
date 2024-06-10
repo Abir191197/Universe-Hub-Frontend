@@ -4,30 +4,34 @@ import { Link, useLocation } from "react-router-dom";
 import {
   Bars3Icon,
   BellIcon,
-  CalendarIcon,
-  ChartPieIcon,
+ ChatBubbleLeftRightIcon,
   Cog6ToothIcon,
-  DocumentDuplicateIcon,
   FolderIcon,
   HomeIcon,
-  UsersIcon,
+  UserGroupIcon,
   XMarkIcon,
+  QrCodeIcon,
+  SwatchIcon,
+  LightBulbIcon,
+  
 } from "@heroicons/react/24/outline";
 import {
   ChevronDownIcon,
   MagnifyingGlassIcon,
+  SparklesIcon,
+  ChatBubbleLeftEllipsisIcon,
 } from "@heroicons/react/20/solid";
 
 const navigation = [
   { name: "Dashboard", to: "/Dashboard", icon: HomeIcon },
-  { name: "Courses", to: "/Dashboard/test-course", icon: UsersIcon },
-  { name: "Resource", to: "/resource", icon: FolderIcon },
-  { name: "Counselling", to: "/counselling", icon: CalendarIcon },
-  { name: "Study Plan", to: "/study-plan", icon: DocumentDuplicateIcon },
-  { name: "F.A.Q Bot", to: "/faq-bot", icon: ChartPieIcon },
-  { name: "Messages", to: "/messages", icon: ChartPieIcon },
-  { name: "Group Study", to: "/group-study", icon: ChartPieIcon },
-  { name: "AI Tutor", to: "/ai-tutor", icon: ChartPieIcon },
+  { name: "Courses", to: "/Dashboard/courses", icon: QrCodeIcon },
+  { name: "Resource", to: "/Dashboard/resource", icon: FolderIcon },
+  { name: "Counselling", to: "/counselling", icon: UserGroupIcon },
+  { name: "Study Plan", to: "/study-plan", icon: SwatchIcon },
+  { name: "F.A.Q Bot", to: "/faq-bot", icon: LightBulbIcon },
+  { name: "Messages", to: "/messages", icon: ChatBubbleLeftEllipsisIcon },
+  { name: "Group Study", to: "/group-study", icon: ChatBubbleLeftRightIcon },
+  { name: "AI Tutor", to: "/ai-tutor", icon: SparklesIcon },
 ];
 
 const userNavigation = [
@@ -94,7 +98,7 @@ export default function STdashboard() {
                     </div>
                   </Transition.Child>
 
-                  <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
+                  <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-100 px-6 pb-4">
                     <div className="flex h-16 shrink-0 items-center">
                       <img
                         className="h-8 w-auto"
@@ -152,7 +156,7 @@ export default function STdashboard() {
           </Dialog>
         </Transition.Root>
 
-        <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
+        <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-52 lg:flex-col">
           <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-gray-200 px-6 pb-4">
             <div className="flex h-16 shrink-0 items-center">
               <img
@@ -207,8 +211,8 @@ export default function STdashboard() {
           </div>
         </div>
 
-        <div className="lg:pl-72">
-          <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:px-6 lg:px-8">
+        <div className="lg:pl-52  ">
+          <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-black bg-white px-4 shadow-sm sm:px-6 lg:px-8 ">
             <button
               type="button"
               className="-m-2.5 p-2.5 text-gray-700 lg:hidden"
@@ -222,7 +226,7 @@ export default function STdashboard() {
               aria-hidden="true"
             />
 
-            <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
+            <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6 ">
               <form className="relative flex flex-1" action="#" method="GET">
                 <label htmlFor="search-field" className="sr-only">
                   Search
@@ -233,7 +237,7 @@ export default function STdashboard() {
                 />
                 <input
                   id="search-field"
-                  className="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
+                  className="block h-full w-full border-4   py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
                   placeholder="Search..."
                   type="search"
                   name="search"
@@ -302,9 +306,7 @@ export default function STdashboard() {
             </div>
           </div>
 
-          <main className="py-10">
-            <div className="px-4 sm:px-6 lg:px-8">{/* Your content */}</div>
-          </main>
+         
         </div>
       </div>
     </>
