@@ -1,5 +1,5 @@
 import { Fragment, useState } from "react";
-import { Dialog, Menu, Transition } from "@headlessui/react";
+import { Dialog, Menu, Transition, DialogPanel } from "@headlessui/react";
 import { Link, useLocation } from "react-router-dom";
 import {
   Bars3Icon,
@@ -50,12 +50,12 @@ export default function STdashboard() {
   return (
     <>
       <div>
-        <Transition.Root show={sidebarOpen} as={Fragment}>
+        <Transition show={sidebarOpen} as={Fragment}>
           <Dialog
             as="div"
             className="relative z-50 lg:hidden"
             onClose={setSidebarOpen}>
-            <Transition.Child
+            <Transition
               as={Fragment}
               enter="transition-opacity ease-linear duration-300"
               enterFrom="opacity-0"
@@ -64,10 +64,10 @@ export default function STdashboard() {
               leaveFrom="opacity-100"
               leaveTo="opacity-0">
               <div className="fixed inset-0 bg-gray-900/80" />
-            </Transition.Child>
+            </Transition>
 
             <div className="fixed inset-0 flex">
-              <Transition.Child
+              <Transition
                 as={Fragment}
                 enter="transition ease-in-out duration-300 transform"
                 enterFrom="-translate-x-full"
@@ -75,8 +75,8 @@ export default function STdashboard() {
                 leave="transition ease-in-out duration-300 transform"
                 leaveFrom="translate-x-0"
                 leaveTo="-translate-x-full">
-                <Dialog.Panel className="relative mr-16 flex w-full max-w-xs flex-1">
-                  <Transition.Child
+                <DialogPanel className="relative mr-16 flex w-full max-w-xs flex-1">
+                  <Transition
                     as={Fragment}
                     enter="ease-in-out duration-300"
                     enterFrom="opacity-0"
@@ -96,7 +96,7 @@ export default function STdashboard() {
                         />
                       </button>
                     </div>
-                  </Transition.Child>
+                  </Transition>
 
                   <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-100 px-6 pb-4">
                     <div className="flex h-16 shrink-0 items-center">
@@ -150,11 +150,11 @@ export default function STdashboard() {
                       </ul>
                     </nav>
                   </div>
-                </Dialog.Panel>
-              </Transition.Child>
+                </DialogPanel>
+              </Transition>
             </div>
           </Dialog>
-        </Transition.Root>
+        </Transition>
 
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-52 lg:flex-col">
           <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-gray-200 px-6 pb-4">
