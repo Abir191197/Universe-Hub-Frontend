@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 export default function Login() {
   return (
     <>
-      <div className="flex min-h-screen">
+      <div className="flex  ">
         {/* Animation Section - Hidden on Small Screens */}
-        <div className="hidden lg:block flex-1">
+        <div className="hidden lg:block flex-1 ">
           <Lottie
             className="h-96 mt-36"
             animationData={LoginAnimation}
@@ -15,8 +15,8 @@ export default function Login() {
           />
         </div>
         {/* Form Section */}
-        <div className="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
-          <div className="mx-auto w-full max-w-sm lg:w-96">
+        <div className="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-48 ">
+          <div className="mx-auto w-full max-w-sm lg:w-96 ">
             <div>
               <h2 className="mt-8 text-2xl font-bold leading-9 text-gray-900">
                 Sign in to your account
@@ -62,7 +62,7 @@ export default function Login() {
                   </div>
                 </div>
                 {/* Remember Me Checkbox and Forgot Password Link */}
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between pb-4">
                   <div className="flex items-center">
                     <input
                       id="remember-me"
