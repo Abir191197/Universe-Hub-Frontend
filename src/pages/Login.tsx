@@ -1,8 +1,33 @@
 import Lottie from "lottie-react";
 import LoginAnimation from "../assets/Landing Page/login.json";
 import { Link } from "react-router-dom";
+import {  useForm } from "react-hook-form";
+import { useLoginMutation } from "../redux/features/auth/authApi";
+
+
+
+interface LoginFormInputs {
+  email: string;
+  password: string;
+}
 
 export default function Login() {
+  const { register, handleSubmit } = useForm<LoginFormInputs>();
+  const [login, { data, error }] = useLoginMutation();
+  
+  console.log(data);
+  console.log(error);
+
+  const onSubmit = (data: { email: unknown; password: unknown; }) => {
+    const userInfo = {
+      email: data.email,
+      password: data.password
+    }
+    login(userInfo);
+    
+
+
+  };
   return (
     <>
       <div className="flex  ">
@@ -24,7 +49,7 @@ export default function Login() {
             </div>
             {/* Login Form */}
             <div className="mt-2">
-              <form action="#" method="POST" className="space-y-6">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 {/* Email Input */}
                 <div>
                   <label
@@ -35,10 +60,10 @@ export default function Login() {
                   <div className="mt-2">
                     <input
                       id="email"
-                      name="email"
                       type="email"
                       autoComplete="email"
                       required
+                      {...register("email")} //added by me
                       className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
@@ -53,10 +78,10 @@ export default function Login() {
                   <div className="mt-2">
                     <input
                       id="password"
-                      name="password"
                       type="password"
                       autoComplete="current-password"
                       required
+                      {...register("password")} //added by me
                       className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
@@ -85,13 +110,12 @@ export default function Login() {
                   </div>
                 </div>
                 {/* Sign In Button */}
-                <Link to="/Dashboard">
-                  <button
-                    type="submit"
-                    className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                    Sign in
-                  </button>
-                </Link>
+
+                <button
+                  type="submit"
+                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                  Sign in
+                </button>
               </form>
             </div>
             {/* Sign Up Link */}
