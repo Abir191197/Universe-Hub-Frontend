@@ -11,6 +11,8 @@ import { adminPaths } from "./admin.route";
 import StudentLayout from "../components/layout/StudentLayout";
 import { studentPaths } from "./student.route";
 import AdminLayout from "../components/layout/AdminLayout";
+import ProtectedRoute from "../components/ProtectedRoute";
+
 
 const router = createBrowserRouter([
   {
@@ -28,16 +30,22 @@ const router = createBrowserRouter([
 
   {
     path: "/admin",
-    element: <AdminLayout></AdminLayout>,
+    element: (
+      <ProtectedRoute>
+        <AdminLayout></AdminLayout>
+      </ProtectedRoute>
+    ),
     children: adminPaths,
   },
 
   {
     path: "/student",
+  
+    element: <ProtectedRoute>
+      <StudentLayout></StudentLayout>
+       </ProtectedRoute>,
 
-    element: <StudentLayout></StudentLayout>,
-
-    children: studentPaths
+    children: studentPaths,
   },
 ]);
 
