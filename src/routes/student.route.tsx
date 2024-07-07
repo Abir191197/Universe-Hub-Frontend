@@ -1,4 +1,4 @@
-import DashboardContent from "../pages/student/DashboardContent";
+import DashboardContent from "../pages/student/StudentDashboardContent";
 import EnrolCourse from "../pages/student/EnrolCourse";
 
 export const studentPaths = [

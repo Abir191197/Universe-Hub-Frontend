@@ -20,6 +20,8 @@ import {
   SparklesIcon,
   ChatBubbleLeftEllipsisIcon,
 } from "@heroicons/react/20/solid";
+import { useAppDispatch } from "../../redux/hook";
+import { logout } from "../../redux/features/auth/authSlice";
 
 const navigation = [
   { name: "Dashboard", to: "/admin/dashboard", icon: HomeIcon },
@@ -35,9 +37,8 @@ const navigation = [
 
 const userNavigation = [
   { name: "Your profile", to: "/profile" },
-  { name: "Sign out", to: "/sign-out" },
+  { name: "Sign out", action: "signout", to: "/login" },
 ];
-
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
@@ -45,6 +46,14 @@ function classNames(...classes: string[]) {
 export default function AdminLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
+  const dispatch = useAppDispatch();
+
+
+    const handleSignOut = () => {
+      dispatch(logout()); // Dispatch logout action to clear authentication state
+      //history.push("/login"); // Redirect to login page after logout
+    };
+
 
   return (
     <>
@@ -292,7 +301,12 @@ export default function AdminLayout() {
                               className={classNames(
                                 active ? "bg-gray-50" : "",
                                 "block px-3 py-1 text-sm leading-6 text-gray-900"
-                              )}>
+                              )}
+                              onClick={() =>
+                                item.action === "signout"
+                                  ? handleSignOut()
+                                  : undefined
+                              }>
                               {item.name}
                             </Link>
                           )}
@@ -304,8 +318,8 @@ export default function AdminLayout() {
               </div>
             </div>
           </div>
-          <main className="py-10">
-            <div className="px-4 sm:px-6 lg:px-8">
+          <main className="">
+            <div className="">
               <Outlet></Outlet>
             </div>
           </main>

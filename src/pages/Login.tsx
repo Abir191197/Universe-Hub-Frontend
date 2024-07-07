@@ -3,9 +3,10 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import LoginAnimation from "../assets/Landing Page/login.json";
 import authApi from "../redux/features/auth/authApi";
-import { setUser } from "../redux/features/auth/authSlice";
+import { setUser, TUser } from "../redux/features/auth/authSlice";
 import { useAppDispatch } from "../redux/hook";
 import { verifyToken } from "../utils/verifyToken";
+
 
 interface LoginFormInputs {
   email: string;
@@ -31,13 +32,16 @@ export default function Login() {
 
     try {
       const res = await login(userInfo).unwrap();
-      const user = verifyToken(res.data.accessToken);
+      const user: TUser = verifyToken(res.data.accessToken) as unknown as TUser;
+
       dispatch(setUser({ user, token: res.data.accessToken }));
-      navigate("/student"); // Navigate to /student route
+      navigate(`/${user.role}`); // Redirect to user role after successful login
     } catch (err) {
       console.error(error || err);
     }
   };
+
+  // Handle sign-out function, if defined elsewhere in your application
 
   return (
     <div className="flex">

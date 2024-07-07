@@ -16,10 +16,12 @@ import {
 } from "@heroicons/react/24/outline";
 import {
   ChevronDownIcon,
-  MagnifyingGlassIcon,
+
   SparklesIcon,
   ChatBubbleLeftEllipsisIcon,
 } from "@heroicons/react/20/solid";
+import { useAppDispatch } from "../../redux/hook";
+import { logout } from "../../redux/features/auth/authSlice";
 
 const navigation = [
   { name: "Dashboard", to: "/student/dashboard", icon: HomeIcon },
@@ -43,7 +45,7 @@ const navigation = [
 
 const userNavigation = [
   { name: "Your profile", to: "/profile" },
-  { name: "Sign out", to: "/sign-out" },
+  { name: "Sign out", action: "signout",to:'/login' },
 ];
 
 function classNames(...classes: string[]) {
@@ -53,15 +55,26 @@ function classNames(...classes: string[]) {
 export default function StudentLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
+  //const history = useHistory();
+  const dispatch = useAppDispatch();
+
+  // Handle sign out
+  const handleSignOut = () => {
+    dispatch(logout()); // Dispatch logout action to clear authentication state
+    //history.push("/login"); // Redirect to login page after logout
+  };
 
   return (
     <>
+      {/* Sidebar and Main Content */}
       <div>
+        {/* Sidebar (Mobile) */}
         <Transition show={sidebarOpen} as={Fragment}>
           <Dialog
             as="div"
             className="relative z-50 lg:hidden"
             onClose={setSidebarOpen}>
+            {/* Sidebar Overlay */}
             <Transition
               as={Fragment}
               enter="transition-opacity ease-linear duration-300"
@@ -73,6 +86,7 @@ export default function StudentLayout() {
               <div className="fixed inset-0 bg-gray-900/80" />
             </Transition>
 
+            {/* Sidebar Content */}
             <div className="fixed inset-0 flex">
               <Transition
                 as={Fragment}
@@ -106,6 +120,7 @@ export default function StudentLayout() {
                   </Transition>
 
                   <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-100 px-6 pb-4">
+                    {/* Sidebar Logo */}
                     <div className="flex h-16 shrink-0 items-center">
                       <img
                         className="h-8 w-auto"
@@ -113,10 +128,13 @@ export default function StudentLayout() {
                         alt="Your Company"
                       />
                     </div>
+
+                    {/* Sidebar Navigation */}
                     <nav className="flex flex-1 flex-col">
                       <ul role="list" className="flex flex-1 flex-col gap-y-7">
                         <li>
                           <ul role="list" className="-mx-2 space-y-1">
+                            {/* Render Sidebar Navigation Items */}
                             {navigation.map((item) => (
                               <li key={item.name}>
                                 <Link
@@ -143,6 +161,7 @@ export default function StudentLayout() {
                           </ul>
                         </li>
 
+                        {/* Settings Link */}
                         <li className="mt-auto">
                           <Link
                             to="#"
@@ -163,8 +182,10 @@ export default function StudentLayout() {
           </Dialog>
         </Transition>
 
+        {/* Sidebar (Desktop) */}
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-52 lg:flex-col">
           <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-gray-200 px-6 pb-4">
+            {/* Sidebar Logo */}
             <div className="flex h-16 shrink-0 items-center">
               <img
                 className="h-8 w-auto"
@@ -172,10 +193,13 @@ export default function StudentLayout() {
                 alt="Your Company"
               />
             </div>
+
+            {/* Sidebar Navigation */}
             <nav className="flex flex-1 flex-col">
               <ul role="list" className="flex flex-1 flex-col gap-y-1">
                 <li>
                   <ul role="list" className="-mx-2 space-y-1">
+                    {/* Render Sidebar Navigation Items */}
                     {navigation.map((item) => (
                       <li key={item.name}>
                         <Link
@@ -202,6 +226,7 @@ export default function StudentLayout() {
                   </ul>
                 </li>
 
+                {/* Settings Link */}
                 <li>
                   <Link
                     to="#"
@@ -218,8 +243,10 @@ export default function StudentLayout() {
           </div>
         </div>
 
-        <div className="lg:pl-52  ">
-          <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-black bg-white px-4 shadow-sm sm:px-6 lg:px-8 ">
+        {/* Main Content */}
+        <div className="lg:pl-48">
+          <div className="sticky top-0 z-40 flex h-12 shrink-0 items-center gap-x-4 border-black  bg-orange-100 rounded-lg px-4 shadow-sm sm:px-6 lg:px-3">
+            {/* Open Sidebar (Mobile) Button */}
             <button
               type="button"
               className="-m-2.5 p-2.5 text-gray-700 lg:hidden"
@@ -228,28 +255,19 @@ export default function StudentLayout() {
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </button>
 
+            {/* Divider (Mobile) */}
             <div
               className="h-6 w-px bg-gray-200 lg:hidden"
               aria-hidden="true"
             />
 
-            <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6 ">
-              <form className="relative flex flex-1" action="#" method="GET">
-                <label htmlFor="search-field" className="sr-only">
-                  Search
-                </label>
-                <MagnifyingGlassIcon
-                  className="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400"
-                  aria-hidden="true"
-                />
-                <input
-                  id="search-field"
-                  className="block h-full w-full border-4   py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
-                  placeholder="Search..."
-                  type="search"
-                  name="search"
-                />
-              </form>
+            {/* Search Input (Desktop) */}
+            <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
+              <div className="relative flex flex-1 mx-72 mt-4">
+               All course search 
+              </div>
+
+              {/* Notification Bell (Desktop) */}
               <div className="flex items-center gap-x-4 lg:gap-x-6">
                 <button
                   type="button"
@@ -258,11 +276,13 @@ export default function StudentLayout() {
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
 
+                {/* Divider (Desktop) */}
                 <div
                   className="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-200"
                   aria-hidden="true"
                 />
 
+                {/* User Menu (Desktop) */}
                 <Menu as="div" className="relative">
                   <Menu.Button className="-m-1.5 flex items-center p-1.5">
                     <span className="sr-only">Open user menu</span>
@@ -283,6 +303,7 @@ export default function StudentLayout() {
                       />
                     </span>
                   </Menu.Button>
+                  {/* User Menu Items */}
                   <Transition
                     as={Fragment}
                     enter="transition ease-out duration-100"
@@ -292,6 +313,7 @@ export default function StudentLayout() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95">
                     <Menu.Items className="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
+                      {/* Render User Menu Items */}
                       {userNavigation.map((item) => (
                         <Menu.Item key={item.name}>
                           {({ active }) => (
@@ -300,7 +322,12 @@ export default function StudentLayout() {
                               className={classNames(
                                 active ? "bg-gray-50" : "",
                                 "block px-3 py-1 text-sm leading-6 text-gray-900"
-                              )}>
+                              )}
+                              onClick={() =>
+                                item.action === "signout"
+                                  ? handleSignOut()
+                                  : undefined
+                              }>
                               {item.name}
                             </Link>
                           )}
@@ -312,9 +339,11 @@ export default function StudentLayout() {
               </div>
             </div>
           </div>
+
+          {/* Main Content */}
           <main className="py-10">
-            <div className="px-4 sm:px-6 lg:px-8">
-              <Outlet></Outlet>
+            <div className="px-1 sm:px-4 lg:px-1">
+              <Outlet />
             </div>
           </main>
         </div>

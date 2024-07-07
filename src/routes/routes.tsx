@@ -31,7 +31,7 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: (
-      <ProtectedRoute>
+      <ProtectedRoute >
         <AdminLayout></AdminLayout>
       </ProtectedRoute>
     ),
@@ -40,10 +40,12 @@ const router = createBrowserRouter([
 
   {
     path: "/student",
-  
-    element: <ProtectedRoute>
-      <StudentLayout></StudentLayout>
-       </ProtectedRoute>,
+
+    element: (
+      <ProtectedRoute>
+        <StudentLayout></StudentLayout>
+      </ProtectedRoute>
+    ),
 
     children: studentPaths,
   },
