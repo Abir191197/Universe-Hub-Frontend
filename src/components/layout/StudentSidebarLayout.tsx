@@ -88,7 +88,7 @@ export default function StudentSidebarLayout() {
 
   return (
     <>
-      <div>
+      <div className="">
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog
             as="div"
@@ -145,7 +145,7 @@ export default function StudentSidebarLayout() {
                         alt="Your Company"
                       />
                     </div>
-                    <nav className="flex flex-1 flex-col bg-black">
+                    <nav className="flex flex-1 flex-col ">
                       <ul role="list" className="-mx-2 space-y-1">
                         {navigation.map((item) => (
                           <li key={item.name}>
@@ -154,7 +154,7 @@ export default function StudentSidebarLayout() {
                               className={classNames(
                                 currentNavItem === item.name
                                   ? "bg-gray-50 text-indigo-600"
-                                  : "text-gray-700 hover:text-indigo-600 hover:bg-gray-50",
+                                  : "text-slate-950 hover:text-indigo-600 hover:bg-gray-50",
                                 "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                               )}
                               onClick={() => handleNavigationClick(item.name)}>
@@ -181,9 +181,9 @@ export default function StudentSidebarLayout() {
         </Transition.Root>
 
         {/* Static sidebar for desktop */}
-        <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-52 lg:flex-col">
+        <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-52 lg:flex-col ">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pb-4">
+          <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r  bg-sky-200  px-6 pb-4">
             <div className="flex h-16 shrink-0 items-center">
               <img
                 className="h-8 w-auto"
@@ -202,7 +202,7 @@ export default function StudentSidebarLayout() {
                           className={classNames(
                             currentNavItem === item.name
                               ? "bg-gray-50 text-indigo-600"
-                              : "text-gray-700 hover:text-indigo-600 hover:bg-gray-50",
+                              : "text-slate-950 hover:text-indigo-600 hover:bg-gray-50",
                             "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                           )}
                           onClick={() => handleNavigationClick(item.name)}>
@@ -227,7 +227,7 @@ export default function StudentSidebarLayout() {
         </div>
 
         <div className="lg:pl-52">
-          <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
+          <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border border-black bg-sky-100 px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
             <button
               type="button"
               className="-m-2.5 p-2.5 text-gray-700 lg:hidden"
@@ -237,15 +237,12 @@ export default function StudentSidebarLayout() {
             </button>
 
             {/* Separator */}
-            <div
-              className="h-6 w-px bg-gray-200 lg:hidden"
-              aria-hidden="true"
-            />
+            <div className="h-6 w-px  lg:hidden" aria-hidden="true" />
 
             <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6 px-10 ">
               <form className="relative flex flex-1" action="#" method="GET">
                 <label htmlFor="search-field" className="sr-only">
-                  Search
+                  Search 
                 </label>
                 <MagnifyingGlassIcon
                   className="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400"
@@ -253,7 +250,7 @@ export default function StudentSidebarLayout() {
                 />
                 <input
                   id="search-field"
-                  className="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
+                  className="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm bg-sky-200"
                   placeholder="Search..."
                   type="search"
                   name="search"
@@ -329,9 +326,9 @@ export default function StudentSidebarLayout() {
             </div>
           </div>
 
-          <main className="py-10">
-                      <div className="px-4 sm:px-6 lg:px-8">
-                          <Outlet></Outlet>
+          <main className="py-10 bg-sky-100 ">
+            <div className="px-4 sm:px-6 lg:px-8">
+              <Outlet></Outlet>
             </div>
           </main>
         </div>

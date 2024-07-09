@@ -1,5 +1,5 @@
 import DashboardContent from "../pages/student/StudentDashboardContent";
-import EnrolCourse from "../pages/student/EnrolCourse";
+
 
 export const studentPaths = [
   {
@@ -10,8 +10,5 @@ export const studentPaths = [
     path: "dashboard",
     element: <DashboardContent></DashboardContent>,
   },
-  {
-    path: "courses",
-    element: <EnrolCourse></EnrolCourse>,
-  },
+  
 ];

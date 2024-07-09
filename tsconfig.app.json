@@ -20,5 +20,5 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": "."
   },
-  "include": ["src/*", "src", "src/routes", "src/redux/features/auth"]
+  
 }

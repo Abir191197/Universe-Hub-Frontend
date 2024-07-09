@@ -24,7 +24,7 @@ import { logout } from "../../redux/features/auth/authSlice";
 
 const navigation = [
   { name: "Dashboard", to: "/admin/dashboard", icon: HomeIcon },
-  { name: "Create Courses", to: "/admin/create courses", icon: QrCodeIcon },
+  { name: "Create Courses", to: "/admin/All Course", icon: QrCodeIcon },
   { name: "Resource Approve", to: "/admin/resource", icon: FolderIcon },
   { name: "Counselling", to: "/admin/counselling", icon: UserGroupIcon },
   { name: "All User", to: "/admin/All User", icon: SwatchIcon },
