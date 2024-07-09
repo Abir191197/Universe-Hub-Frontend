@@ -2,6 +2,15 @@ import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { EllipsisHorizontalIcon } from "@heroicons/react/20/solid";
 
+interface Course {
+  _id: string;
+  courseName: string;
+  createdAt: string;
+  files: {
+    notes: number; // Assuming files.notes is a number
+    // Add other fields as needed
+  };
+}
 
 
 
@@ -10,14 +19,9 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function AllCourseCard({ courses }) {
-
+export default function AllCourseCard({ courses }: { courses: Course }) {
   console.log(courses);
   const { _id, courseName, createdAt, files } = courses;
-  
-
-
-  
 
   return (
     <ul role="list">

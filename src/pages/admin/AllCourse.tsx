@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Key } from "react";
+
 import AllCourseCard from "../../components/AllCourseCard";
 import { useGetAllCoursesQuery } from "../../redux/features/Student Mangment/getAllCourseAPI";
 
@@ -17,7 +17,7 @@ const AllCourses = () => {
 
   return (
     <div className="grid grid-cols-3grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-3 xl:gap-x-8">
-      {data?.data?.map((courses: { _id: Key | null | undefined }) => (
+      {data?.data?.map((courses:any) => (
         <AllCourseCard key={courses?._id} courses={courses} />
       ))}
     </div>
