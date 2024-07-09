@@ -13,5 +13,4 @@ const authApi = baseApi.injectEndpoints({
   overrideExisting: false,
 });
 
-export default  authApi;
-
+export default authApi;

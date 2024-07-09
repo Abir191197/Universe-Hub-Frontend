@@ -6,7 +6,7 @@ import authApi from "../redux/features/auth/authApi";
 import { setUser, TUser } from "../redux/features/auth/authSlice";
 import { useAppDispatch } from "../redux/hook";
 import { verifyToken } from "../utils/verifyToken";
-
+import {ScaleLoader } from "react-spinners";
 
 interface LoginFormInputs {
   email: string;
@@ -22,7 +22,8 @@ export default function Login() {
       password: "password123456", // Default password for testing
     },
   });
-  const [login, { error }] = authApi.useLoginMutation();
+  const [login, { error, isLoading }] = authApi.useLoginMutation();
+
 
   const onSubmit = async (data: LoginFormInputs) => {
     const userInfo = {
@@ -41,7 +42,13 @@ export default function Login() {
     }
   };
 
-  // Handle sign-out function, if defined elsewhere in your application
+  if (isLoading) {
+     return (
+       <div>
+         <ScaleLoader />
+       </div>
+     );
+  }
 
   return (
     <div className="flex">

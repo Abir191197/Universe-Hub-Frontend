@@ -18,7 +18,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "baseUrl":"."
+    "baseUrl": "."
   },
   "include": ["src/*", "src", "src/routes", "src/redux/features/auth"]
 }

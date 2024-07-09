@@ -2,7 +2,7 @@
 const StudentDashboardContent = () => {
     return (
         <div>
-            fefefe
+            fetyhthfefe
         </div>
     );
 };

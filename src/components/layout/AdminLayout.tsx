@@ -1,25 +1,24 @@
-import { Fragment, useState } from "react";
-import { Dialog, Menu, Transition, DialogPanel } from "@headlessui/react";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Fragment, SetStateAction, useState } from "react";
+import { Dialog, Menu, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
   BellIcon,
-  ChatBubbleLeftRightIcon,
-  Cog6ToothIcon,
+  QrCodeIcon,
+  UserGroupIcon,
+  SwatchIcon,
   FolderIcon,
   HomeIcon,
-  UserGroupIcon,
-  XMarkIcon,
-  QrCodeIcon,
-  SwatchIcon,
   LightBulbIcon,
+  XMarkIcon,
+  ChatBubbleLeftEllipsisIcon,
+  SparklesIcon,
+  ChatBubbleLeftRightIcon,
 } from "@heroicons/react/24/outline";
 import {
   ChevronDownIcon,
   MagnifyingGlassIcon,
-  SparklesIcon,
-  ChatBubbleLeftEllipsisIcon,
 } from "@heroicons/react/20/solid";
+import { Link, Outlet } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hook";
 import { logout } from "../../redux/features/auth/authSlice";
 
@@ -39,31 +38,35 @@ const userNavigation = [
   { name: "Your profile", to: "/profile" },
   { name: "Sign out", action: "signout", to: "/login" },
 ];
+
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function AdminLayout() {
+export default function StudentSidebarLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const location = useLocation();
+  const [currentNavItem, setCurrentNavItem] = useState("Dashboard"); // Initial state
+
   const dispatch = useAppDispatch();
 
+  const handleSignOut = () => {
+    dispatch(logout());
+  };
 
-    const handleSignOut = () => {
-      dispatch(logout()); // Dispatch logout action to clear authentication state
-      //history.push("/login"); // Redirect to login page after logout
-    };
-
+  const handleNavigationClick = (itemName: SetStateAction<string>) => {
+    setCurrentNavItem(itemName);
+    setSidebarOpen(false); // Close sidebar on navigation click for mobile view
+  };
 
   return (
     <>
       <div>
-        <Transition show={sidebarOpen} as={Fragment}>
+        <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog
             as="div"
             className="relative z-50 lg:hidden"
             onClose={setSidebarOpen}>
-            <Transition
+            <Transition.Child
               as={Fragment}
               enter="transition-opacity ease-linear duration-300"
               enterFrom="opacity-0"
@@ -72,10 +75,10 @@ export default function AdminLayout() {
               leaveFrom="opacity-100"
               leaveTo="opacity-0">
               <div className="fixed inset-0 bg-gray-900/80" />
-            </Transition>
+            </Transition.Child>
 
             <div className="fixed inset-0 flex">
-              <Transition
+              <Transition.Child
                 as={Fragment}
                 enter="transition ease-in-out duration-300 transform"
                 enterFrom="-translate-x-full"
@@ -83,8 +86,8 @@ export default function AdminLayout() {
                 leave="transition ease-in-out duration-300 transform"
                 leaveFrom="translate-x-0"
                 leaveTo="-translate-x-full">
-                <DialogPanel className="relative mr-16 flex w-full max-w-xs flex-1">
-                  <Transition
+                <Dialog.Panel className="relative mr-16 flex w-full max-w-xs flex-1">
+                  <Transition.Child
                     as={Fragment}
                     enter="ease-in-out duration-300"
                     enterFrom="opacity-0"
@@ -104,9 +107,9 @@ export default function AdminLayout() {
                         />
                       </button>
                     </div>
-                  </Transition>
-
-                  <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-100 px-6 pb-4">
+                  </Transition.Child>
+                  {/* Sidebar component, swap this element with another sidebar if you like */}
+                  <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
                     <div className="flex h-16 shrink-0 items-center">
                       <img
                         className="h-8 w-auto"
@@ -115,57 +118,44 @@ export default function AdminLayout() {
                       />
                     </div>
                     <nav className="flex flex-1 flex-col">
-                      <ul role="list" className="flex flex-1 flex-col gap-y-7">
-                        <li>
-                          <ul role="list" className="-mx-2 space-y-1">
-                            {navigation.map((item) => (
-                              <li key={item.name}>
-                                <Link
-                                  to={item.to}
-                                  className={classNames(
-                                    item.to === location.pathname
-                                      ? "bg-gray-50 text-indigo-600"
-                                      : "text-gray-700 hover:text-indigo-600 hover:bg-gray-50",
-                                    "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                                  )}>
-                                  <item.icon
-                                    className={classNames(
-                                      item.to === location.pathname
-                                        ? "text-indigo-600"
-                                        : "text-gray-400 group-hover:text-indigo-600",
-                                      "h-6 w-6 shrink-0"
-                                    )}
-                                    aria-hidden="true"
-                                  />
-                                  {item.name}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </li>
-
-                        <li className="mt-auto">
-                          <Link
-                            to="#"
-                            className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-indigo-600">
-                            <Cog6ToothIcon
-                              className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600"
-                              aria-hidden="true"
-                            />
-                            Settings
-                          </Link>
-                        </li>
+                      <ul role="list" className="-mx-2 space-y-1">
+                        {navigation.map((item) => (
+                          <li key={item.name}>
+                            <Link
+                              to={item.to}
+                              className={classNames(
+                                currentNavItem === item.name
+                                  ? "bg-gray-50 text-indigo-600"
+                                  : "text-gray-700 hover:text-indigo-600 hover:bg-gray-50",
+                                "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                              )}
+                              onClick={() => handleNavigationClick(item.name)}>
+                              <item.icon
+                                className={classNames(
+                                  currentNavItem === item.name
+                                    ? "text-indigo-600"
+                                    : "text-gray-400 group-hover:text-indigo-600",
+                                  "h-6 w-6 shrink-0"
+                                )}
+                                aria-hidden="true"
+                              />
+                              {item.name}
+                            </Link>
+                          </li>
+                        ))}
                       </ul>
                     </nav>
                   </div>
-                </DialogPanel>
-              </Transition>
+                </Dialog.Panel>
+              </Transition.Child>
             </div>
           </Dialog>
-        </Transition>
+        </Transition.Root>
 
+        {/* Static sidebar for desktop */}
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-52 lg:flex-col">
-          <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-gray-200 px-6 pb-4">
+          {/* Sidebar component, swap this element with another sidebar if you like */}
+          <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pb-4">
             <div className="flex h-16 shrink-0 items-center">
               <img
                 className="h-8 w-auto"
@@ -174,7 +164,7 @@ export default function AdminLayout() {
               />
             </div>
             <nav className="flex flex-1 flex-col">
-              <ul role="list" className="flex flex-1 flex-col gap-y-1">
+              <ul role="list" className="flex flex-1 flex-col gap-y-7">
                 <li>
                   <ul role="list" className="-mx-2 space-y-1">
                     {navigation.map((item) => (
@@ -182,14 +172,15 @@ export default function AdminLayout() {
                         <Link
                           to={item.to}
                           className={classNames(
-                            item.to === location.pathname
+                            currentNavItem === item.name
                               ? "bg-gray-50 text-indigo-600"
                               : "text-gray-700 hover:text-indigo-600 hover:bg-gray-50",
                             "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                          )}>
+                          )}
+                          onClick={() => handleNavigationClick(item.name)}>
                           <item.icon
                             className={classNames(
-                              item.to === location.pathname
+                              currentNavItem === item.name
                                 ? "text-indigo-600"
                                 : "text-gray-400 group-hover:text-indigo-600",
                               "h-6 w-6 shrink-0"
@@ -202,25 +193,13 @@ export default function AdminLayout() {
                     ))}
                   </ul>
                 </li>
-
-                <li>
-                  <Link
-                    to="#"
-                    className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-indigo-600">
-                    <Cog6ToothIcon
-                      className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600"
-                      aria-hidden="true"
-                    />
-                    Settings
-                  </Link>
-                </li>
               </ul>
             </nav>
           </div>
         </div>
 
-        <div className="lg:pl-52  ">
-          <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-black bg-white px-4 shadow-sm sm:px-6 lg:px-8 ">
+        <div className="lg:pl-52">
+          <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
             <button
               type="button"
               className="-m-2.5 p-2.5 text-gray-700 lg:hidden"
@@ -229,12 +208,13 @@ export default function AdminLayout() {
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </button>
 
+            {/* Separator */}
             <div
               className="h-6 w-px bg-gray-200 lg:hidden"
               aria-hidden="true"
             />
 
-            <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6 ">
+            <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6 px-10 ">
               <form className="relative flex flex-1" action="#" method="GET">
                 <label htmlFor="search-field" className="sr-only">
                   Search
@@ -245,7 +225,7 @@ export default function AdminLayout() {
                 />
                 <input
                   id="search-field"
-                  className="block h-full w-full border-4   py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
+                  className="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
                   placeholder="Search..."
                   type="search"
                   name="search"
@@ -259,11 +239,13 @@ export default function AdminLayout() {
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
 
+                {/* Separator */}
                 <div
                   className="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-200"
                   aria-hidden="true"
                 />
 
+                {/* Profile dropdown */}
                 <Menu as="div" className="relative">
                   <Menu.Button className="-m-1.5 flex items-center p-1.5">
                     <span className="sr-only">Open user menu</span>
@@ -276,7 +258,7 @@ export default function AdminLayout() {
                       <span
                         className="ml-4 text-sm font-semibold leading-6 text-gray-900"
                         aria-hidden="true">
-                        Tom Cook
+                        Admin
                       </span>
                       <ChevronDownIcon
                         className="ml-2 h-5 w-5 text-gray-400"
@@ -318,10 +300,9 @@ export default function AdminLayout() {
               </div>
             </div>
           </div>
-          <main className="">
-            <div className="">
-              <Outlet></Outlet>
-            </div>
+
+          <main className="py-10">
+            <div className="px-4 sm:px-6 lg:px-8"><Outlet></Outlet></div>
           </main>
         </div>
       </div>

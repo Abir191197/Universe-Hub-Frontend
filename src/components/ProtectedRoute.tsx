@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
-import { useAppSelector } from "../redux/hook";
-import { useCurrentToken } from "../redux/features/auth/authSlice";
 import { Navigate } from "react-router-dom";
+import { useCurrentToken } from "../redux/features/auth/authSlice";
+import { useAppSelector } from "../redux/hook";
 
 interface ProtectedRouteProps {
   children: ReactNode;
@@ -14,7 +14,7 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
     return <Navigate to="/login" replace={true} />;
   }
 
-  return <>{children}</>;
+  return children;
 };
 
 export default ProtectedRoute;

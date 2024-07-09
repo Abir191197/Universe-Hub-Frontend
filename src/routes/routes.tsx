@@ -8,10 +8,11 @@ import { adminPaths } from "./admin.route";
 
 
 
-import StudentLayout from "../components/layout/StudentLayout";
+
 import { studentPaths } from "./student.route";
 import AdminLayout from "../components/layout/AdminLayout";
 import ProtectedRoute from "../components/ProtectedRoute";
+import StudentSidebarLayout from "../components/layout/StudentSidebarLayout";
 
 
 const router = createBrowserRouter([
@@ -43,7 +44,7 @@ const router = createBrowserRouter([
 
     element: (
       <ProtectedRoute>
-        <StudentLayout></StudentLayout>
+        <StudentSidebarLayout></StudentSidebarLayout>
       </ProtectedRoute>
     ),
 
