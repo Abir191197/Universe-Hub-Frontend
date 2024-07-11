@@ -13,30 +13,35 @@ import { studentPaths } from "./student.route";
 import AdminLayout from "../components/layout/AdminLayout";
 import ProtectedRoute from "../components/ProtectedRoute";
 import StudentSidebarLayout from "../components/layout/StudentSidebarLayout";
+import Nofound from "../pages/Landing page/Nofound";
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <LandingPage></LandingPage>,
+    errorElement: <Nofound></Nofound>,
   },
   {
     path: "/login",
     element: <Login></Login>,
+    errorElement: <Nofound></Nofound>,
   },
   {
     path: "/register",
     element: <Register></Register>,
+    errorElement: <Nofound></Nofound>,
   },
 
   {
     path: "/admin",
     element: (
-      <ProtectedRoute >
+      <ProtectedRoute>
         <AdminLayout></AdminLayout>
       </ProtectedRoute>
     ),
     children: adminPaths,
+    errorElement: <Nofound></Nofound>,
   },
 
   {
@@ -49,6 +54,7 @@ const router = createBrowserRouter([
     ),
 
     children: studentPaths,
+    errorElement: <Nofound></Nofound>,
   },
 ]);
 

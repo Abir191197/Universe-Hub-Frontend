@@ -1,6 +1,7 @@
 import { TypeAnimation } from "react-type-animation";
 import Lottie from "lottie-react";
 import HomeAnimation from "../../assets/Landing Page/home.json";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -35,7 +36,7 @@ const Banner = () => {
               wrapper="span"
               speed={80}
               style={{
-                fontSize: "1.5em",
+                fontSize: "10 em",
                 display: "inline-block",
                 color: "orange",
               }}
@@ -43,11 +44,11 @@ const Banner = () => {
             />
 
             <div className="mt-10 flex items-center gap-x-6">
-              <a
-                href="#"
+              <Link to="/login"
+                
                 className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                 Get started
-              </a>
+              </Link>
               <a
                 href="#"
                 className="text-sm font-semibold leading-6 text-gray-900">
