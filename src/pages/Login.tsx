@@ -1,7 +1,7 @@
 import Lottie from "lottie-react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import LoginAnimation from "../assets/Landing Page/login.json";
+import loginAnimation from "../assets/Landing Page/login.json";
 import authApi from "../redux/features/auth/authApi";
 import { setUser, TUser } from "../redux/features/auth/authSlice";
 import { useAppDispatch } from "../redux/hook";
@@ -21,7 +21,7 @@ export default function Login() {
   const { register, handleSubmit } = useForm<LoginFormInputs>({
     defaultValues: {
       email: "user1@gmail.com", // Default email for testing
-      password: "password123456", // Default password for testing
+      password: "password123456",// Default password for testing
     },
   });
   const [login, { error, isLoading }] = authApi.useLoginMutation();
@@ -95,7 +95,7 @@ export default function Login() {
       <div className="hidden lg:block flex-1">
         <Lottie
           className="h-96 mt-36"
-          animationData={LoginAnimation}
+          animationData={loginAnimation}
           loop={true}
         />
       </div>
