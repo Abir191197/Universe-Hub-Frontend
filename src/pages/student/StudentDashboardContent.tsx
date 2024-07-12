@@ -1,8 +1,9 @@
+import StudentDashboardProfile from "./StudentDashboardProfile";
 
 const StudentDashboardContent = () => {
     return (
         <div>
-            fetyhthfefe
+            <StudentDashboardProfile></StudentDashboardProfile>
         </div>
     );
 };

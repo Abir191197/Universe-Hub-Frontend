@@ -183,7 +183,7 @@ export default function StudentSidebarLayout() {
         {/* Static sidebar for desktop */}
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-52 lg:flex-col ">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r  bg-sky-200  px-6 pb-4">
+          <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-[#e7f9e8]   px-6 pb-4">
             <div className="flex h-16 shrink-0 items-center">
               <img
                 className="h-8 w-auto"
@@ -202,7 +202,7 @@ export default function StudentSidebarLayout() {
                           className={classNames(
                             currentNavItem === item.name
                               ? "bg-gray-50 text-indigo-600"
-                              : "text-slate-950 hover:text-indigo-600 hover:bg-gray-50",
+                              : "text-[#000000] hover:text-indigo-600 hover:bg-gray-50",
                             "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                           )}
                           onClick={() => handleNavigationClick(item.name)}>
@@ -227,7 +227,7 @@ export default function StudentSidebarLayout() {
         </div>
 
         <div className="lg:pl-52">
-          <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border border-black bg-sky-100 px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
+          <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border border-black bg-[#e9e9e9] px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
             <button
               type="button"
               className="-m-2.5 p-2.5 text-gray-700 lg:hidden"
@@ -242,7 +242,7 @@ export default function StudentSidebarLayout() {
             <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6 px-10 ">
               <form className="relative flex flex-1" action="#" method="GET">
                 <label htmlFor="search-field" className="sr-only">
-                  Search 
+                  Search
                 </label>
                 <MagnifyingGlassIcon
                   className="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400"
@@ -250,7 +250,7 @@ export default function StudentSidebarLayout() {
                 />
                 <input
                   id="search-field"
-                  className="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm bg-sky-200"
+                  className="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm bg-[#f0f0f0]"
                   placeholder="Search..."
                   type="search"
                   name="search"
