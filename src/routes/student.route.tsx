@@ -9,12 +9,14 @@ export const studentPaths = [
     element: <DashboardContent></DashboardContent>,
   },
   {
+    index: true,
     path: "dashboard",
     element: <DashboardContent></DashboardContent>,
   },
   {
     index: true,
-    path: "EditProfile", element: <EditProfile></EditProfile>
+    path: "EditProfile",
+    element: <EditProfile></EditProfile>,
   },
   {
     path: "EnrolCourse",
