@@ -8,6 +8,7 @@ const reqApi = baseApi.injectEndpoints({
         method: "POST",
         body: userInfo,
       }),
+     
     }),
   }),
   overrideExisting: false,

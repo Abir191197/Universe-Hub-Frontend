@@ -4,6 +4,7 @@ const StudentDashboardContent = () => {
     return (
         <div>
             <StudentDashboardProfile></StudentDashboardProfile>
+            
         </div>
     );
 };

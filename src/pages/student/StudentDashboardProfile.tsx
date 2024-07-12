@@ -1,5 +1,6 @@
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/20/solid";
 import { useGetWhoLogInQuery } from "../../redux/features/Student Mangment/getWhoLogInAPI";
+import { Link } from "react-router-dom";
 
 
 
@@ -54,7 +55,7 @@ console.log(data);
                 {profile.name}
               </h1>
             </div>
-            <div className="pl-16 mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0">
+            <div className="pl-24 mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0">
               <div className=" inline-flex justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                 <EnvelopeIcon
                   className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400"
@@ -104,13 +105,13 @@ console.log(data);
                 />
                 <span>{profile.program }</span>
               </div>
-              <button className="inline-flex justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+              <Link to="EditProfile" className="inline-flex justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                 <PhoneIcon
                   className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400"
                   aria-hidden="true"
                 />
                 <span>Edit</span>
-              </button>
+              </Link>
             </div>
           </div>
         </div>

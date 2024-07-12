@@ -20,7 +20,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <LandingPage></LandingPage>,
-    errorElement: <Nofound></Nofound>,
+    //errorElement: <Nofound></Nofound>,
   },
   {
     path: "/login",
@@ -30,8 +30,9 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register></Register>,
-    errorElement: <Nofound></Nofound>,
+    //errorElement: <Nofound></Nofound>,
   },
+  
 
   {
     path: "/admin",
@@ -41,7 +42,7 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: adminPaths,
-    errorElement: <Nofound></Nofound>,
+    //errorElement: <Nofound></Nofound>,
   },
 
   {
@@ -54,7 +55,7 @@ const router = createBrowserRouter([
     ),
 
     children: studentPaths,
-    errorElement: <Nofound></Nofound>,
+    //errorElement: <Nofound></Nofound>,
   },
 ]);
 

@@ -28,7 +28,7 @@ const navigation = [
     to: "/student/dashboard",
     icon: HomeIcon,
   },
-  { name: "Courses", to: "/student/courses", icon: QrCodeIcon },
+  { name: "Courses", to: "/student/EnrolCourse", icon: QrCodeIcon },
   {
     name: "Resource",
     to: "/student/resource",
@@ -63,7 +63,7 @@ const navigation = [
 ];
 
 const userNavigation = [
-  { name: "Your profile", to: "/profile" },
+  
   { name: "Sign out", action: "signout", to: "/login" },
 ];
 
@@ -139,12 +139,15 @@ export default function StudentSidebarLayout() {
                   {/* Sidebar component, swap this element with another sidebar if you like */}
                   <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
                     <div className="flex h-16 shrink-0 items-center">
-                      <img
-                        className="h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                        alt="Your Company"
-                      />
+                      <Link to="/student">
+                        <img
+                          className="h-8 w-auto"
+                          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                          alt="Your Company"
+                        />
+                      </Link>
                     </div>
+                    
                     <nav className="flex flex-1 flex-col ">
                       <ul role="list" className="-mx-2 space-y-1">
                         {navigation.map((item) => (
@@ -184,13 +187,13 @@ export default function StudentSidebarLayout() {
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-52 lg:flex-col ">
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-[#e7f9e8]   px-6 pb-4">
-            <div className="flex h-16 shrink-0 items-center">
+            <Link to="/student"   className="flex h-16 shrink-0 items-center">
               <img
                 className="h-8 w-auto"
                 src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                 alt="Your Company"
               />
-            </div>
+            </Link>
             <nav className="flex flex-1 flex-col">
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
                 <li>
@@ -274,16 +277,12 @@ export default function StudentSidebarLayout() {
                 <Menu as="div" className="relative">
                   <Menu.Button className="-m-1.5 flex items-center p-1.5">
                     <span className="sr-only">Open user menu</span>
-                    <img
-                      className="h-8 w-8 rounded-full bg-gray-50"
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                      alt=""
-                    />
+
                     <span className="hidden lg:flex lg:items-center">
                       <span
                         className="ml-4 text-sm font-semibold leading-6 text-gray-900"
                         aria-hidden="true">
-                        Student
+                        Sign Out
                       </span>
                       <ChevronDownIcon
                         className="ml-2 h-5 w-5 text-gray-400"
