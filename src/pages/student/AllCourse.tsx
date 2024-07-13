@@ -1,16 +1,14 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import {
-  PhoneIcon,
-  ArrowLongLeftIcon,
-  ArrowLongRightIcon,
-} from "@heroicons/react/20/solid"; // Ensure these icons are what you need
-
-import { Slide, toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
 import { useState } from "react";
 import { useGetAllCoursesQuery } from "../../redux/features/Student Management/getAllCourseAPI";
 import { usePutSingleCourseInProfileMutation } from "../../redux/features/Student Management/putSingleCourseInProfile";
+import {
+  PhoneIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon,
+} from "@heroicons/react/20/solid";
+import { Slide, toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import {  UsersIcon } from "@heroicons/react/24/outline";
 
 export interface ICourse {
   _id: string;
@@ -24,21 +22,15 @@ export interface ICourse {
 
 export default function AllCourse() {
   const [page, setPage] = useState(1);
-  const limit = 6; // Define your limit here
-console.log(page);
+  const [searchKeyWord, setSearchKeyWord] = useState("");
+  const limit = 6;
+
   const { data, isLoading, isError } = useGetAllCoursesQuery({
+    searchKeyWord,
     page,
     limit,
   });
   const [putSingleCourseInProfile] = usePutSingleCourseInProfileMutation();
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (isError) {
-    return <div>Error loading courses</div>;
-  }
 
   const handleEnrol = async (id: string) => {
     try {
@@ -70,7 +62,7 @@ console.log(page);
   };
 
   const handleNextPage = () => {
-    if (data.data.length > page) {
+    if (page < data.data.length) {
       setPage(page + 1);
     }
   };
@@ -81,8 +73,52 @@ console.log(page);
     }
   };
 
+  
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error loading courses</div>;
+  }
+
   return (
     <>
+      <div className="mb-6 w-2/5">
+        <label
+          htmlFor="search"
+          className="block text-xl font-extrabold leading-6 text-black">
+          Search Course:
+        </label>
+        <div className="mt-2 flex rounded-md shadow-sm">
+          <div className="relative flex flex-grow items-stretch focus-within:z-10">
+            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+              <UsersIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+            </div>
+            <input
+              type="text"
+              name="search"
+              id="search"
+              className="block w-full rounded-none rounded-l-md border-0 py-1.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              placeholder="Enter search keyword"
+              value={searchKeyWord}
+              onChange={(e) => setSearchKeyWord(e.target.value)}
+            />
+          </div>
+          {/* <button
+            type="button"
+           
+            className="relative -ml-px inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+            <BarsArrowUpIcon
+              className="-ml-0.5 h-5 w-5 text-gray-400"
+              aria-hidden="true"
+            />
+            Search
+          </button> */}
+        </div>
+      </div>
+
       <ToastContainer
         position="top-center"
         autoClose={5000}
@@ -143,13 +179,13 @@ console.log(page);
           </li>
         ))}
       </ul>
-      <nav className="flex items-center justify-between border-t border-gray-200 px-4 sm:px-0 mt-4 ">
+      <nav className="flex items-center justify-between border-t border-gray-200 px-4 sm:px-0 mt-4">
         <div className="-mt-px flex w-0 flex-1">
           <button
             onClick={handlePreviousPage}
             disabled={page === 1}
             className="inline-flex items-center border-t-2 border-transparent pr-1 pt-4 text-xl font-bold text-black hover:border-gray-300 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed">
-            <ArrowLongLeftIcon
+            <ArrowLeftIcon
               className="mr-3 h-5 w-5 text-black font-extrabold"
               aria-hidden="true"
             />
@@ -158,21 +194,17 @@ console.log(page);
         </div>
         <div className="hidden md:-mt-px md:flex">
           {[...Array(data.data.length).keys()].map((pageNumber) => (
-            <a
+            <button
               key={pageNumber}
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                setPage(pageNumber + 1);
-              }}
+              onClick={() => setPage(pageNumber + 1)}
               className={`inline-flex items-center border-t-2 px-4 pt-4 text-sm font-medium ${
                 pageNumber + 1 === page
                   ? "border-indigo-500 text-indigo-600"
-                  : "border-transparent text-black text-2xl font-bold hover:border-gray-300 hover:text-gray-700"
+                  : "border-transparent text-black hover:border-gray-300 hover:text-gray-700"
               }`}
               aria-current={pageNumber + 1 === page ? "page" : undefined}>
               {pageNumber + 1}
-            </a>
+            </button>
           ))}
         </div>
         <div className="-mt-px flex w-0 flex-1 justify-end">
@@ -181,7 +213,7 @@ console.log(page);
             disabled={page === data.data.length}
             className="inline-flex items-center border-t-2 border-transparent pl-1 pt-4 text-xl font-bold text-black hover:border-gray-300 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed">
             Next
-            <ArrowLongRightIcon
+            <ArrowRightIcon
               className="ml-3 h-5 w-5 text-black font-extrabold"
               aria-hidden="true"
             />
