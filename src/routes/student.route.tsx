@@ -14,8 +14,11 @@ export const studentPaths = [
     element: <DashboardContent></DashboardContent>,
   },
   {
-    index: true,
     path: "EditProfile",
+    element: <EditProfile></EditProfile>,
+  },
+  {
+    path: "dashboard/EditProfile",
     element: <EditProfile></EditProfile>,
   },
   {

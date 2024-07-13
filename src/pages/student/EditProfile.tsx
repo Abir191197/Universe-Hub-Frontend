@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { useGetWhoLogInQuery } from "../../redux/features/Student Mangment/getWhoLogInAPI";
-import { useUpdatedProfileMutation } from "../../redux/features/Student Mangment/profileEdit";
+import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useGetWhoLogInQuery } from "../../redux/features/Student Management/getWhoLogInAPI";
+import { useUpdatedProfileMutation } from "../../redux/features/Student Management/profileEdit";
 
 export default function EditProfile() {
   const { data, isLoading } = useGetWhoLogInQuery(undefined);
@@ -42,7 +42,7 @@ export default function EditProfile() {
     }
   }, [data]);
 
-  const handleChange = (e: { target: { name: any; value: any; }; }) => {
+  const handleChange = (e: { target: { name: any; value: any } }) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -50,7 +50,7 @@ export default function EditProfile() {
     });
   };
 
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
     const updatedProfile = {

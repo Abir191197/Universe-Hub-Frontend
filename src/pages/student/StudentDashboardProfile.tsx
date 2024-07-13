@@ -1,13 +1,10 @@
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/20/solid";
-import { useGetWhoLogInQuery } from "../../redux/features/Student Mangment/getWhoLogInAPI";
 import { Link } from "react-router-dom";
-
-
+import { useGetWhoLogInQuery } from "../../redux/features/Student Management/getWhoLogInAPI";
 
 export default function StudentDashboardProfile() {
-
-  const {data,isLoading } = useGetWhoLogInQuery(undefined);
-console.log(data);
+  const { data, isLoading } = useGetWhoLogInQuery(undefined);
+  console.log(data);
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -26,11 +23,9 @@ console.log(data);
     program: data.data.program,
     phone: data.data.phone,
     course: data.data.course,
-    role: data.data.role
-    
+    role: data.data.role,
   };
-  
-  
+
   return (
     <div>
       <div>
@@ -68,7 +63,7 @@ console.log(data);
                   className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400"
                   aria-hidden="true"
                 />
-                <span>{ profile.id}</span>
+                <span>{profile.id}</span>
               </div>
               <div className="inline-flex justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                 <EnvelopeIcon
@@ -82,14 +77,14 @@ console.log(data);
                   className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400"
                   aria-hidden="true"
                 />
-                <span>{ profile.role}</span>
+                <span>{profile.role}</span>
               </div>
               <div className="inline-flex justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                 <PhoneIcon
                   className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400"
                   aria-hidden="true"
                 />
-                <span>{ profile.phone}</span>
+                <span>{profile.phone}</span>
               </div>
               <div className="inline-flex justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                 <PhoneIcon
@@ -103,9 +98,11 @@ console.log(data);
                   className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400"
                   aria-hidden="true"
                 />
-                <span>{profile.program }</span>
+                <span>{profile.program}</span>
               </div>
-              <Link to="EditProfile" className="inline-flex justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+              <Link
+                to="EditProfile"
+                className="inline-flex justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                 <PhoneIcon
                   className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400"
                   aria-hidden="true"
