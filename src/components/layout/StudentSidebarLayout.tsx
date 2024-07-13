@@ -16,7 +16,7 @@ import {
 } from "@heroicons/react/24/outline";
 import {
   ChevronDownIcon,
-  MagnifyingGlassIcon,
+ 
 } from "@heroicons/react/20/solid";
 import { Link, Outlet } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hook";
@@ -230,7 +230,7 @@ export default function StudentSidebarLayout() {
         </div>
 
         <div className="lg:pl-52">
-          <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border border-black bg-[#e9e9e9] px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
+          <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border  bg-[#ffdabc] px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
             <button
               type="button"
               className="-m-2.5 p-2.5 text-gray-700 lg:hidden"
@@ -240,24 +240,24 @@ export default function StudentSidebarLayout() {
             </button>
 
             {/* Separator */}
-            <div className="h-6 w-px  lg:hidden" aria-hidden="true" />
+            <div className="h-6 w-px  hidden lg:hidden" aria-hidden="true" />
 
             <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6 px-10 ">
               <form className="relative flex flex-1" action="#" method="GET">
                 <label htmlFor="search-field" className="sr-only">
                   Search
                 </label>
-                <MagnifyingGlassIcon
+                {/* <MagnifyingGlassIcon
                   className="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400"
                   aria-hidden="true"
-                />
-                <input
+                /> */}
+                {/* <input
                   id="search-field"
                   className="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm bg-[#f0f0f0]"
                   placeholder="Search..."
                   type="search"
                   name="search"
-                />
+                /> */}
               </form>
               <div className="flex items-center gap-x-4 lg:gap-x-6">
                 <button

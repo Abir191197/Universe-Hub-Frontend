@@ -8,7 +8,7 @@ import {
 } from "@heroicons/react/20/solid";
 import { Slide, toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {  UsersIcon } from "@heroicons/react/24/outline";
+import {  MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 export interface ICourse {
   _id: string;
@@ -94,7 +94,10 @@ export default function AllCourse() {
         <div className="mt-2 flex rounded-md shadow-sm">
           <div className="relative flex flex-grow items-stretch focus-within:z-10">
             <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-              <UsersIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+              <MagnifyingGlassIcon  
+                className="h-5 w-5 text-gray-400"
+                aria-hidden="true"
+              />
             </div>
             <input
               type="text"
