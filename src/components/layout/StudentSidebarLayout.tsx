@@ -28,7 +28,7 @@ const navigation = [
     to: "/student/dashboard",
     icon: HomeIcon,
   },
-  { name: "Courses", to: "/student/EnrolCourse", icon: QrCodeIcon },
+  { name: "All Courses", to: "/student/AllCourse", icon: QrCodeIcon },
   {
     name: "Resource",
     to: "/student/resource",

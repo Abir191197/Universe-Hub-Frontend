@@ -65,48 +65,45 @@ const WhatWeOffer: React.FC = () => {
         slidesToSlide={2}
         swipeable>
         <WithStyles
-          description="Fixing CSS load order/style.chunk.css incorrect in Nextjs"
-          headline="w3js.com - web front-end studio"
+          description="A personalized section where students can manage their information, track their academic progress, and access their study materials"
+          headline="Personal profile"
           image="https://images.unsplash.com/photo-1549833284-6a7df91c1f65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
         />
         <WithStyles
-          description="Fixing CSS load order/style.chunk.css incorrect in Nextjs"
-          headline="w3js.com - web front-end studio"
+          description="Dedicated pages displaying all available courses, including details"
+          headline="Course Pages"
           image="https://images.unsplash.com/photo-1549833284-6a7df91c1f65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
         />
         <WithStyles
-          description="Fixing CSS load order/style.chunk.css incorrect in Nextjs"
-          headline="w3js.com - web front-end studio"
+          description="A feature allowing students to join or create virtual study groups for collaborative learning and discussion"
+          headline="Group Study session"
           image="https://images.unsplash.com/photo-1549833284-6a7df91c1f65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
         />
         <WithStyles
-          description="Fixing CSS load order/style.chunk.css incorrect in Nextjs"
-          headline="w3js.com - web front-end studio"
+          description="Personal chat enables one-on-one communication between students"
+          headline="Personal chat"
           image="https://images.unsplash.com/photo-1549833284-6a7df91c1f65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
         />
         <WithStyles
-          description="React Carousel with Server Side Rendering Support – Part 2"
-          headline="w3js.com - web front-end studio"
+          description="Group chat allows multiple users to communicate and collaborate in a shared space."
+          headline="Group chat"
           image="https://images.unsplash.com/photo-1550064824-8f993041ffd3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
         />
+       
         <WithStyles
-          description="Fixing CSS load order/style.chunk.css incorrect in Nextjs"
-          headline="w3js.com - web front-end studio"
+          description="Scheduled sessions where students can receive academic and personal guidance from teachers either in-person or via online platforms.
+"
+          headline="Counselling Session"
           image="https://images.unsplash.com/photo-1549833284-6a7df91c1f65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
         />
         <WithStyles
-          description="Fixing CSS load order/style.chunk.css incorrect in Nextjs"
-          headline="w3js.com - web front-end studio"
+          description="An FAQ chatbot providing students with instant answers to frequently asked questions about the university"
+          headline="FAQ chatbot "
           image="https://images.unsplash.com/photo-1549833284-6a7df91c1f65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
         />
         <WithStyles
-          description="Fixing CSS load order/style.chunk.css incorrect in Nextjs"
-          headline="w3js.com - web front-end studio"
-          image="https://images.unsplash.com/photo-1549833284-6a7df91c1f65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
-        />
-        <WithStyles
-          description="Fixing CSS load order/style.chunk.css incorrect in Nextjs"
-          headline="w3js.com - web front-end studio"
+          description="A feature allowing students to upload, share, and access various academic resources like notes, textbooks, and questions of previous trimester"
+          headline="Resource sharing "
           image="https://images.unsplash.com/photo-1549833284-6a7df91c1f65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
         />
       </Carousel>

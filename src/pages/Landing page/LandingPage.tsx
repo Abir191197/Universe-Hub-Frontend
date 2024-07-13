@@ -8,26 +8,34 @@ import "aos/dist/aos.css"; // You can also use <link> for styles
 import WhatSayStudent from "./WhatSayStudent";
 import WhatWeOffer from "./WhatWeOffer";
 
-// ..
 AOS.init();
 
-
 const LandingPage = () => {
-    return (
-      <>
-        <Navbar></Navbar>
-            <Banner></Banner>
-            <WhatWeOffer></WhatWeOffer>
-        <div data-aos="fade-left">
-          <CounsellorDetails></CounsellorDetails>
-        </div>
-        <div data-aos="fade-right">
-          <WhatSayStudent></WhatSayStudent>
-        </div>
+  return (
+    <>
+      <div id="Home">
+     
+        <Navbar />
+      </div>
+      <Banner />
 
-        <Footer></Footer>
-      </>
-    );
+      <div id="WhatWeOffer">
+        <WhatWeOffer />
+      </div>
+
+      <div id="Counsellors" data-aos="fade-left">
+        <CounsellorDetails />
+      </div>
+
+      <div id="WhatSayStudent" data-aos="fade-right">
+        <WhatSayStudent />
+      </div>
+
+      <div id="Footer">
+        <Footer />
+      </div>
+    </>
+  );
 };
 
 export default LandingPage;

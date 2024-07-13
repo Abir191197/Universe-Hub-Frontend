@@ -1,6 +1,7 @@
-import EnrolCourse from "../pages/student/EnrolCourse";
+
 import EditProfile from "../pages/student/EditProfile";
 import DashboardContent from "../pages/student/StudentDashboardContent";
+import AllCourse from "../pages/student/AllCourse";
 
 
 export const studentPaths = [
@@ -22,7 +23,7 @@ export const studentPaths = [
     element: <EditProfile></EditProfile>,
   },
   {
-    path: "EnrolCourse",
-    element: <EnrolCourse></EnrolCourse>,
+    path: "AllCourse",
+    element: <AllCourse></AllCourse>,
   },
 ];
