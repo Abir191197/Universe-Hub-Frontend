@@ -7,6 +7,7 @@ const CourseAddedAPI = baseApi.injectEndpoints({
         url: `courses/${id}`,
         method: "PUT",
       }),
+      invalidatesTags: ["Course"],
     }),
   }),
 });

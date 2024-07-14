@@ -7,6 +7,7 @@ const getAllCourseAPI = baseApi.injectEndpoints({
         url: `/courses?searchTerm=${searchKeyWord}&page=${page}&limit=${limit}`,
         method: "GET",
       }),
+      providesTags : ["Course"],
     }),
   }),
   overrideExisting: false,

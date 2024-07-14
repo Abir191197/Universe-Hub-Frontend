@@ -1,29 +1,37 @@
-
+import { RouteObject } from "react-router-dom";
 import EditProfile from "../pages/student/EditProfile";
 import DashboardContent from "../pages/student/StudentDashboardContent";
 import AllCourse from "../pages/student/AllCourse";
+import SingleCoursePreview from "../pages/student/SingleCoursePreview";
+import FileUploaded from "../pages/student/FileUploaded";
 
-
-export const studentPaths = [
+export const studentPaths: RouteObject[] = [
   {
     index: true,
-    element: <DashboardContent></DashboardContent>,
+    element: <DashboardContent />,
   },
   {
-    index: true,
     path: "dashboard",
-    element: <DashboardContent></DashboardContent>,
+    element: <DashboardContent />,
   },
   {
     path: "EditProfile",
-    element: <EditProfile></EditProfile>,
+    element: <EditProfile />,
   },
   {
     path: "dashboard/EditProfile",
-    element: <EditProfile></EditProfile>,
+    element: <EditProfile />,
   },
   {
     path: "AllCourse",
-    element: <AllCourse></AllCourse>,
+    element: <AllCourse />,
+  },
+  {
+    path: "course/:id",
+    element: <SingleCoursePreview />,
+  },
+  {
+    path: "fileUpload/:id",
+    element: <FileUploaded></FileUploaded>,
   },
 ];

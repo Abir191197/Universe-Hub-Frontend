@@ -2,6 +2,7 @@ import { PhoneIcon } from "@heroicons/react/20/solid";
 import { Slide, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useGetWhoLogInQuery } from "../../redux/features/Student Management/getWhoLogInAPI";
+import { Link } from "react-router-dom";
 
 export interface ICourse {
   _id: string;
@@ -36,7 +37,9 @@ export default function EnrolCourse() {
  
     courses: data.data.courses,
   
+  
   };
+
 
   
 
@@ -55,12 +58,10 @@ export default function EnrolCourse() {
         theme="light"
         transition={Slide}
       />
-      
+
       <ul
         role="list"
-      
         className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-14">
-        
         {profile.courses && profile.courses.length > 0 ? (
           profile.courses.map((course: ICourse) => (
             <li
@@ -91,13 +92,15 @@ export default function EnrolCourse() {
               <div>
                 <div className="-mt-px flex divide-x divide-gray-200">
                   <div className="-ml-px flex w-0 flex-1">
-                    <button className="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg border border-transparent py-4 text-sm font-semibold text-gray-900">
+                    <Link
+                      to={`/student/course/${course._id}`}
+                      className="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg border border-transparent py-4 text-sm font-semibold text-gray-900">
                       <PhoneIcon
                         className="h-5 w-5 text-gray-400"
                         aria-hidden="true"
                       />
                       Preview
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
