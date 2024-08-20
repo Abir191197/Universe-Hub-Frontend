@@ -4,11 +4,16 @@ import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import { PhotoIcon } from "@heroicons/react/24/solid";
 import { useUploadFileMutation } from "../../redux/features/Student Management/fileuploadAPI";
+import { useParams } from "react-router-dom";
 
 
 
 
 export default function FileUploaded() {
+
+ const { id } = useParams<{ id: string }>();
+ console.log(id);
+
   const {
     register,
     handleSubmit,
@@ -17,6 +22,9 @@ export default function FileUploaded() {
   } = useForm<FieldValues>();
   const [uploadFile, ] =
     useUploadFileMutation();
+  
+  
+  
   const [fileName, setFileName] = useState("");
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
@@ -25,6 +33,13 @@ export default function FileUploaded() {
     formData.append("type", data.type);
     formData.append("title", data.title);
     formData.append("Description", data.Description);
+    if (id) {
+      formData.append("id", id);
+    }
+    // Log FormData content before API call
+    for (let pair of formData.entries()) {
+      console.log(`${pair[0]}: ${pair[1]}`);
+    }
 
     try {
       await uploadFile(formData).unwrap();

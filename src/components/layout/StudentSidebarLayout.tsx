@@ -64,7 +64,7 @@ const navigation = [
 
 const userNavigation = [
   
-  { name: "Sign out", action: "signout", to: "/login" },
+  { name: "Sign out", action: "signout", to: "/" },
 ];
 
 function classNames(...classes: string[]) {

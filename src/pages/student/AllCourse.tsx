@@ -30,6 +30,7 @@ export default function AllCourse() {
     page,
     limit,
   });
+ 
   const [putSingleCourseInProfile] = usePutSingleCourseInProfileMutation();
 
   const handleEnrol = async (id: string) => {
