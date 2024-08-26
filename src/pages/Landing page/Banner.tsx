@@ -15,7 +15,7 @@ const Banner = () => {
           <h1 className="max-w-2xl text-4xl font-bold tracking-tight text-gray-800 sm:text-5xl lg:col-span-2 xl:col-auto">
             We’re revolutionizing education for students.
           </h1>
-          <div className="mt-6 max-w-xl lg:mt-0 xl:col-end-1 xl:row-start-1">
+          <div className="mt-6 text-yellow-300 text-lg font-semibold max-w-xl lg:mt-0 xl:col-end-1 xl:row-start-1">
             <TypeAnimation
               sequence={[
                 "We provide Innovative Community-Based Learning",
@@ -36,9 +36,9 @@ const Banner = () => {
               wrapper="span"
               speed={80}
               style={{
-                fontSize: "10 em",
+                fontSize: "30 em",
                 display: "inline-block",
-                color: "orange",
+               
               }}
               repeat={Infinity}
             />

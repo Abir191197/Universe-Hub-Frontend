@@ -1,8 +1,9 @@
 import { ReactNode } from "react";
-import { Navigate } from "react-router-dom";
+
 import { logout, TUser, useCurrentToken } from "../redux/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hook";
 import { verifyToken } from "../utils/verifyToken";
+import { Navigate } from "react-router-dom";
 
 interface ProtectedRouteProps {
   children: ReactNode;

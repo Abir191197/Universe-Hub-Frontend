@@ -9,6 +9,7 @@ import {
 import { Slide, toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {  MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import Loader from "../../components/Loader";
 
 export interface ICourse {
   _id: string;
@@ -77,7 +78,7 @@ export default function AllCourse() {
   
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader></Loader>;
   }
 
   if (isError) {

@@ -3,6 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useGetWhoLogInQuery } from "../../redux/features/Student Management/getWhoLogInAPI";
 import { useUpdatedProfileMutation } from "../../redux/features/Student Management/profileEdit";
+import Loader from "../../components/Loader";
 
 export default function EditProfile() {
   const { data, isLoading } = useGetWhoLogInQuery(undefined);
@@ -68,7 +69,7 @@ export default function EditProfile() {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader></Loader>;
   }
 
   if (!data) {

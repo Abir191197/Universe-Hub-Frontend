@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useGetWhoLogInQuery } from "../../redux/features/Student Management/getWhoLogInAPI";
 import { Link } from "react-router-dom";
 
+
 export interface ICourse {
   _id: string;
   courseName: string;
@@ -15,15 +16,9 @@ export interface ICourse {
 }
 
 export default function EnrolCourse() {
-  const { data, isLoading } = useGetWhoLogInQuery(undefined);
+  const { data } = useGetWhoLogInQuery(undefined);
 
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        Loading...
-      </div>
-    );
-  }
+  
 
   if (!data) {
     return (

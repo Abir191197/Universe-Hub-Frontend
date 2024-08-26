@@ -7,6 +7,7 @@ const getSingleCoursePreviewAPI = baseApi.injectEndpoints({
         url: `/courses/${id}`,
         method: "GET",
       }),
+     
     }),
   }),
 });

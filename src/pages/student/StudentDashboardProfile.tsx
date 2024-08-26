@@ -1,12 +1,13 @@
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
 import { useGetWhoLogInQuery } from "../../redux/features/Student Management/getWhoLogInAPI";
+import Loader from "../../components/Loader";
 
 export default function StudentDashboardProfile() {
   const { data, isLoading } = useGetWhoLogInQuery(undefined);
   console.log(data);
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader></Loader>;
   }
 
   if (!data) {

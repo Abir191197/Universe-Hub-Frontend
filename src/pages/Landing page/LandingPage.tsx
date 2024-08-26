@@ -23,11 +23,11 @@ const LandingPage = () => {
         <WhatWeOffer />
       </div>
 
-      <div id="Counsellors" data-aos="fade-left">
+      <div id="Counsellors" >
         <CounsellorDetails />
       </div>
 
-      <div id="WhatSayStudent" data-aos="fade-right">
+      <div id="WhatSayStudent" >
         <WhatSayStudent />
       </div>
 

@@ -1,147 +1,166 @@
-
-
-
-
-
-
 const posts = [
-  
   {
     id: 1,
-    title: "Data Science Fundamentals",
+    title: "Introduction to Python",
     href: "#",
-    description:
-      "Learn the basics of data science, including data manipulation, visualization, and basic machine learning algorithms. Perfect for beginners looking to start their journey in data science.",
     imageUrl:
-      "https://images.unsplash.com/photo-1549924231-f129b911e442?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
-    date: "Jan 10, 2021",
-    datetime: "2021-01-10",
-    category: { title: "Data Science", href: "#" },
+      "https://images.unsplash.com/photo-1517430816045-df4b7de11d0f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+    date: "Feb 15, 2022",
+    datetime: "2022-02-15",
+    category: { title: "Programming", href: "#" },
     author: {
-      name: "Alice Johnson",
-      role: "Lead Data Scientist",
+      name: "Rahim Ahmed",
+      role: "Senior Software Engineer",
       href: "#",
       imageUrl:
-        "https://images.unsplash.com/photo-1554151228-14d9def656e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80",
+        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80",
     },
+    description:
+      "Learn the fundamentals of Python programming with Rahim Ahmed, a seasoned software engineer. This course is perfect for beginners looking to gain a solid foundation in Python.",
   },
   {
     id: 2,
-    title: "Advanced Marketing Strategies",
+    title: "Web Development with JavaScript",
     href: "#",
-    description:
-      "Explore advanced techniques and strategies in marketing to boost your conversion rates and effectively reach your target audience. This course covers the latest trends and best practices in the field.",
     imageUrl:
-      "https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80",
-    date: "Mar 16, 2020",
-    datetime: "2020-03-16",
-    category: { title: "Marketing", href: "#" },
+      "https://images.unsplash.com/photo-1581093588401-75baca46f89f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+    date: "Mar 20, 2022",
+    datetime: "2022-03-20",
+    category: { title: "Web Development", href: "#" },
     author: {
-      name: "Michael Foster",
-      role: "Co-Founder / CTO",
+      name: "Karim Hossain",
+      role: "Full-Stack Developer",
       href: "#",
       imageUrl:
-        "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+        "https://images.unsplash.com/photo-1603415526960-f2aa381ee5f2?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80",
     },
+    description:
+      "Dive into web development with JavaScript, guided by Karim Hossain, a full-stack developer. This course covers the basics of JavaScript, making it accessible for beginners.",
   },
   {
     id: 3,
-    title: "Web Development Bootcamp",
+    title: "Data Science with Python",
     href: "#",
-    description:
-      "Get hands-on experience with web development, from HTML and CSS to advanced JavaScript frameworks. Build real-world projects and become a full-stack web developer.",
     imageUrl:
-      "https://images.unsplash.com/photo-1517430816045-df4b7de01c9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
-    date: "May 5, 2021",
-    datetime: "2021-05-05",
-    category: { title: "Web Development", href: "#" },
+      "https://images.unsplash.com/photo-1534081333815-ae5019106622?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+    date: "May 05, 2022",
+    datetime: "2022-05-05",
+    category: { title: "Data Science", href: "#" },
     author: {
-      name: "James Smith",
-      role: "Senior Web Developer",
+      name: "Nusrat Jahan",
+      role: "Data Scientist",
       href: "#",
       imageUrl:
-        "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80",
+        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80",
     },
+    description:
+      "Master the fundamentals of data science using Python. Nusrat Jahan, an experienced data scientist, will guide you through data manipulation, visualization, and basic machine learning techniques.",
   },
   {
     id: 4,
-    title: "AI and Machine Learning",
+    title: "Introduction to Machine Learning",
     href: "#",
-    description:
-      "Dive deep into artificial intelligence and machine learning concepts. Learn about neural networks, natural language processing, and how to implement AI solutions.",
     imageUrl:
-      "https://images.unsplash.com/photo-1556791002-d3fa50384344?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
-    date: "Sep 20, 2021",
-    datetime: "2021-09-20",
-    category: { title: "AI", href: "#" },
+      "https://images.unsplash.com/photo-1555952512-05439b3f3d15?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+    date: "Jul 10, 2022",
+    datetime: "2022-07-10",
+    category: { title: "Machine Learning", href: "#" },
     author: {
-      name: "Emily Davis",
-      role: "AI Specialist",
+      name: "Tanvir Rahman",
+      role: "Machine Learning Engineer",
       href: "#",
       imageUrl:
-        "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80",
+        "https://images.unsplash.com/photo-1510571787505-877c6ebf72c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80",
     },
+    description:
+      "Learn the basics of machine learning with Tanvir Rahman, a machine learning engineer. This course covers fundamental algorithms and techniques, making it ideal for beginners.",
+  },
+  {
+    id: 5,
+    title: "Cloud Computing Basics",
+    href: "#",
+    imageUrl:
+      "https://images.unsplash.com/photo-1556761175-4b46a572b786?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+    date: "Sep 25, 2022",
+    datetime: "2022-09-25",
+    category: { title: "Cloud Computing", href: "#" },
+    author: {
+      name: "Fatima Akter",
+      role: "Cloud Solutions Architect",
+      href: "#",
+      imageUrl:
+        "https://images.unsplash.com/photo-1542345812-d98b5cd6cf98?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80",
+    },
+    description:
+      "Get started with cloud computing with Fatima Akter, a cloud solutions architect. This course introduces key concepts and tools in cloud platforms like AWS and Azure, suitable for beginners.",
+  },
+  {
+    id: 6,
+    title: "Cybersecurity Essentials",
+    href: "#",
+    imageUrl:
+      "https://images.unsplash.com/photo-1559751409-db0bd4f1f6b8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+    date: "Nov 12, 2022",
+    datetime: "2022-11-12",
+    category: { title: "Cybersecurity", href: "#" },
+    author: {
+      name: "Mahmud Hasan",
+      role: "Cybersecurity Specialist",
+      href: "#",
+      imageUrl:
+        "https://images.unsplash.com/photo-1506976785307-8732f75a3a44?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80",
+    },
+    description:
+      "Learn the fundamentals of cybersecurity with Mahmud Hasan, a cybersecurity specialist. This course covers essential concepts and practices to protect systems and data, perfect for beginners looking to enter the field.",
   },
 ];
 
 export default function Counselors() {
   return (
-    <div className="bg-slate-100 pt-4 bg-gradient-to-tr from-[#6ec0ff] to-[#fffdba] pb-14">
+    <div className="bg-gradient-to-tr from-[#6ec0ff] to-[#fffdba] py-12">
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            New Counselors
-          </h2>
-          <p className="mt-2 text-lg leading-8 text-gray-600">
+        <div className="text-center">
+          <h2 className="text-4xl font-bold text-gray-900">New Counselors</h2>
+          <p className="mt-2 text-lg text-gray-600">
             Learn how to grow your skill with our expert advice.
           </p>
         </div>
-        <div className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-x-6 gap-y-12 lg:mx-0 lg:max-w-none lg:grid-cols-3 mb-4   ">
+        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
             <article
               key={post.id}
-              className="flex flex-col items-start justify-between bg-white rounded-lg  p-3 shadow-lg ">
-              <div className="relative w-full">
+              className="flex flex-col items-start justify-between bg-white rounded-lg p-4 shadow-lg transition-transform transform hover:scale-105">
+              <div className="relative w-full overflow-hidden rounded-lg">
                 <img
                   src={post.imageUrl}
-                  alt=""
-                  className="aspect-[16/9] w-full rounded-xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+                  alt={post.title}
+                  className="w-full h-60 object-cover rounded-lg"
                 />
-                <div className="absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
+                <div className="absolute inset-0 rounded-lg ring-1 ring-inset ring-gray-900/10" />
               </div>
-              <div className="max-w-xl">
-                <div className="mt-6 flex items-center gap-x-4 text-xs">
+              <div className="mt-4 flex flex-col">
+                <div className="flex items-center gap-x-3 text-xs">
                   <a
                     href={post.category.href}
-                    className="relative z-10 rounded-full bg-gray-50 px-2 py-1.5 font-medium text-gray-600 hover:bg-gray-100">
+                    className="rounded-full bg-gray-50 px-3 py-1.5 text-gray-600 hover:bg-gray-100">
                     {post.category.title}
                   </a>
                 </div>
-                <div className="group relative">
-                  <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                    <a href={post.href}>
-                      <span className="absolute inset-0" />
-                      {post.title}
-                    </a>
-                  </h3>
-                  <p className="mt-3 line-clamp-3 text-sm leading-6 text-gray-600">
-                    {post.description}
-                  </p>
-                </div>
-                <div className="relative mt-6 flex items-center gap-x-4">
+                <h3 className="mt-3 text-xl font-semibold text-gray-900">
+                  <a href={post.href}>{post.title}</a>
+                </h3>
+                <p className="mt-2 text-sm text-gray-600">{post.description}</p>
+                <div className="mt-4 flex items-center gap-x-4">
                   <img
                     src={post.author.imageUrl}
-                    alt=""
+                    alt={post.author.name}
                     className="h-10 w-10 rounded-full bg-gray-100"
                   />
-                  <div className="text-sm leading-6">
+                  <div className="text-sm text-gray-600">
                     <p className="font-semibold text-gray-900">
-                      <a href={post.author.href}>
-                        <span className="absolute inset-0" />
-                        {post.author.name}
-                      </a>
+                      <a href={post.author.href}>{post.author.name}</a>
                     </p>
-                    <p className="text-gray-600">{post.author.role}</p>
+                    <p>{post.author.role}</p>
                   </div>
                 </div>
               </div>

@@ -1,6 +1,8 @@
 import { Fragment } from "react";
-import { useGetSingleCourseQuery } from "../../redux/features/Student Management/getSingleCoursePreviewAPI";
 import { Link, useParams } from "react-router-dom";
+import Loader from "../../components/Loader";
+import { useDeleteSingleCourseInProfileMutation } from "../../redux/features/Student Management/deleteSingleCourseinProfile";
+import { useGetSingleCourseQuery } from "../../redux/features/Student Management/getSingleCoursePreviewAPI";
 
 const locations = [
   {
@@ -62,50 +64,70 @@ function classNames(...classes: string[]) {
 }
 
 export default function SingleCoursePreview() {
+  const { id } = useParams();
+  
 
+  // Fetch course data using the id
+  const { data, isLoading } = useGetSingleCourseQuery(id);
+  const [deleteCourse, { isLoading: isDeleting, isError }] =
+    useDeleteSingleCourseInProfileMutation();
 
-const { id } = useParams();
-console.log(id);
-
-// Fetch course data using the id
-const { data, isLoading } = useGetSingleCourseQuery(id);
-
-console.log(data);
-
-if (isLoading) {
-  return (
-    <div className="flex justify-center items-center h-screen">Loading...</div>
-  );
-}
-
-if (!data) {
-  return (
-    <div className="flex justify-center items-center h-screen">
-      No data available
-    </div>
-  );
-}
+  
+  
+  
+  const handleDelete = async () => {
+    try {
+      await deleteCourse({id}).unwrap(); 
+      
+    } catch (error) {
+      console.error("Failed to delete course:", error);
+      alert("Failed to delete course. Please try again.");
+    }
+  };
 
 
 
+  if (isLoading || isDeleting) {
+    return <Loader />;
+  }
 
+  if (isError) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p className="text-red-600">
+          An error occurred. Please try again later.
+        </p>
+      </div>
+    );
+  }
 
-
-
-
-
+  if (!data) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        No data available
+      </div>
+    );
+  }
 
   return (
     <div className="">
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
-          <h1 className="text-base font-semibold leading-6 text-gray-900">
-            Users
+          <h1 className="text-base font-semibold leading-6 text-gray-900 mb-2">
+            Files
           </h1>
-          <p className="mt-2 text-sm text-gray-700">
-            A list of all the users in your account including their name, title,
-            email and role.
+          <p className="mt-2 text-sm text-gray-700 mb-5">
+            A list of all the files associated with this course, including their
+            name, URL, and the uploader.
           </p>
+        </div>
+        <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+          <button
+            onClick={handleDelete}
+            type="button"
+            className="block rounded-md bg-red-500 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-red-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+            unenroll
+          </button>
         </div>
         <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
           <Link
@@ -150,14 +172,7 @@ if (!data) {
               <tbody className="bg-white">
                 {locations.map((location) => (
                   <Fragment key={location.name}>
-                    <tr className="border-t border-gray-200">
-                      <th
-                        colSpan={5}
-                        scope="colgroup"
-                        className="bg-gray-50 py-2 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-3">
-                        {location.name}
-                      </th>
-                    </tr>
+                    
                     {location.people.map((person, personIdx) => (
                       <tr
                         key={person.email}
