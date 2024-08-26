@@ -3,24 +3,20 @@ import LandingPage from "../pages/Landing page/LandingPage";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 
-
 import { adminPaths } from "./admin.route";
 
-
-
-
 import { studentPaths } from "./student.route";
-import AdminLayout from "../components/layout/AdminLayout";
-import ProtectedRoute from "../components/ProtectedRoute";
-import StudentSidebarLayout from "../components/layout/StudentSidebarLayout";
-import Nofound from "../pages/Landing page/Nofound";
 
+import ProtectedRoute from "../components/ProtectedRoute";
+import Nofound from "../pages/Landing page/Nofound";
+import AdminSidebarLayout from "../pages/admin/AdminSidebarLayout";
+import StudentSidebarLayout from "../pages/student/StudentSidebarLayout";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <LandingPage></LandingPage>,
-    //errorElement: <Nofound></Nofound>,
+    errorElement: <Nofound></Nofound>,
   },
   {
     path: "/login",
@@ -32,13 +28,12 @@ const router = createBrowserRouter([
     element: <Register></Register>,
     //errorElement: <Nofound></Nofound>,
   },
-  
 
   {
     path: "/admin",
     element: (
       <ProtectedRoute role="admin">
-        <AdminLayout></AdminLayout>
+        <AdminSidebarLayout></AdminSidebarLayout>
       </ProtectedRoute>
     ),
     children: adminPaths,
@@ -55,7 +50,7 @@ const router = createBrowserRouter([
     ),
 
     children: studentPaths,
-    //errorElement: <Nofound></Nofound>,
+    errorElement: <Nofound></Nofound>,
   },
 ]);
 

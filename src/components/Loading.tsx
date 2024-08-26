@@ -2,9 +2,9 @@ import ScaleLoader from "react-spinners/ScaleLoader";
 
 function Loading() {
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-slate-300 blur-0 z-50">
+    <div className="fixed inset-0 flex items-center justify-center bg-neutral-50 blur-0 z-50">
       <ScaleLoader
-        color="#008000"
+        color="#000000"
         cssOverride={{}}
         height={50}
         loading

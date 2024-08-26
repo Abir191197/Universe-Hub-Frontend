@@ -5,10 +5,12 @@ import { useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useUploadFileMutation } from "../../redux/features/Student Management/fileuploadAPI";
+import { useGetSingleCourseQuery } from "../../redux/features/Student Management/getSingleCoursePreviewAPI";
 
 export default function FileUploaded() {
   const { id } = useParams<{ id: string }>();
-
+  const { data: courseData } = useGetSingleCourseQuery(id);
+console.log(courseData.data);
   const {
     register,
     handleSubmit,
@@ -19,22 +21,27 @@ export default function FileUploaded() {
 
   const [fileName, setFileName] = useState("");
 
-  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    const formData = new FormData();
-    formData.append("file", data.file[0]); // Assuming single file upload
-    formData.append("type", data.type);
-    formData.append("fileName", data.title);
-    formData.append("fileDescription", data.Description);
-    if (id) {
-      formData.append("id", id);
+  const onSubmit: SubmitHandler<FieldValues> = async (formData) => {
+    const uploadData = new FormData();
+
+    // Assuming courseData is the response containing the course details
+    if (courseData) {
+      uploadData.append("file", formData.file[0]); // Assuming single file upload
+      uploadData.append("type", formData.type);
+      uploadData.append("fileName", formData.title);
+      uploadData.append("fileDescription", formData.Description);
+      uploadData.append("courseId", courseData.data._id); // Ensure _id exists in courseData
+      uploadData.append("courseName", courseData.data.courseName); // Ensure courseName exists in courseData
     }
+
+    console.log(uploadData);
     // Log FormData content before API call
-    for (const pair of formData.entries()) {
+    for (const pair of uploadData.entries()) {
       console.log(`${pair[0]}: ${pair[1]}`);
     }
 
     try {
-      await uploadFile(formData).unwrap();
+      await uploadFile(uploadData).unwrap();
       toast.success("File uploaded successfully");
       reset(); // Reset the form
       setFileName(""); // Clear the file name
@@ -53,8 +60,8 @@ export default function FileUploaded() {
               File Upload
             </h2>
             <p className="mt-1 text-sm leading-6 text-gray-600">
-              This information will be displayed publicly so be careful what you
-              share.
+              This information will be displayed publicly, so be careful what
+              you share.
             </p>
           </div>
 
@@ -63,7 +70,7 @@ export default function FileUploaded() {
               <label
                 htmlFor="title"
                 className="block text-sm font-medium leading-6 text-gray-900">
-                title
+                Title
               </label>
               <div className="mt-2">
                 <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
@@ -77,7 +84,7 @@ export default function FileUploaded() {
                 </div>
               </div>
               {errors.title && (
-                <p className="text-red-500 text-xs mt-1">title is required</p>
+                <p className="text-red-500 text-xs mt-1">Title is required</p>
               )}
             </div>
 
@@ -96,7 +103,7 @@ export default function FileUploaded() {
                 />
               </div>
               <p className="mt-3 text-sm leading-6 text-gray-600">
-                Write a few sentences Description it.
+                Write a few sentences describing it.
               </p>
               {errors.Description && (
                 <p className="text-red-500 text-xs mt-1">
@@ -158,8 +165,8 @@ export default function FileUploaded() {
               Notifications
             </h2>
             <p className="mt-1 text-sm leading-6 text-gray-600">
-              We'll always let you know Description important changes, but you
-              pick what else you want to hear Description.
+              We'll always let you know about important changes, but you can
+              choose what else you want to hear about.
             </p>
           </div>
 
@@ -169,14 +176,14 @@ export default function FileUploaded() {
                 File Type
               </legend>
               <p className="mt-1 text-sm leading-6 text-gray-600">
-                Which type of file.
+                Which type of file is this?
               </p>
               <div className="mt-6 space-y-6">
                 <div className="flex items-center gap-x-3">
                   <input
                     id="push-everything"
                     type="radio"
-                    value="question"
+                    value="Question"
                     {...register("type", { required: true })}
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
@@ -190,7 +197,7 @@ export default function FileUploaded() {
                   <input
                     id="push-email"
                     type="radio"
-                    value="video"
+                    value="Video"
                     {...register("type", { required: true })}
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
@@ -204,7 +211,7 @@ export default function FileUploaded() {
                   <input
                     id="push-nothing"
                     type="radio"
-                    value="note"
+                    value="Personal Note"
                     {...register("type", { required: true })}
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />

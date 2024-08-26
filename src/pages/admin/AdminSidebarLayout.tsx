@@ -1,49 +1,54 @@
-import { Fragment, SetStateAction, useState } from "react";
 import { Dialog, Menu, Transition } from "@headlessui/react";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import {
   Bars3Icon,
   BellIcon,
-  QrCodeIcon,
-  UserGroupIcon,
-  SwatchIcon,
+  ChatBubbleLeftEllipsisIcon,
   FolderIcon,
   HomeIcon,
   LightBulbIcon,
+  QrCodeIcon,
+  UserGroupIcon,
   XMarkIcon,
-  ChatBubbleLeftEllipsisIcon,
-  SparklesIcon,
-  ChatBubbleLeftRightIcon,
 } from "@heroicons/react/24/outline";
-import {
-  ChevronDownIcon,
-  MagnifyingGlassIcon,
-} from "@heroicons/react/20/solid";
+import { Fragment, SetStateAction, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import { useAppDispatch } from "../../redux/hook";
 import { logout } from "../../redux/features/auth/authSlice";
+import { useAppDispatch } from "../../redux/hook";
 
 const navigation = [
-  { name: "Dashboard", to: "/admin/dashboard", icon: HomeIcon },
-  { name: "Create Courses", to: "/admin/All Course", icon: QrCodeIcon },
-  { name: "Resource Approve", to: "/admin/resource", icon: FolderIcon },
-  { name: "Counselling", to: "/admin/counselling", icon: UserGroupIcon },
-  { name: "All User", to: "/admin/All User", icon: SwatchIcon },
-  { name: "F.A.Q Bot", to: "/faq-bot", icon: LightBulbIcon },
-  { name: "Messages", to: "/messages", icon: ChatBubbleLeftEllipsisIcon },
-  { name: "Group Study", to: "/group-study", icon: ChatBubbleLeftRightIcon },
-  { name: "AI Tutor", to: "/ai-tutor", icon: SparklesIcon },
+  {
+    name: "Dashboard",
+    to: "/admin/dashboard",
+    icon: HomeIcon,
+  },
+  { name: "All Courses", to: "/admin/AllCourse", icon: QrCodeIcon },
+  {
+    name: "Resource Approve",
+    to: "/admin/resource",
+    icon: FolderIcon,
+  },
+  {
+    name: "Counselling",
+    to: "/admin/counselling",
+    icon: UserGroupIcon,
+  },
+
+  { name: "F.A.Q Bot", to: "/admin/faq-bot", icon: LightBulbIcon },
+  {
+    name: "Messages",
+    to: "/admin/messages",
+    icon: ChatBubbleLeftEllipsisIcon,
+  },
 ];
 
-const userNavigation = [
-  { name: "Your profile", to: "/profile" },
-  { name: "Sign out", action: "signout", to: "/login" },
-];
+const userNavigation = [{ name: "Sign out", action: "signout", to: "/" }];
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function StudentSidebarLayout() {
+export default function AdminSidebarLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [currentNavItem, setCurrentNavItem] = useState("Dashboard"); // Initial state
 
@@ -60,7 +65,7 @@ export default function StudentSidebarLayout() {
 
   return (
     <>
-      <div>
+      <div className="">
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog
             as="div"
@@ -111,13 +116,16 @@ export default function StudentSidebarLayout() {
                   {/* Sidebar component, swap this element with another sidebar if you like */}
                   <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
                     <div className="flex h-16 shrink-0 items-center">
-                      <img
-                        className="h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                        alt="Your Company"
-                      />
+                      <Link to="/student">
+                        <img
+                          className="h-8 w-auto"
+                          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                          alt="Your Company"
+                        />
+                      </Link>
                     </div>
-                    <nav className="flex flex-1 flex-col">
+
+                    <nav className="flex flex-1 flex-col ">
                       <ul role="list" className="-mx-2 space-y-1">
                         {navigation.map((item) => (
                           <li key={item.name}>
@@ -126,7 +134,7 @@ export default function StudentSidebarLayout() {
                               className={classNames(
                                 currentNavItem === item.name
                                   ? "bg-gray-50 text-indigo-600"
-                                  : "text-gray-700 hover:text-indigo-600 hover:bg-gray-50",
+                                  : "text-slate-950 hover:text-indigo-600 hover:bg-gray-50",
                                 "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                               )}
                               onClick={() => handleNavigationClick(item.name)}>
@@ -153,16 +161,16 @@ export default function StudentSidebarLayout() {
         </Transition.Root>
 
         {/* Static sidebar for desktop */}
-        <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-52 lg:flex-col">
+        <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-52 lg:flex-col ">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pb-4">
-            <div className="flex h-16 shrink-0 items-center">
+          <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-[#e7f9e8]   px-6 pb-4">
+            <Link to="/student" className="flex h-16 shrink-0 items-center">
               <img
                 className="h-8 w-auto"
                 src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                 alt="Your Company"
               />
-            </div>
+            </Link>
             <nav className="flex flex-1 flex-col">
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
                 <li>
@@ -174,7 +182,7 @@ export default function StudentSidebarLayout() {
                           className={classNames(
                             currentNavItem === item.name
                               ? "bg-gray-50 text-indigo-600"
-                              : "text-gray-700 hover:text-indigo-600 hover:bg-gray-50",
+                              : "text-[#000000] hover:text-indigo-600 hover:bg-gray-50",
                             "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                           )}
                           onClick={() => handleNavigationClick(item.name)}>
@@ -199,7 +207,7 @@ export default function StudentSidebarLayout() {
         </div>
 
         <div className="lg:pl-52">
-          <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
+          <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border  bg-[#ffdabc] px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
             <button
               type="button"
               className="-m-2.5 p-2.5 text-gray-700 lg:hidden"
@@ -209,27 +217,24 @@ export default function StudentSidebarLayout() {
             </button>
 
             {/* Separator */}
-            <div
-              className="h-6 w-px bg-gray-200 lg:hidden"
-              aria-hidden="true"
-            />
+            <div className="h-6 w-px  hidden lg:hidden" aria-hidden="true" />
 
             <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6 px-10 ">
               <form className="relative flex flex-1" action="#" method="GET">
                 <label htmlFor="search-field" className="sr-only">
                   Search
                 </label>
-                <MagnifyingGlassIcon
+                {/* <MagnifyingGlassIcon
                   className="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400"
                   aria-hidden="true"
-                />
-                <input
+                /> */}
+                {/* <input
                   id="search-field"
-                  className="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
+                  className="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm bg-[#f0f0f0]"
                   placeholder="Search..."
                   type="search"
                   name="search"
-                />
+                /> */}
               </form>
               <div className="flex items-center gap-x-4 lg:gap-x-6">
                 <button
@@ -249,16 +254,12 @@ export default function StudentSidebarLayout() {
                 <Menu as="div" className="relative">
                   <Menu.Button className="-m-1.5 flex items-center p-1.5">
                     <span className="sr-only">Open user menu</span>
-                    <img
-                      className="h-8 w-8 rounded-full bg-gray-50"
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                      alt=""
-                    />
+
                     <span className="hidden lg:flex lg:items-center">
                       <span
                         className="ml-4 text-sm font-semibold leading-6 text-gray-900"
                         aria-hidden="true">
-                        Admin
+                        Sign Out
                       </span>
                       <ChevronDownIcon
                         className="ml-2 h-5 w-5 text-gray-400"
@@ -301,8 +302,10 @@ export default function StudentSidebarLayout() {
             </div>
           </div>
 
-          <main className="py-10">
-            <div className="px-4 sm:px-6 lg:px-8"><Outlet></Outlet></div>
+          <main className="py-10 bg-sky-100 ">
+            <div className="px-4 sm:px-6 lg:px-8">
+              <Outlet></Outlet>
+            </div>
           </main>
         </div>
       </div>

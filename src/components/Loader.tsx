@@ -1,5 +1,5 @@
 
-import { HashLoader } from "react-spinners";
+import {  MoonLoader } from "react-spinners";
 
 function Loader() {
   const loaderStyle = {
@@ -14,7 +14,7 @@ function Loader() {
 
   return (
     <div style={loaderStyle}>
-      <HashLoader color="#ae3131" size={50} />
+      <MoonLoader color="#ff0000" size={50} />
     </div>
   );
 }
