@@ -111,7 +111,7 @@ const posts = [
         "https://images.unsplash.com/photo-1506976785307-8732f75a3a44?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80",
     },
     description:
-      "Learn the fundamentals of cybersecurity with Mahmud Hasan, a cybersecurity specialist. This course covers essential concepts and practices to protect systems and data, perfect for beginners looking to enter the field.",
+      "L fundamentals of cybersecurity with Mahmud Hasan, a cybersecurity specialist. This course covers essential concepts and practices to protect systems and data, perfect for beginners looking to enter the field.",
   },
 ];
 
