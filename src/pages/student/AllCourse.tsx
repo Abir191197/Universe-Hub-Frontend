@@ -173,7 +173,7 @@ export default function AllCourse() {
     className="h-5 w-5 text-gray-400"
     aria-hidden="true"
   />
-  Add to Favourite!
+  Subscribe!
 </button>
 
 

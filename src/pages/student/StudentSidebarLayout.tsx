@@ -28,7 +28,9 @@ const navigation = [
     to: "/student/dashboard",
     icon: HomeIcon,
   },
-  { name: "All Courses", to: "/student/AllCourse", icon: QrCodeIcon },
+  { name: "All Courses", 
+    to: "/student/AllCourse", 
+    icon: QrCodeIcon },
   {
     name: "Resource",
     to: "/student/resource",
@@ -52,12 +54,22 @@ const navigation = [
   },
   {
     name: "Group Study",
-    to: "/student/group-study",
+    to: "/student/GroupStudyTop",
     icon: ChatBubbleLeftRightIcon,
   },
   {
     name: "AI Tutor",
     to: "/student/ai-tutor",
+    icon: SparklesIcon,
+  },
+  {
+    name: "GroupStudyCreate",
+    to: "/student/GroupStudyCreate",
+    icon: SparklesIcon,
+  },
+  {
+    name: "Forum",
+    to: "/student/ForumPage",
     icon: SparklesIcon,
   },
 ];
