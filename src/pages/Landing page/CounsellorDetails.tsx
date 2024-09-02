@@ -1,173 +1,175 @@
 const posts = [
+  
   {
     id: 1,
-    title: "Introduction to Python",
+    title: "Abir Hossain",
     href: "#",
     imageUrl:
-      "https://images.unsplash.com/photo-1517430816045-df4b7de11d0f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+      "https://ichef.bbci.co.uk/news/976/cpsprodpb/574E/production/_90805322_image_00006.jpg",
     date: "Feb 15, 2022",
     datetime: "2022-02-15",
-    category: { title: "Programming", href: "#" },
+    category: { title: "Programmer", href: "#" },
     author: {
-      name: "Rahim Ahmed",
-      role: "Senior Software Engineer",
+      name: "Abir Hossain",
+      role: "Computer Science and Engineering",
       href: "#",
       imageUrl:
-        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80",
+        "https://ichef.bbci.co.uk/news/976/cpsprodpb/574E/production/_90805322_image_00006.jpg",
     },
     description:
-      "Learn the fundamentals of Python programming with Rahim Ahmed, a seasoned software engineer. This course is perfect for beginners looking to gain a solid foundation in Python.",
+      "Abir Hossain specializes in Node.js and React.js, making him an expert in modern web development. He has a talent for breaking down complex concepts into simple, understandable lessons, making him highly approachable for beginners. Whether you're just starting out or looking to deepen your understanding of JavaScript frameworks, Abir's teaching style is designed to help you build a strong foundation in web development. His patient and clear explanations make him an ideal mentor for anyone new to coding.",
   },
   {
     id: 2,
-    title: "Web Development with JavaScript",
+    title: "Kotha Islam",
     href: "#",
     imageUrl:
-      "https://images.unsplash.com/photo-1581093588401-75baca46f89f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+      "https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/62A2/production/_90805252_image_00001.jpg.webp",
     date: "Mar 20, 2022",
     datetime: "2022-03-20",
-    category: { title: "Web Development", href: "#" },
+    category: { title: "Bioinformatics", href: "#" },
     author: {
-      name: "Karim Hossain",
-      role: "Full-Stack Developer",
+      name: "Kotha Islam",
+      role: "Bioinformatics Educator",
       href: "#",
       imageUrl:
-        "https://images.unsplash.com/photo-1603415526960-f2aa381ee5f2?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80",
+        "https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/62A2/production/_90805252_image_00001.jpg.webp",
     },
     description:
-      "Dive into web development with JavaScript, guided by Karim Hossain, a full-stack developer. This course covers the basics of JavaScript, making it accessible for beginners.",
+      "Kotha Islam is passionate about teaching Bioinformatics and is dedicated to making the subject accessible to all students. She offers well-structured, easy-to-understand notes that simplify even the most complex topics in Bioinformatics. Her approach to teaching emphasizes clarity and comprehension, ensuring that students can grasp difficult concepts with ease.",
   },
   {
     id: 3,
-    title: "Data Science with Python",
+    title: "Rafsan Karim",
     href: "#",
     imageUrl:
-      "https://images.unsplash.com/photo-1534081333815-ae5019106622?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+      "https://www.newagebd.com/files/records/news/202009/116708_161.jpg",
     date: "May 05, 2022",
     datetime: "2022-05-05",
-    category: { title: "Data Science", href: "#" },
+    category: { title: "Python Programming", href: "#" },
     author: {
-      name: "Nusrat Jahan",
-      role: "Data Scientist",
+      name: "Rafsan Karim",
+      role: "Python Programming Instructor",
       href: "#",
       imageUrl:
-        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80",
+        "https://www.newagebd.com/files/records/news/202009/116708_161.jpg",
     },
     description:
-      "Master the fundamentals of data science using Python. Nusrat Jahan, an experienced data scientist, will guide you through data manipulation, visualization, and basic machine learning techniques.",
+      "Rafsan Karim is a seasoned professional in Python programming and data analysis. With years of experience in the industry, he excels at teaching Python to students of all levels. His approach focuses on practical, hands-on learning, allowing students to apply what they learn in real-world scenarios.",
   },
   {
     id: 4,
-    title: "Introduction to Machine Learning",
+    title: "Maya Rahman",
     href: "#",
     imageUrl:
-      "https://images.unsplash.com/photo-1555952512-05439b3f3d15?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+      "https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/14D02/production/_90805258_image_00004.jpg.webp",
     date: "Jul 10, 2022",
     datetime: "2022-07-10",
-    category: { title: "Machine Learning", href: "#" },
+    category: { title: "Cloud Computing", href: "#" },
     author: {
-      name: "Tanvir Rahman",
-      role: "Machine Learning Engineer",
+      name: "Maya Rahman",
+      role: "Cloud Computing and DevOps Expert",
       href: "#",
       imageUrl:
-        "https://images.unsplash.com/photo-1510571787505-877c6ebf72c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80",
+        "https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/14D02/production/_90805258_image_00004.jpg.webp",
     },
     description:
-      "Learn the basics of machine learning with Tanvir Rahman, a machine learning engineer. This course covers fundamental algorithms and techniques, making it ideal for beginners.",
+      "Maya Rahman is an expert in Cloud Computing and DevOps, with a deep understanding of modern IT infrastructure and software deployment. She simplifies the intricacies of cloud platforms like AWS and Azure, making them comprehensible for learners at any stage. Her teaching style is focused on real-world applications, providing students with practical knowledge that they can immediately put to use.",
   },
   {
     id: 5,
-    title: "Cloud Computing Basics",
+    title: "Tahsin Ahmed",
     href: "#",
     imageUrl:
-      "https://images.unsplash.com/photo-1556761175-4b46a572b786?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+      "https://thumbs.dreamstime.com/b/young-indian-student-man-red-checkered-shirt-jeans-posed-city-229834070.jpg",
     date: "Sep 25, 2022",
     datetime: "2022-09-25",
-    category: { title: "Cloud Computing", href: "#" },
+    category: { title: "Artificial Intelligence", href: "#" },
     author: {
-      name: "Fatima Akter",
-      role: "Cloud Solutions Architect",
+      name: "Tahsin Ahmed",
+      role: "AI and Machine Learning Specialist",
       href: "#",
       imageUrl:
-        "https://images.unsplash.com/photo-1542345812-d98b5cd6cf98?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80",
+        "https://thumbs.dreamstime.com/b/young-indian-student-man-red-checkered-shirt-jeans-posed-city-229834070.jpg",
     },
     description:
-      "Get started with cloud computing with Fatima Akter, a cloud solutions architect. This course introduces key concepts and tools in cloud platforms like AWS and Azure, suitable for beginners.",
+      "Tahsin Ahmed is a specialist in Artificial Intelligence and Machine Learning, with extensive experience in developing and deploying intelligent systems. His teaching approach emphasizes understanding the core concepts and algorithms that power AI technologies. Tahsin is known for his ability to break down complex theories into digestible lessons, making Machine Learning accessible to both beginners and advanced students.",
   },
   {
     id: 6,
-    title: "Cybersecurity Essentials",
+    title: "Shaila Haque",
     href: "#",
     imageUrl:
-      "https://images.unsplash.com/photo-1559751409-db0bd4f1f6b8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+      "https://st2.depositphotos.com/37996792/42271/i/450/depositphotos_422718976-stock-photo-pretty-young-indian-woman-using.jpg",
     date: "Nov 12, 2022",
     datetime: "2022-11-12",
     category: { title: "Cybersecurity", href: "#" },
     author: {
-      name: "Mahmud Hasan",
-      role: "Cybersecurity Specialist",
+      name: "Shaila Haque",
+      role: "Cybersecurity and Ethical Hacking Educator",
       href: "#",
       imageUrl:
-        "https://images.unsplash.com/photo-1506976785307-8732f75a3a44?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80",
+        "https://st2.depositphotos.com/37996792/42271/i/450/depositphotos_422718976-stock-photo-pretty-young-indian-woman-using.jpg",
     },
     description:
-      "L fundamentals of cybersecurity with Mahmud Hasan, a cybersecurity specialist. This course covers essential concepts and practices to protect systems and data, perfect for beginners looking to enter the field.",
-  },
+      "Shaila Haque is an accomplished educator in Cybersecurity and Ethical Hacking, with a deep passion for protecting digital assets. With her vast knowledge of network security, encryption, and ethical hacking practices, she guides students through the complexities of cybersecurity with ease. Shaila's teaching is highly interactive, involving simulations and practical exercises that equip students with the skills needed to identify and mitigate security threats.",
+  }
+
 ];
 
 export default function Counselors() {
-  return (
-    <div className="bg-gradient-to-tr from-[#6ec0ff] to-[#fffdba] py-12">
-      <div className="mx-auto max-w-7xl px-4 lg:px-6">
-        <div className="text-center">
-          <h2 className="text-4xl font-bold text-gray-900">New Counselors</h2>
-          <p className="mt-2 text-lg text-gray-600">
-            Learn how to grow your skill with our expert advice.
-          </p>
-        </div>
-        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post) => (
-            <article
-              key={post.id}
-              className="flex flex-col items-start justify-between bg-white rounded-lg p-4 shadow-lg transition-transform transform hover:scale-105">
-              <div className="relative w-full overflow-hidden rounded-lg">
+return (
+  <div className="bg-gradient-to-tr from-[#6ec0ff] to-[#fffdba] py-12">
+    <div className="mx-auto max-w-7xl px-4 lg:px-6">
+      <div className="text-center">
+        <h2 className="text-4xl font-bold text-gray-900">New Counselors</h2>
+        <p className="mt-2 text-lg text-gray-600">
+          Learn how to grow your skill with our expert advice.
+        </p>
+      </div>
+      <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {posts.map((post) => (
+          <article
+            key={post.id}
+            className="flex flex-col items-start justify-between bg-white rounded-lg p-4 shadow-lg transition-transform transform hover:scale-105">
+            <div className="relative w-full overflow-hidden rounded-lg">
+              <img
+                src={post.imageUrl}
+                alt={post.title}
+                className="w-full h-60 object-cover rounded-lg"
+              />
+              <div className="absolute inset-0 rounded-lg ring-1 ring-inset ring-gray-900/10" />
+            </div>
+            <div className="mt-4 flex flex-col">
+              <div className="flex items-center gap-x-3 text-xs">
+                <a
+                  href={post.category.href}
+                  className="rounded-full bg-gray-50 px-3 py-1.5 text-gray-600 hover:bg-gray-100">
+                  {post.category.title}
+                </a>
+              </div>
+              <h3 className="mt-3 text-xl font-semibold text-gray-900">
+                <a href={post.href}>{post.title}</a>
+              </h3>
+              <p className="mt-2 text-sm text-gray-600">{post.description}</p>
+              <div className="mt-4 flex items-center gap-x-4">
                 <img
-                  src={post.imageUrl}
-                  alt={post.title}
-                  className="w-full h-60 object-cover rounded-lg"
+                  src={post.author.imageUrl}
+                  alt={post.author.name}
+                  className="h-10 w-10 rounded-full bg-gray-100"
                 />
-                <div className="absolute inset-0 rounded-lg ring-1 ring-inset ring-gray-900/10" />
-              </div>
-              <div className="mt-4 flex flex-col">
-                <div className="flex items-center gap-x-3 text-xs">
-                  <a
-                    href={post.category.href}
-                    className="rounded-full bg-gray-50 px-3 py-1.5 text-gray-600 hover:bg-gray-100">
-                    {post.category.title}
-                  </a>
-                </div>
-                <h3 className="mt-3 text-xl font-semibold text-gray-900">
-                  <a href={post.href}>{post.title}</a>
-                </h3>
-                <p className="mt-2 text-sm text-gray-600">{post.description}</p>
-                <div className="mt-4 flex items-center gap-x-4">
-                  <img
-                    src={post.author.imageUrl}
-                    alt={post.author.name}
-                    className="h-10 w-10 rounded-full bg-gray-100"
-                  />
-                  <div className="text-sm text-gray-600">
-                    <p className="font-semibold text-gray-900">
-                      <a href={post.author.href}>{post.author.name}</a>
-                    </p>
-                    <p>{post.author.role}</p>
-                  </div>
+                <div className="text-sm text-gray-600">
+                  <p className="font-semibold text-gray-900">
+                    <a href={post.author.href}>{post.author.name}</a>
+                  </p>
+                  <p>{post.author.role}</p>
                 </div>
               </div>
-            </article>
-          ))}
-        </div>
+            </div>
+          </article>
+        ))}
       </div>
     </div>
-  );
+  </div>
+);
 }
