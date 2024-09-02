@@ -5,6 +5,7 @@ import AllCourse from "../pages/student/AllCourse";
 import SingleCoursePreview from "../pages/student/SingleCoursePreview";
 import FileUploaded from "../pages/student/FileUploaded";
 
+
 export const studentPaths: RouteObject[] = [
   {
     index: true,
@@ -34,4 +35,5 @@ export const studentPaths: RouteObject[] = [
     path: "fileUpload/:id",
     element: <FileUploaded></FileUploaded>,
   },
+
 ];
