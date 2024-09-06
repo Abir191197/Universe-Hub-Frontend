@@ -12,7 +12,7 @@ const statuses: Record<Status, string> = {
 const clients = [
   {
     id: 1,
-    name: 'SPL Group Study',
+    name: 'SPL Group ',
     imageUrl: 'https://tailwindui.com/img/logos/48x48/tuple.svg',
     lastInvoice: { date: 'September 10, 2024', time: '10:00 AM', description: 'We want to study for CT', link: 'https://meet.example.com', status: 'Participant' as Status, participants: '5/10' },
   },
