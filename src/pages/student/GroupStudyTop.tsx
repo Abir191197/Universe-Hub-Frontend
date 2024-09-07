@@ -1,4 +1,3 @@
-import React from 'react';
 import GroupStudyDisplayAll from "./GroupStudyDisplayAll";
 
 export default function GroupStudyTop() {
