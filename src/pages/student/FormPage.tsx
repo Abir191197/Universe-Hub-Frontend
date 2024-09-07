@@ -1,9 +1,10 @@
-import React, { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent } from 'react';
 import { PaperClipIcon, HeartIcon, ChatBubbleLeftIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
 const dummyPosts = [
   {
     id: 1,
+    title: 'Sample Post Title', // Added title field
     userName: 'Suma Layla',
     userImage: 'https://dailyasianage.com/library/1549656662_7.jpg',
     postContent: 'This is a sample post. Feel free to comment and react!',
@@ -17,25 +18,30 @@ const dummyPosts = [
   },
   {
     id: 2,
+    title: 'Another Example Post', // Added title field
     userName: 'Abir',
     userImage: 'https://dailyasianage.com/library/1549656662_7.jpg',
     postContent: 'Another example post. Let us know your thoughts.',
     postImage: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjdQIS7GZMNlpIBzh0TvB0EP6ClQJFmKmg3URw3Z-fvkwatVQBWi6djfSGs_Mgpn-W38YOwDyXIeVzhDPof_JeBMRmeMzSnOBQHu-GL5PeyIPxv83BPkyY69ddSl45hlvef5fbtN83tEb0/s1600/advance.jpg',
-    comments: [
-      { userName: 'Bob Brown', comment: 'Interesting perspective!', image: 'https://i.redd.it/z02xvixbgrwb1.jpg' },
-      { userName: 'Emily Davis', comment: 'I learned something new.', image: 'https://mzucker.github.io/images/noteshrink/notesA1_comparison.png' },
-    ],
+    comments: [],
     likes: 2,
-    commentsCount: 2,
+    commentsCount: 0,
   },
 ];
 
 export default function ForumPage() {
+  const [newTitle, setNewTitle] = useState<string>(''); // Title state for new post
   const [newPost, setNewPost] = useState<string>('');
+  const [newComment, setNewComment] = useState<string>(''); // Comment state
+  const [commentFile, setCommentFile] = useState<File | null>(null); // File state for comment attachments
   const [file, setFile] = useState<File | null>(null);
   const [posts, setPosts] = useState(dummyPosts);
   const [likedPosts, setLikedPosts] = useState<number[]>([]); // To track liked posts
   const [searchTerm, setSearchTerm] = useState<string>('');
+
+  const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setNewTitle(e.target.value);
+  };
 
   const handlePostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setNewPost(e.target.value);
@@ -45,10 +51,15 @@ export default function ForumPage() {
     setFile(e.target.files?.[0] ?? null);
   };
 
+  const handleCommentFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setCommentFile(e.target.files?.[0] ?? null); // Handle comment file change
+  };
+
   const handlePostSubmit = () => {
-    if (newPost.trim()) {
+    if (newPost.trim() && newTitle.trim()) {
       const newPostObject = {
         id: posts.length + 1,
+        title: newTitle, // New title added here
         userName: 'Current User', // Replace with actual user data
         userImage: 'https://www.newagebd.com/files/records/news/202009/116708_161.jpg',
         postContent: newPost,
@@ -59,6 +70,7 @@ export default function ForumPage() {
       };
       setPosts([newPostObject, ...posts]);
       setNewPost('');
+      setNewTitle(''); // Reset the title input
       setFile(null);
     }
   };
@@ -72,62 +84,100 @@ export default function ForumPage() {
     setLikedPosts(prevLikes => [...prevLikes, postId]);
   };
 
+  const handleCommentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setNewComment(e.target.value);
+  };
+
+  const handleCommentSubmit = (postId: number) => {
+    if (newComment.trim() || commentFile) {
+      const updatedPosts = posts.map(post => {
+        if (post.id === postId) {
+          return {
+            ...post,
+            comments: [
+              ...post.comments,
+              {
+                userName: 'Current User',
+                comment: newComment,
+                image: commentFile ? URL.createObjectURL(commentFile) : 'https://dailyasianage.com/library/1549656662_7.jpg',
+              },
+            ],
+            commentsCount: post.commentsCount + 1,
+          };
+        }
+        return post;
+      });
+      setPosts(updatedPosts);
+      setNewComment(''); // Clear comment field after submission
+      setCommentFile(null); // Clear comment file after submission
+    }
+  };
+
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
 
   const filteredPosts = posts.filter(post =>
-    post.postContent.toLowerCase().includes(searchTerm.toLowerCase())
+    post.postContent.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    post.title.toLowerCase().includes(searchTerm.toLowerCase()) // Search by title too
   );
 
   return (
-    <div className="container mx-auto p-4">
-      <div className="mb-6 p-4 border rounded-lg bg-white shadow">
-        <div className="flex items-center gap-2">
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={handleSearchChange}
-            placeholder="Search posts..."
-            className="flex-1 border border-blue-500 rounded px-2 py-1"
-          />
-          <button
-            className="flex items-center bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-400 transition-colors duration-300"
-            onClick={() => {/* Add search functionality */}}
-          >
-            <MagnifyingGlassIcon className="h-5 w-5 mr-2" />
-            Search
-          </button>
-        </div>
-      </div>
-
-      <div className="mb-4 p-4 border rounded-lg bg-white shadow">
-        <textarea
-          value={newPost}
-          onChange={handlePostChange}
-          placeholder="What's on your mind?"
-          rows={3}
-          className="w-full border rounded-lg p-2 mb-2"
-        />
-        <div className="flex items-center gap-4">
-          <button
-            onClick={handlePostSubmit}
-            className="bg-blue-500 text-white px-4 py-2 rounded"
-          >
-            Post
-          </button>
-          <label className="cursor-pointer flex items-center">
-            <PaperClipIcon className="h-5 w-5 text-gray-500" />
+    <div className="container mx-auto p-4 flex">
+      <div className="w-full md:w-8/12 space-y-4">
+        {/* Search Box */}
+        <div className="mb-6 p-4 border rounded-lg bg-white shadow">
+          <div className="flex items-center gap-2">
             <input
-              type="file"
-              onChange={handleFileChange}
-              className="hidden"
+              type="text"
+              value={searchTerm}
+              onChange={handleSearchChange}
+              placeholder="Search posts..."
+              className="flex-1 border border-blue-500 rounded px-2 py-1"
             />
-          </label>
+            <button
+              className="flex items-center bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-400 transition-colors duration-300"
+            >
+              <MagnifyingGlassIcon className="h-5 w-5 mr-2" />
+              Search
+            </button>
+          </div>
         </div>
-      </div>
 
-      <div className="space-y-4">
+        {/* New Post Input */}
+        <div className="mb-4 p-4 border rounded-lg bg-white shadow">
+          <input
+            value={newTitle}
+            onChange={handleTitleChange}
+            placeholder="Title of your post"
+            className="w-full border rounded-lg p-2 mb-2"
+          />
+          <textarea
+            value={newPost}
+            onChange={handlePostChange}
+            placeholder="What's on your mind?"
+            rows={3}
+            className="w-full border rounded-lg p-2 mb-2"
+          />
+          <div className="flex items-center gap-4">
+            <button
+              onClick={handlePostSubmit}
+              className="bg-blue-500 text-white px-4 py-2 rounded"
+            >
+              Post
+            </button>
+            <label className="cursor-pointer flex items-center">
+              <PaperClipIcon className="h-5 w-5 text-gray-500" />
+              <input
+                type="file"
+                onChange={handleFileChange}
+                className="hidden"
+              />
+            </label>
+          </div>
+        </div>
+
+        {/* Posts */}
         {filteredPosts.map(post => (
           <div key={post.id} className="p-4 border rounded-lg bg-white shadow">
             <div className="flex items-center mb-2">
@@ -138,6 +188,7 @@ export default function ForumPage() {
               />
               <span className="font-bold">{post.userName}</span>
             </div>
+            <h3 className="text-lg font-semibold mb-1">{post.title}</h3> {/* Display title */}
             <p className="mb-2">{post.postContent}</p>
             {post.postImage && (
               <div className="mb-2 border-t border-b border-light-blue-300 pt-2 pb-2">
@@ -153,53 +204,67 @@ export default function ForumPage() {
                 className={`flex items-center ${likedPosts.includes(post.id) ? 'text-red-600' : 'text-gray-500'}`} 
                 onClick={() => handleLikeClick(post.id)}
               >
-                <HeartIcon className="h-5 w-5" />
+                <HeartIcon className="h-5 w-5 mr-1" />
                 {post.likes}
               </button>
-              <button className="text-blue-500 flex items-center">
-                <ChatBubbleLeftIcon className="h-5 w-5" />
+              <button className="flex items-center text-gray-500">
+                <ChatBubbleLeftIcon className="h-5 w-5 mr-1" />
                 {post.commentsCount}
               </button>
             </div>
-            <div className="mt-2 border-t border-b border-gray-300 pt-2 pb-2">
-              {post.comments.map((comment, index) => (
-                <div key={index} className="mb-4">
-                  <div className="flex items-start">
-                    <img
-                      src="https://www.newagebd.com/files/records/news/202009/116708_161.jpg"
-                      alt={comment.userName}
-                      className="w-6 h-6 rounded-full mr-2"
-                    />
-                    <div className="flex-1">
-                      <div className="bg-white border border-blue-500 p-2 rounded">
-                        <p className="font-bold">{comment.userName}:</p>
-                        <p>{comment.comment}</p>
-                        <img
-                          src={comment.image}
-                          alt="Attached"
-                          className="w-auto h-60 object-cover rounded mt-2" // Adjusted width
-                        />
+            
+            {/* Comments Section */}
+            <div>
+              {post.comments.length > 0 ? (
+                post.comments.map((comment, idx) => (
+                  <div key={idx} className="border-t pt-2 mt-2">
+                    <div className="flex items-start mb-2">
+                      <img
+                        src={comment.image}
+                        alt={comment.userName}
+                        className="w-8 h-8 rounded-full mr-2"
+                      />
+                      <div>
+                        <span className="font-bold">{comment.userName}</span>
+                        <p className="text-gray-700">{comment.comment}</p>
+                        {comment.image && (
+                          <img
+                            src={comment.image}
+                            alt="Attachment"
+                            className="h-72 mt-2"
+                          />
+                        )}
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
-              <div className="flex items-center mt-2">
-                <input
-                  type="text"
-                  placeholder="Add a comment..."
-                  className="flex-1 border border-blue-500 rounded px-2 py-1"
+                ))
+              ) : (
+                <div className="text-gray-500 text-sm mb-4">No comments yet. Be the first to comment!</div>
+              )}
+
+              {/* Add Comment Input */}
+              <div className="mt-4 flex items-center">
+                <textarea
+                  value={newComment}
+                  onChange={handleCommentChange}
+                  placeholder="Write a comment..."
+                  rows={2}
+                  className="w-full border rounded-lg p-2"
                 />
-                <label className="cursor-pointer ml-2">
+                <button
+                  onClick={() => handleCommentSubmit(post.id)}
+                  className="ml-2 bg-blue-500 text-white px-4 py-2 rounded"
+                >
+                  Comment
+                </button>
+                <label className="ml-2 cursor-pointer">
                   <PaperClipIcon className="h-5 w-5 text-gray-500" />
                   <input
                     type="file"
+                    onChange={handleCommentFileChange}
                     className="hidden"
                   />
                 </label>
-                <button className="bg-blue-500 text-white px-4 py-2 rounded ml-2">
-                  Comment
-                </button>
               </div>
             </div>
           </div>
