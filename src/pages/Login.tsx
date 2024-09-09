@@ -6,7 +6,6 @@ import authApi from "../redux/features/auth/authApi";
 import { setUser, TUser } from "../redux/features/auth/authSlice";
 import { useAppDispatch } from "../redux/hook";
 import { verifyToken } from "../utils/verifyToken";
-
 import Loading from "../components/Loading";
 
 
