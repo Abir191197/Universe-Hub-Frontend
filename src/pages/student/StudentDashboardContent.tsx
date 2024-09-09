@@ -1,6 +1,7 @@
 import EnrolCourse from "./EnrolCourse";
 import StudentDashboardProfile from "./StudentDashboardProfile";
 
+
 const StudentDashboardContent = () => {
   return (
     <div>
@@ -13,7 +14,6 @@ const StudentDashboardContent = () => {
           </div>
         </div>
       </div>
-
       <EnrolCourse />
     </div>
   );

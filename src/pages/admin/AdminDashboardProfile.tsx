@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useGetWhoLogInQuery } from "../../redux/features/Student Management/getWhoLogInAPI";
 import Loader from "../../components/Loader";
 
+
 export default function AdminDashboardProfile() {
   const { data, isLoading } = useGetWhoLogInQuery(undefined);
 
