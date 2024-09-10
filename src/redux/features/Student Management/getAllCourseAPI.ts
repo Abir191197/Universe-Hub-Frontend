@@ -5,6 +5,7 @@ const getAllCourseAPI = baseApi.injectEndpoints({
     getAllCourses: builder.query({
       query: ({ searchKeyWord, page, limit }) => ({
         url: `/courses?searchTerm=${searchKeyWord}&page=${page}&limit=${limit}`,
+        
         method: "GET",
       }),
      
