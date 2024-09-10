@@ -31,7 +31,11 @@ const navigation = [
     to: "/student/dashboard",
     icon: HomeIcon,
   },
-  { name: "All Courses", to: "/student/AllCourse", icon: QrCodeIcon },
+
+  { name: "All Courses", 
+    to: "/student/AllCourse", 
+    icon: QrCodeIcon },
+  
 
   {
     name: "Counselling",
@@ -59,10 +63,14 @@ const navigation = [
     to: "/student/ai-tutor",
     icon: SparklesIcon,
   },
+
+
   {
     name: "Forum",
-    to: "/student/forum",
-    icon:  ChatBubbleBottomCenterTextIcon,
+    to: "/student/ForumPage",
+    icon: ChatBubbleBottomCenterTextIcon,
+
+
   },
 ];
 
@@ -190,14 +198,16 @@ export default function StudentSidebarLayout() {
         {/* Static sidebar for desktop */}
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-52 lg:flex-col ">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-[#e7f9e8]   px-6 pb-4">
-            <Link to="/student"   className="flex h-16 shrink-0 items-center">
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt="Your Company"
-              />
-            </Link>
+
+          <div className="flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-4" style={{ backgroundColor: '#9DBAFF' }}>
+
+          <Link to="/student">
+                      <img
+             className="h-20 w-40 pt-5"  // Adjust `h-12` for a larger image and `pt-4` for padding-top
+            src={logo}
+             alt="UniverseHub"
+            />
+                      </Link>
             <nav className="flex flex-1 flex-col">
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
                 <li>
