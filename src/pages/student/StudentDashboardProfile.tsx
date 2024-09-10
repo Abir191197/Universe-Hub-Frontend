@@ -32,6 +32,7 @@ export default function StudentDashboardProfile() {
     course: data.data.course,
     role: data.data.role,
   };
+  
 
   return (
     <div className="bg-white shadow rounded-lg">
