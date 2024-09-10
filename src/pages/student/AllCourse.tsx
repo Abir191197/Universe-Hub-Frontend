@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import {  MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import Loader from "../../components/Loader";
 
-export interface ICourse {
+export interface ICourse {   // add course varriable 
   _id: string;
   courseName: string;
   files: string[];
