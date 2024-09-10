@@ -11,6 +11,8 @@ import { Link } from "react-router-dom";
 import { useGetWhoLogInQuery } from "../../redux/features/Student Management/getWhoLogInAPI";
 import Loader from "../../components/Loader";
 
+
+
 export default function StudentDashboardProfile() {
   const { data, isLoading } = useGetWhoLogInQuery(undefined);
 
@@ -113,6 +115,7 @@ export default function StudentDashboardProfile() {
             <span className="text-gray-700">{profile.program}</span>
           </div>
 
+<<<<<<< HEAD
           {/* Edit Profile */}
           <Link
             to="EditProfile"
@@ -123,6 +126,20 @@ export default function StudentDashboardProfile() {
             />
             <span className="text-sm">Edit Profile</span>
           </Link>
+=======
+        {/* Edit Profile */}
+<Link
+  to="EditProfile"
+  className="flex items-center justify-center bg-indigo-500 p-2 rounded-lg shadow-sm text-white hover:bg-indigo-600 transition duration-300 border-4 border-white mt-8 mx-4 mb-4 border-b-8"
+>
+  <PencilSquareIcon
+    className="h-5 w-5 text-white mr-2"
+    aria-hidden="true"
+  />
+  <span className="text-sm">Edit Profile</span>
+</Link>
+
+>>>>>>> d04c6545056eb6890f4515d744b1ee2fd4f47381
         </div>
       </div>
     </div>

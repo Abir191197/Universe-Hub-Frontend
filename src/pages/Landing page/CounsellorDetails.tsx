@@ -1,4 +1,5 @@
 const posts = [
+  
   {
     id: 1,
     title: "Abir Hossain",
@@ -16,11 +17,22 @@ const posts = [
         "https://ichef.bbci.co.uk/news/976/cpsprodpb/574E/production/_90805322_image_00006.jpg",
     },
     description:
+<<<<<<< HEAD
       "Abir Hossain specializes in Node.js and React.js, making him an expert in modern web development. He has a talent for breaking down complex concepts into simple, understandable lessons, making him highly approachable for beginners. His patient and clear explanations make him an ideal mentor for anyone new to coding.",
   },
   {
     id: 2,
     title: "Kotha Islam",
+=======
+      "Abir Hossain specializes in Node.js and React.js, making him an expert in modern web development. He has a talent for breaking down complex concepts into simple, understandable lessons, making him highly approachable for beginners. Whether you're just starting out or looking to deepen your understanding of JavaScript frameworks, Abir's teaching style is designed to help you build a strong foundation in web development. His patient and clear explanations make him an ideal mentor for anyone new to coding.",
+  },
+  {
+    id: 2,
+    title: "Kotha Isams",
+
+    title: "Web Development with JavaScript",
+
+>>>>>>> d04c6545056eb6890f4515d744b1ee2fd4f47381
     href: "#",
     imageUrl:
       "https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/62A2/production/_90805252_image_00001.jpg.webp",
@@ -112,62 +124,67 @@ const posts = [
     },
     description:
       "Shaila Haque is an accomplished educator in Cybersecurity and Ethical Hacking, with a deep passion for protecting digital assets. With her vast knowledge of network security, encryption, and ethical hacking practices, she guides students through the complexities of cybersecurity with ease. Shaila's teaching is highly interactive, involving simulations and practical exercises that equip students with the skills needed to identify and mitigate security threats.",
+<<<<<<< HEAD
   },
+=======
+  }
+
+>>>>>>> d04c6545056eb6890f4515d744b1ee2fd4f47381
 ];
 
 export default function Counselors() {
-  return (
-    <div className="bg-gradient-to-tr from-[#6ec0ff] to-[#fffdba] py-12">
-      <div className="mx-auto max-w-7xl px-4 lg:px-6">
-        <div className="text-center">
-          <h2 className="text-4xl font-bold text-gray-900">New Counselors</h2>
-          <p className="mt-2 text-lg text-gray-600">
-            Learn how to grow your skill with our expert advice.
-          </p>
-        </div>
-        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post) => (
-            <article
-              key={post.id}
-              className="flex flex-col items-start justify-between bg-white rounded-lg p-4 shadow-lg transition-transform transform hover:scale-105">
-              <div className="relative w-full overflow-hidden rounded-lg">
+return (
+  <div className="bg-gradient-to-tr from-[#6ec0ff] to-[#fffdba] py-12">
+    <div className="mx-auto max-w-7xl px-4 lg:px-6">
+      <div className="text-center">
+        <h2 className="text-4xl font-bold text-gray-900">New Counselors</h2>
+        <p className="mt-2 text-lg text-gray-600">
+          Learn how to grow your skill with our expert advice.
+        </p>
+      </div>
+      <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {posts.map((post) => (
+          <article
+            key={post.id}
+            className="flex flex-col items-start justify-between bg-white rounded-lg p-4 shadow-lg transition-transform transform hover:scale-105">
+            <div className="relative w-full overflow-hidden rounded-lg">
+              <img
+                src={post.imageUrl}
+                alt={post.title}
+                className="w-full h-60 object-cover rounded-lg"
+              />
+              <div className="absolute inset-0 rounded-lg ring-1 ring-inset ring-gray-900/10" />
+            </div>
+            <div className="mt-4 flex flex-col">
+              <div className="flex items-center gap-x-3 text-xs">
+                <a
+                  href={post.category.href}
+                  className="rounded-full bg-gray-50 px-3 py-1.5 text-gray-600 hover:bg-gray-100">
+                  {post.category.title}
+                </a>
+              </div>
+              <h3 className="mt-3 text-xl font-semibold text-gray-900">
+                <a href={post.href}>{post.title}</a>
+              </h3>
+              <p className="mt-2 text-sm text-gray-600">{post.description}</p>
+              <div className="mt-4 flex items-center gap-x-4">
                 <img
-                  src={post.imageUrl}
-                  alt={post.title}
-                  className="w-full h-60 object-cover rounded-lg"
+                  src={post.author.imageUrl}
+                  alt={post.author.name}
+                  className="h-10 w-10 rounded-full bg-gray-100"
                 />
-                <div className="absolute inset-0 rounded-lg ring-1 ring-inset ring-gray-900/10" />
-              </div>
-              <div className="mt-4 flex flex-col">
-                <div className="flex items-center gap-x-3 text-xs">
-                  <a
-                    href={post.category.href}
-                    className="rounded-full bg-gray-50 px-3 py-1.5 text-gray-600 hover:bg-gray-100">
-                    {post.category.title}
-                  </a>
-                </div>
-                <h3 className="mt-3 text-xl font-semibold text-gray-900">
-                  <a href={post.href}>{post.title}</a>
-                </h3>
-                <p className="mt-2 text-sm text-gray-600">{post.description}</p>
-                <div className="mt-4 flex items-center gap-x-4">
-                  <img
-                    src={post.author.imageUrl}
-                    alt={post.author.name}
-                    className="h-10 w-10 rounded-full bg-gray-100"
-                  />
-                  <div className="text-sm text-gray-600">
-                    <p className="font-semibold text-gray-900">
-                      <a href={post.author.href}>{post.author.name}</a>
-                    </p>
-                    <p>{post.author.role}</p>
-                  </div>
+                <div className="text-sm text-gray-600">
+                  <p className="font-semibold text-gray-900">
+                    <a href={post.author.href}>{post.author.name}</a>
+                  </p>
+                  <p>{post.author.role}</p>
                 </div>
               </div>
-            </article>
-          ))}
-        </div>
+            </div>
+          </article>
+        ))}
       </div>
     </div>
-  );
+  </div>
+);
 }

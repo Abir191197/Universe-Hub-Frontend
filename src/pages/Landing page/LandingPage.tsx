@@ -2,7 +2,6 @@ import Banner from "./Banner";
 import Navbar from "./Navbar";
 import CounsellorDetails from "./CounsellorDetails";
 import Footer from "./Footer";
-
 import AOS from "aos";
 import "aos/dist/aos.css"; // You can also use <link> for styles
 import WhatSayStudent from "./WhatSayStudent";

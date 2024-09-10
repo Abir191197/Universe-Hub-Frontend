@@ -4,7 +4,6 @@ import {
   Bars3Icon,
   BellIcon,
   ChatBubbleLeftEllipsisIcon,
-  FolderIcon,
   HomeIcon,
   LightBulbIcon,
   QrCodeIcon,
@@ -13,6 +12,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { Fragment, SetStateAction, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
+import logo from "../../Image/logo.png";
 import { logout } from "../../redux/features/auth/authSlice";
 import { useAppDispatch } from "../../redux/hook";
 
@@ -23,11 +23,7 @@ const navigation = [
     icon: HomeIcon,
   },
   { name: "All Courses", to: "/admin/AllCourse", icon: QrCodeIcon },
-  {
-    name: "Resource Approve",
-    to: "/admin/resource",
-    icon: FolderIcon,
-  },
+
   {
     name: "Counselling",
     to: "/admin/counselling",
@@ -167,9 +163,9 @@ export default function AdminSidebarLayout() {
           <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-[#9DBAFF]   px-6 pb-4">
             <Link to="/student" className="flex h-16 shrink-0 items-center">
               <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt="Your Company"
+                className="h-20 w-40 pt-5" // Adjust `h-12` for a larger image and `pt-4` for padding-top
+                src={logo}
+                alt="UniverseHub"
               />
             </Link>
             <nav className="flex flex-1 flex-col">
@@ -182,8 +178,8 @@ export default function AdminSidebarLayout() {
                           to={item.to}
                           className={classNames(
                             currentNavItem === item.name
-                              ? "bg-gray-50 text-indigo-600"
-                              : "text-[#000000] hover:text-indigo-600 hover:bg-gray-50",
+                              ? "bg-gray-50 text-black"
+                              : "text-black hover:text-black hover:bg-gray-50",
                             "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                           )}
                           onClick={() => handleNavigationClick(item.name)}>
