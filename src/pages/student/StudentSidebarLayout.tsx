@@ -1,18 +1,21 @@
 import { Fragment, SetStateAction, useState } from "react";
 import { Dialog, Menu, Transition } from "@headlessui/react";
+import logo from '../../Image/logo.png';
 import {
   Bars3Icon,
   BellIcon,
   QrCodeIcon,
   UserGroupIcon,
   SwatchIcon,
-  FolderIcon,
+  
   HomeIcon,
   LightBulbIcon,
   XMarkIcon,
   ChatBubbleLeftEllipsisIcon,
   SparklesIcon,
   ChatBubbleLeftRightIcon,
+  ChatBubbleBottomCenterTextIcon,
+
 } from "@heroicons/react/24/outline";
 import {
   ChevronDownIcon,
@@ -28,12 +31,10 @@ const navigation = [
     to: "/student/dashboard",
     icon: HomeIcon,
   },
-  { name: "All Courses", to: "/student/AllCourse", icon: QrCodeIcon },
-  {
-    name: "Resource",
-    to: "/student/resource",
-    icon: FolderIcon,
-  },
+  { name: "All Courses", 
+    to: "/student/AllCourse", 
+    icon: QrCodeIcon },
+  
   {
     name: "Counselling",
     to: "/student/counselling",
@@ -46,19 +47,25 @@ const navigation = [
   },
   { name: "F.A.Q Bot", to: "/student/faq-bot", icon: LightBulbIcon },
   {
-    name: "Messages",
+    name: "Chat",
     to: "/student/messages",
     icon: ChatBubbleLeftEllipsisIcon,
   },
   {
     name: "Group Study",
-    to: "/student/group-study",
+    to: "/student/GroupStudyTop",
     icon: ChatBubbleLeftRightIcon,
   },
   {
     name: "AI Tutor",
     to: "/student/ai-tutor",
     icon: SparklesIcon,
+  },
+
+  {
+    name: "Forum",
+    to: "/student/ForumPage",
+    icon: ChatBubbleBottomCenterTextIcon,
   },
 ];
 
@@ -140,11 +147,11 @@ export default function StudentSidebarLayout() {
                   <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
                     <div className="flex h-16 shrink-0 items-center">
                       <Link to="/student">
-                        <img
-                          className="h-8 w-auto"
-                          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                          alt="Your Company"
-                        />
+                      <img
+             className="h-20 w-40 pt-5"  // Adjust `h-12` for a larger image and `pt-4` for padding-top
+            src={logo}
+             alt="UniverseHub"
+            />
                       </Link>
                     </div>
                     
@@ -186,42 +193,45 @@ export default function StudentSidebarLayout() {
         {/* Static sidebar for desktop */}
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-52 lg:flex-col ">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-[#e7f9e8]   px-6 pb-4">
-            <Link to="/student"   className="flex h-16 shrink-0 items-center">
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt="Your Company"
-              />
-            </Link>
+          <div className="flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-4" style={{ backgroundColor: '#9DBAFF' }}>
+
+          <Link to="/student">
+                      <img
+             className="h-20 w-40 pt-5"  // Adjust `h-12` for a larger image and `pt-4` for padding-top
+            src={logo}
+             alt="UniverseHub"
+            />
+                      </Link>
+
             <nav className="flex flex-1 flex-col">
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
                 <li>
                   <ul role="list" className="-mx-2 space-y-1">
-                    {navigation.map((item) => (
-                      <li key={item.name}>
-                        <Link
-                          to={item.to}
-                          className={classNames(
-                            currentNavItem === item.name
-                              ? "bg-gray-50 text-indigo-600"
-                              : "text-[#000000] hover:text-indigo-600 hover:bg-gray-50",
-                            "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                          )}
-                          onClick={() => handleNavigationClick(item.name)}>
-                          <item.icon
-                            className={classNames(
-                              currentNavItem === item.name
-                                ? "text-indigo-600"
-                                : "text-gray-400 group-hover:text-indigo-600",
-                              "h-6 w-6 shrink-0"
-                            )}
-                            aria-hidden="true"
-                          />
-                          {item.name}
-                        </Link>
-                      </li>
-                    ))}
+                  {navigation.map((item) => (
+  <li key={item.name}>
+    <Link
+      to={item.to}
+      className={classNames(
+        currentNavItem === item.name
+          ? "bg-gray-50 text-black"
+          : "text-black hover:text-black hover:bg-gray-50",
+        "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+      )}
+      onClick={() => handleNavigationClick(item.name)}>
+      <item.icon
+        className={classNames(
+          currentNavItem === item.name
+            ? "text-black"
+            : "text-black group-hover:text-black",
+          "h-6 w-6 shrink-0"
+        )}
+        aria-hidden="true"
+      />
+      {item.name}
+    </Link>
+  </li>
+))}
+
                   </ul>
                 </li>
               </ul>

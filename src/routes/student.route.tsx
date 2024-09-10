@@ -4,6 +4,10 @@ import DashboardContent from "../pages/student/StudentDashboardContent";
 import AllCourse from "../pages/student/AllCourse";
 import SingleCoursePreview from "../pages/student/SingleCoursePreview";
 import FileUploaded from "../pages/student/FileUploaded";
+import FullCounsellingLayout from "../pages/student/FullCounsellingLayout";
+import GroupStudyCreate from "../pages/student/GroupStudyCreate";
+import GroupStudyTop from "../pages/student/GroupStudyTop";
+import ForumPage from "../pages/student/FormPage";
 
 export const studentPaths: RouteObject[] = [
   {
@@ -33,5 +37,23 @@ export const studentPaths: RouteObject[] = [
   {
     path: "fileUpload/:id",
     element: <FileUploaded></FileUploaded>,
+  },
+  {
+    path: "Counselling",
+    element: <FullCounsellingLayout></FullCounsellingLayout>,
+  },
+  {
+    path: "GroupStudyTop",
+    element: <GroupStudyTop />,
+  },
+  {
+        path: "GroupStudyCreate",
+        element: <GroupStudyCreate />,
+  },
+    
+ 
+  {
+    path: "ForumPage",
+    element: <ForumPage />,
   },
 ];

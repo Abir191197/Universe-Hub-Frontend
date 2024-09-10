@@ -6,6 +6,11 @@ import AllCourseAndCreate from "../pages/admin/AllCourseAndCreate";
 import SingleCoursePreview from "../pages/student/SingleCoursePreview";
 import FileUploaded from "../pages/student/FileUploaded";
 
+
+import CreateCounseling from "../pages/admin/CreateCounselling";
+import CounsellingPage from "../pages/admin/CounsellingPage";
+
+
 export const adminPaths = [
   {
     index: true,
@@ -35,5 +40,13 @@ export const adminPaths = [
   {
     path: "fileUpload/:id",
     element: <FileUploaded></FileUploaded>,
+  },
+  {
+    path: "Counselling",
+    element: <CounsellingPage></CounsellingPage>,
+  },
+  {
+    path: "Counselling/CreateCounselling",
+    element: <CreateCounseling></CreateCounseling>,
   },
 ];
