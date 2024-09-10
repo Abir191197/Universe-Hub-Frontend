@@ -21,7 +21,7 @@ const posts = [
   },
   {
     id: 2,
-    title: "Kotha Islam",
+    title: "Kotha Isams",
     href: "#",
     imageUrl:
       "https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/62A2/production/_90805252_image_00001.jpg.webp",

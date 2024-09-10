@@ -1,7 +1,7 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { EllipsisHorizontalIcon } from '@heroicons/react/20/solid';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
+import { useNavigate } from 'react-router-dom';
 
 type Status = 'Participant';
 
@@ -12,39 +12,39 @@ const statuses: Record<Status, string> = {
 const clients = [
   {
     id: 1,
-    name: 'SPL Group ',
+    name: 'SPL Group',
     imageUrl: 'https://tailwindui.com/img/logos/48x48/tuple.svg',
-    lastInvoice: { date: 'September 10, 2024', time: '10:00 AM', description: 'We want to study for CT', link: 'https://meet.example.com', status: 'Participant' as Status, participants: '5/10' },
+    lastInvoice: { dateTime: 'September 10, 2024; 10:00 AM', description: 'We want to study for CT', link: 'https://meet.example.com', status: 'Participant' as Status },
   },
   {
     id: 2,
     name: 'Data Structures Study',
     imageUrl: 'https://tailwindui.com/img/logos/48x48/savvycal.svg',
-    lastInvoice: { date: 'September 11, 2024', time: '2:00 PM', description: 'Deep dive into algorithms', link: 'https://zoom.example.com', status: 'Participant' as Status, participants: '3/10' },
+    lastInvoice: { dateTime: 'September 11, 2024; 2:00 PM', description: 'Deep dive into algorithms', link: 'https://zoom.example.com', status: 'Participant' as Status },
   },
   {
     id: 3,
     name: 'Operating Systems Group',
     imageUrl: 'https://tailwindui.com/img/logos/48x48/reform.svg',
-    lastInvoice: { date: 'September 12, 2024', time: '4:00 PM', description: 'Discuss OS concepts', link: 'https://meet.example.com', status: 'Participant' as Status, participants: '8/10' },
+    lastInvoice: { dateTime: 'September 12, 2024; 4:00 PM', description: 'Discuss OS concepts', link: 'https://meet.example.com', status: 'Participant' as Status },
   },
   {
     id: 4,
     name: 'Database Systems Study',
     imageUrl: 'https://tailwindui.com/img/logos/48x48/tuple.svg',
-    lastInvoice: { date: 'September 13, 2024', time: '6:00 PM', description: 'Query optimization techniques', link: 'https://zoom.example.com', status: 'Participant' as Status, participants: '6/10' },
+    lastInvoice: { dateTime: 'September 13, 2024; 6:00 PM', description: 'Query optimization techniques', link: 'https://zoom.example.com', status: 'Participant' as Status },
   },
   {
     id: 5,
     name: 'Network Security Group',
     imageUrl: 'https://tailwindui.com/img/logos/48x48/savvycal.svg',
-    lastInvoice: { date: 'September 14, 2024', time: '1:00 PM', description: 'Security protocols discussion', link: 'https://meet.example.com', status: 'Participant' as Status, participants: '7/10' },
+    lastInvoice: { dateTime: 'September 14, 2024; 1:00 PM', description: 'Security protocols discussion', link: 'https://meet.example.com', status: 'Participant' as Status },
   },
   {
     id: 6,
     name: 'Machine Learning Study',
     imageUrl: 'https://tailwindui.com/img/logos/48x48/reform.svg',
-    lastInvoice: { date: 'September 15, 2024', time: '3:00 PM', description: 'Study ML algorithms', link: 'https://zoom.example.com', status: 'Participant' as Status, participants: '9/10' },
+    lastInvoice: { dateTime: 'September 15, 2024; 3:00 PM', description: 'Study ML algorithms', link: 'https://zoom.example.com', status: 'Participant' as Status },
   },
 ];
 
@@ -53,18 +53,27 @@ function classNames(...classes: string[]): string {
 }
 
 export default function GroupStudyDisplayAll() {
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const navigate = useNavigate();
+  const [joinCounts, setJoinCounts] = useState<number[]>(Array(clients.length).fill(0));
+
+  const handleJoin = (index: number) => {
+    setJoinCounts((prevCounts) => {
+      const newCounts = [...prevCounts];
+      newCounts[index] += 1;
+      return newCounts;
+    });
+  };
 
   return (
     <div>
       <button
         className="mb-8 px-4 py-2 bg-blue-200 text-white rounded-md hover:bg-blue-300"
-        onClick={() => navigate('/GroupStudyCreate')} // Ensure correct path
+        onClick={() => navigate('/student/GroupStudyCreate')}
       >
         Create
       </button>
       <ul role="list" className="grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-3 xl:gap-x-8">
-        {clients.map((client) => (
+        {clients.map((client, index) => (
           <li key={client.id} className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg">
             <div className="flex items-center gap-x-4 border-b border-gray-900/5 bg-white p-6">
               <img
@@ -120,16 +129,8 @@ export default function GroupStudyDisplayAll() {
             </div>
             <dl className="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6">
               <div className="flex justify-between gap-x-4 py-3">
-                <dt className="text-gray-500">Date</dt>
-                <dd className="text-gray-700">
-                  <time dateTime={client.lastInvoice.date}>{client.lastInvoice.date}</time>
-                </dd>
-              </div>
-              <div className="flex justify-between gap-x-4 py-3">
-                <dt className="text-gray-500">Time</dt>
-                <dd className="text-gray-700">
-                  {client.lastInvoice.time}
-                </dd>
+                <dt className="text-gray-500">Date & Time</dt>
+                <dd className="text-gray-700">{client.lastInvoice.dateTime}</dd>
               </div>
               <div className="flex justify-between gap-x-4 py-3">
                 <dt className="text-gray-500">Description</dt>
@@ -147,9 +148,12 @@ export default function GroupStudyDisplayAll() {
                 <dt className="text-gray-500">Participant</dt>
                 <dd className="flex items-center gap-x-2">
                   <div className={classNames(statuses[client.lastInvoice.status], 'rounded-md py-1 px-2 text-xs font-medium ring-1 ring-inset')}>
-                    {client.lastInvoice.participants}
+                    {joinCounts[index]}
                   </div>
-                  <button className="ml-auto px-3 py-1 bg-green-200 text-white rounded-md hover:bg-green-300">
+                  <button
+                    onClick={() => handleJoin(index)}
+                    className="ml-auto px-3 py-1 bg-green-200 text-white rounded-md hover:bg-green-300"
+                  >
                     Join
                   </button>
                 </dd>

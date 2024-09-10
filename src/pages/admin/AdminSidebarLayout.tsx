@@ -1,10 +1,11 @@
 import { Dialog, Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import logo from '../../Image/logo.png';
 import {
   Bars3Icon,
   BellIcon,
   ChatBubbleLeftEllipsisIcon,
-  FolderIcon,
+  
   HomeIcon,
   LightBulbIcon,
   QrCodeIcon,
@@ -23,16 +24,13 @@ const navigation = [
     icon: HomeIcon,
   },
   { name: "All Courses", to: "/admin/AllCourse", icon: QrCodeIcon },
-  {
-    name: "Resource Approve",
-    to: "/admin/resource",
-    icon: FolderIcon,
-  },
+  
   {
     name: "Counselling",
     to: "/admin/counselling",
     icon: UserGroupIcon,
   },
+  
 
   { name: "F.A.Q Bot", to: "/admin/faq-bot", icon: LightBulbIcon },
   {
@@ -163,13 +161,15 @@ export default function AdminSidebarLayout() {
         {/* Static sidebar for desktop */}
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-52 lg:flex-col ">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-[#e7f9e8]   px-6 pb-4">
+          <div className="flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-4" style={{ backgroundColor: '#9DBAFF' }}>
             <Link to="/student" className="flex h-16 shrink-0 items-center">
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt="Your Company"
-              />
+        
+                      <img
+             className="h-20 w-40 pt-5"  // Adjust `h-12` for a larger image and `pt-4` for padding-top
+            src={logo}
+             alt="UniverseHub"
+            />
+                     
             </Link>
             <nav className="flex flex-1 flex-col">
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -181,9 +181,9 @@ export default function AdminSidebarLayout() {
                           to={item.to}
                           className={classNames(
                             currentNavItem === item.name
-                              ? "bg-gray-50 text-indigo-600"
-                              : "text-[#000000] hover:text-indigo-600 hover:bg-gray-50",
-                            "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                            ? "bg-gray-50 text-black"
+                            : "text-black hover:text-black hover:bg-gray-50",
+                          "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                           )}
                           onClick={() => handleNavigationClick(item.name)}>
                           <item.icon

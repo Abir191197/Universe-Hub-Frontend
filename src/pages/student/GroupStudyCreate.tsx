@@ -1,12 +1,6 @@
 'use client'
 
-//import { useState } from 'react'
-//import { ChevronDownIcon } from '@heroicons/react/20/solid'
-//import { Field, Label, Switch } from '@headlessui/react'
-
 export default function GroupStudyCreate() {
- // const [agreed, setAgreed] = useState(false)
-
   return (
     <div className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
       <div
@@ -58,27 +52,14 @@ export default function GroupStudyCreate() {
             </div>
           </div>
           <div className="sm:col-span-2">
-            <label htmlFor="date" className="block text-sm font-semibold leading-6 text-gray-900">
-              Date
+            <label htmlFor="datetime" className="block text-sm font-semibold leading-6 text-gray-900">
+              Date and Time
             </label>
             <div className="mt-2.5">
               <input
-                id="date"
-                name="date"
-                type="date"
-                className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-            </div>
-          </div>
-          <div className="sm:col-span-2">
-            <label htmlFor="time" className="block text-sm font-semibold leading-6 text-gray-900">
-              Time
-            </label>
-            <div className="mt-2.5">
-              <input
-                id="time"
-                name="time"
-                type="time"
+                id="datetime"
+                name="datetime"
+                type="datetime-local"
                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -92,20 +73,6 @@ export default function GroupStudyCreate() {
                 id="link"
                 name="link"
                 type="url"
-                autoComplete="off"
-                className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-            </div>
-          </div>
-          <div className="sm:col-span-2">
-            <label htmlFor="max-participants" className="block text-sm font-semibold leading-6 text-gray-900">
-              Maximum Participants
-            </label>
-            <div className="mt-2.5">
-              <input
-                id="max-participants"
-                name="max-participants"
-                type="number"
                 autoComplete="off"
                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
