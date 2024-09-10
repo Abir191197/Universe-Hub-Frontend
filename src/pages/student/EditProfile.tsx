@@ -17,6 +17,8 @@ export default function EditProfile() {
     address: "",
   });
 
+
+
   useEffect(() => {
     if (data) {
       const profile = {
