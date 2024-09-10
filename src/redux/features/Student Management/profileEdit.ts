@@ -13,4 +13,5 @@ const profileAPI = baseApi.injectEndpoints({
   }),
 });
 
+
 export const { useUpdatedProfileMutation } = profileAPI;
