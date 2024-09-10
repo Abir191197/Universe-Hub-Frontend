@@ -9,6 +9,7 @@ import { IFile } from "../../Types/FileType";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../redux/features/auth/authSlice";
 
+
 export default function SingleCoursePreview() {
   const user = useSelector(selectCurrentUser);
   
@@ -106,6 +107,8 @@ export default function SingleCoursePreview() {
           </p>
         </div>
         <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+          
+
           <button
             onClick={handleDelete}
             type="button"

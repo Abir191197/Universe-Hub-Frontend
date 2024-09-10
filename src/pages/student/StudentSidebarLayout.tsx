@@ -6,7 +6,6 @@ import {
   QrCodeIcon,
   UserGroupIcon,
   SwatchIcon,
-  FolderIcon,
   HomeIcon,
   LightBulbIcon,
   XMarkIcon,
@@ -14,10 +13,7 @@ import {
   SparklesIcon,
   ChatBubbleLeftRightIcon,
 } from "@heroicons/react/24/outline";
-import {
-  ChevronDownIcon,
- 
-} from "@heroicons/react/20/solid";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { Link, Outlet } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hook";
 import { logout } from "../../redux/features/auth/authSlice";
@@ -29,11 +25,7 @@ const navigation = [
     icon: HomeIcon,
   },
   { name: "All Courses", to: "/student/AllCourse", icon: QrCodeIcon },
-  {
-    name: "Resource",
-    to: "/student/resource",
-    icon: FolderIcon,
-  },
+  
   {
     name: "Counselling",
     to: "/student/counselling",
@@ -52,7 +44,7 @@ const navigation = [
   },
   {
     name: "Group Study",
-    to: "/student/group-study",
+    to: "/student/GroupStudyTop",
     icon: ChatBubbleLeftRightIcon,
   },
   {
@@ -60,12 +52,19 @@ const navigation = [
     to: "/student/ai-tutor",
     icon: SparklesIcon,
   },
+  {
+    name: "GroupStudyCreate",
+    to: "/student/GroupStudyCreate",
+    icon: SparklesIcon,
+  },
+  {
+    name: "Forum",
+    to: "/student/ForumPage",
+    icon: SparklesIcon,
+  },
 ];
 
-const userNavigation = [
-  
-  { name: "Sign out", action: "signout", to: "/" },
-];
+const userNavigation = [{ name: "Sign out", action: "signout", to: "/" }];
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -147,7 +146,7 @@ export default function StudentSidebarLayout() {
                         />
                       </Link>
                     </div>
-                    
+
                     <nav className="flex flex-1 flex-col ">
                       <ul role="list" className="-mx-2 space-y-1">
                         {navigation.map((item) => (
@@ -186,8 +185,10 @@ export default function StudentSidebarLayout() {
         {/* Static sidebar for desktop */}
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-52 lg:flex-col ">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-[#e7f9e8]   px-6 pb-4">
-            <Link to="/student"   className="flex h-16 shrink-0 items-center">
+          <div
+            className="flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-4"
+            style={{ backgroundColor: "#9DBAFF" }}>
+            <Link to="/student" className="flex h-16 shrink-0 items-center">
               <img
                 className="h-8 w-auto"
                 src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
@@ -204,16 +205,16 @@ export default function StudentSidebarLayout() {
                           to={item.to}
                           className={classNames(
                             currentNavItem === item.name
-                              ? "bg-gray-50 text-indigo-600"
-                              : "text-[#000000] hover:text-indigo-600 hover:bg-gray-50",
+                              ? "bg-gray-50 text-black"
+                              : "text-black hover:text-black hover:bg-gray-50",
                             "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                           )}
                           onClick={() => handleNavigationClick(item.name)}>
                           <item.icon
                             className={classNames(
                               currentNavItem === item.name
-                                ? "text-indigo-600"
-                                : "text-gray-400 group-hover:text-indigo-600",
+                                ? "text-black"
+                                : "text-black group-hover:text-black",
                               "h-6 w-6 shrink-0"
                             )}
                             aria-hidden="true"

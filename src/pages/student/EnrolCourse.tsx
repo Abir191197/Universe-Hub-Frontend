@@ -1,13 +1,14 @@
-import { PhoneIcon } from "@heroicons/react/20/solid";
+
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { Slide, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useGetWhoLogInQuery } from "../../redux/features/Student Management/getWhoLogInAPI";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../redux/features/auth/authSlice";
-
+import { useGetWhoLogInQuery } from "../../redux/features/Student Management/getWhoLogInAPI";
+import { EyeIcon } from "@heroicons/react/24/solid";
 
 export interface ICourse {
+  Description: string;
   _id: string;
   courseName: string;
   files: string[];
@@ -22,8 +23,6 @@ export default function EnrolCourse() {
   console.log(user?.role);
   const { data } = useGetWhoLogInQuery(undefined);
 
-  
-
   if (!data) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -33,14 +32,8 @@ export default function EnrolCourse() {
   }
 
   const profile = {
- 
     courses: data.data.courses,
-  
-  
   };
-
-
-  
 
   return (
     <>
@@ -68,23 +61,22 @@ export default function EnrolCourse() {
               className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow">
               <div className="flex flex-1 flex-col p-8">
                 <img
-                  className="mx-auto h-32 w-32 flex-shrink-0 rounded-full"
-                  src={course.imageUrl || "default_image_url_here"}
+                  className="mx-auto flex-shrink-0 rounded-full"
+                  src={
+                    course.imageUrl ||
+                    "https://img.freepik.com/free-vector/students-watching-webinar-computer-studying-online_74855-15522.jpg?t=st=1725497751~exp=1725501351~hmac=6011ac615b935914772d908f044e02c61f229a341354afa4f47609de6c3d8e81&w=996"
+                  }
                   alt={course.courseName}
                 />
-                <h3 className="mt-6 text-sm font-medium text-gray-900">
-                  {course.courseName}
-                </h3>
+                <dd className="mt-3">
+                  <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+                    {course.courseName}
+                  </span>
+                </dd>
                 <dl className="mt-1 flex flex-grow flex-col justify-between">
                   <dt className="sr-only">Title</dt>
                   <dd className="text-sm text-gray-500">
-                    {course.description || "No description available"}
-                  </dd>
-                  <dt className="sr-only">Role</dt>
-                  <dd className="mt-3">
-                    <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
-                      {course.courseName}
-                    </span>
+                    {course.Description || "No description available"}
                   </dd>
                 </dl>
               </div>
@@ -94,7 +86,7 @@ export default function EnrolCourse() {
                     <Link
                       to={`/${user?.role}/course/${course._id}`}
                       className="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg border border-transparent py-4 text-sm font-semibold text-gray-900">
-                      <PhoneIcon
+                      <EyeIcon
                         className="h-5 w-5 text-gray-400"
                         aria-hidden="true"
                       />

@@ -4,6 +4,7 @@ import DashboardContent from "../pages/student/StudentDashboardContent";
 import AllCourse from "../pages/student/AllCourse";
 import SingleCoursePreview from "../pages/student/SingleCoursePreview";
 import FileUploaded from "../pages/student/FileUploaded";
+import FullCounsellingLayout from "../pages/student/FullCounsellingLayout";
 
 export const studentPaths: RouteObject[] = [
   {
@@ -33,5 +34,9 @@ export const studentPaths: RouteObject[] = [
   {
     path: "fileUpload/:id",
     element: <FileUploaded></FileUploaded>,
+  },
+  {
+    path: "Counselling",
+    element: <FullCounsellingLayout></FullCounsellingLayout>,
   },
 ];

@@ -1,17 +1,16 @@
+import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/20/solid";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
-import { useGetAllCoursesQuery } from "../../redux/features/Student Management/getAllCourseAPI";
-import { usePutSingleCourseInProfileMutation } from "../../redux/features/Student Management/putSingleCourseInProfile";
-import {
-  PhoneIcon,
-  ArrowLeftIcon,
-  ArrowRightIcon,
-} from "@heroicons/react/20/solid";
 import { Slide, toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {  MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import Loader from "../../components/Loader";
+import { useGetAllCoursesQuery } from "../../redux/features/Student Management/getAllCourseAPI";
+import { usePutSingleCourseInProfileMutation } from "../../redux/features/Student Management/putSingleCourseInProfile";
+
+import { ArrowRightEndOnRectangleIcon } from "@heroicons/react/24/solid";
 
 export interface ICourse {
+  Description: string;
   _id: string;
   courseName: string;
   files: string[];
@@ -24,14 +23,14 @@ export interface ICourse {
 export default function AllCourse() {
   const [page, setPage] = useState(1);
   const [searchKeyWord, setSearchKeyWord] = useState("");
-  const limit = 6;
+  const limit = 8;
 
   const { data, isLoading, isError } = useGetAllCoursesQuery({
     searchKeyWord,
     page,
     limit,
   });
- 
+
   const [putSingleCourseInProfile] = usePutSingleCourseInProfileMutation();
 
   const handleEnrol = async (id: string) => {
@@ -75,8 +74,6 @@ export default function AllCourse() {
     }
   };
 
-  
-
   if (isLoading) {
     return <Loader></Loader>;
   }
@@ -96,7 +93,7 @@ export default function AllCourse() {
         <div className="mt-2 flex rounded-md shadow-sm">
           <div className="relative flex flex-grow items-stretch focus-within:z-10">
             <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-              <MagnifyingGlassIcon  
+              <MagnifyingGlassIcon
                 className="h-5 w-5 text-gray-400"
                 aria-hidden="true"
               />
@@ -146,23 +143,23 @@ export default function AllCourse() {
             className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow">
             <div className="flex flex-1 flex-col p-8">
               <img
-                className="mx-auto h-32 w-32 flex-shrink-0 rounded-full"
-                src={course.imageUrl || "default_image_url_here"}
+                className="mx-auto  flex-shrink-0 rounded-full"
+                src={
+                  course.imageUrl ||
+                  "https://img.freepik.com/free-vector/students-watching-webinar-computer-studying-online_74855-15522.jpg?t=st=1725497751~exp=1725501351~hmac=6011ac615b935914772d908f044e02c61f229a341354afa4f47609de6c3d8e81&w=996"
+                }
                 alt={course.courseName}
               />
-              <h3 className="mt-6 text-sm font-medium text-gray-900">
-                {course.courseName}
-              </h3>
+
               <dl className="mt-1 flex flex-grow flex-col justify-between">
-                <dt className="sr-only">Title</dt>
-                <dd className="text-sm text-gray-500">
-                  {course.description || "No description available"}
-                </dd>
-                <dt className="sr-only">Role</dt>
                 <dd className="mt-3">
                   <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
                     {course.courseName}
                   </span>
+                </dd>
+
+                <dd className="text-sm text-gray-500 mt-4">
+                  {course.Description || "No description available"}
                 </dd>
               </dl>
             </div>
@@ -172,8 +169,8 @@ export default function AllCourse() {
                   <button
                     onClick={() => handleEnrol(course._id)}
                     className="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg border border-transparent py-4 text-sm font-semibold text-gray-900">
-                    <PhoneIcon
-                      className="h-5 w-5 text-gray-400"
+                    <ArrowRightEndOnRectangleIcon
+                      className="h-5 w-5 text-black"
                       aria-hidden="true"
                     />
                     Enrol
