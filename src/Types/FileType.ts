@@ -14,3 +14,16 @@ export interface IFile {
   fileType: string;
   
 }
+ export interface CounselingFormData {
+   selectDate: string | number | Date;
+   TopicName: string;
+   Duration: number;
+   Description: string;
+   imgSrc: string | null;
+   CashAmount: number | null;
+   dateTime: string;
+   Type: "online" | "offline";
+   MeetLink: string | null;
+   StudyRoomNumber: string;
+   isFree: boolean;
+ }

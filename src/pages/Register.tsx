@@ -16,6 +16,7 @@ interface RegisterFormInputs {
   password: string;
 }
 
+
 export default function Register() {
   const {
     register,

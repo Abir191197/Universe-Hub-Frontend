@@ -31,10 +31,12 @@ const navigation = [
     to: "/student/dashboard",
     icon: HomeIcon,
   },
+
   { name: "All Courses", 
     to: "/student/AllCourse", 
     icon: QrCodeIcon },
   
+
   {
     name: "Counselling",
     to: "/student/counselling",
@@ -62,10 +64,13 @@ const navigation = [
     icon: SparklesIcon,
   },
 
+
   {
     name: "Forum",
     to: "/student/ForumPage",
     icon: ChatBubbleBottomCenterTextIcon,
+
+
   },
 ];
 
@@ -193,6 +198,7 @@ export default function StudentSidebarLayout() {
         {/* Static sidebar for desktop */}
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-52 lg:flex-col ">
           {/* Sidebar component, swap this element with another sidebar if you like */}
+
           <div className="flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-4" style={{ backgroundColor: '#9DBAFF' }}>
 
           <Link to="/student">
@@ -202,7 +208,6 @@ export default function StudentSidebarLayout() {
              alt="UniverseHub"
             />
                       </Link>
-
             <nav className="flex flex-1 flex-col">
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
                 <li>
