@@ -32,11 +32,7 @@ const navigation = [
     icon: HomeIcon,
   },
   { name: "All Courses", to: "/student/AllCourse", icon: QrCodeIcon },
-  {
-    name: "Resource",
-    to: "/student/resource",
-    icon: FolderIcon,
-  },
+
   {
     name: "Counselling",
     to: "/student/counselling",
@@ -62,6 +58,11 @@ const navigation = [
     name: "AI Tutor",
     to: "/student/ai-tutor",
     icon: SparklesIcon,
+  },
+  {
+    name: "Forum",
+    to: "/student/forum",
+    icon:  ChatBubbleBottomCenterTextIcon,
   },
 ];
 
