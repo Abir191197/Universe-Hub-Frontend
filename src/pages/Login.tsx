@@ -1,14 +1,13 @@
 import Lottie from "lottie-react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import { Slide, toast } from "react-toastify";
 import loginAnimation from "../assets/Landing Page/login.json";
+import Loading from "../components/Loading";
 import authApi from "../redux/features/auth/authApi";
 import { setUser, TUser } from "../redux/features/auth/authSlice";
 import { useAppDispatch } from "../redux/hook";
 import { verifyToken } from "../utils/verifyToken";
-
-import Loading from "../components/Loading";
-
 
 interface LoginFormInputs {
   email: string;
@@ -21,47 +20,81 @@ export default function Login() {
   const { register, handleSubmit } = useForm<LoginFormInputs>({
     defaultValues: {
       email: "user1@gmail.com", // Default email for testing
-      password: "password123456",// Default password for testing
+      password: "user123456", // Default password for testing
     },
   });
-  const [login, { error, isLoading }] = authApi.useLoginMutation();
-  
+  const [login, { isLoading }] = authApi.useLoginMutation();
 
   const onSubmit = async (data: LoginFormInputs) => {
-
-      
-
     const userInfo = {
       email: data.email,
       password: data.password,
     };
 
     try {
+      // Perform login
       const res = await login(userInfo).unwrap();
-      const user: TUser = verifyToken(res.data.accessToken) as unknown as TUser;
 
-      dispatch(setUser({ user, token: res.data.accessToken }));
-   
-      navigate(`/${user.role}`); // Redirect to user role after successful login
-         
-    } catch (err) {
-      console.error(error || err);
+      if (res.data?.user) {
+        // Display success toast
+        toast.success(
+          `Welcome ${res.data.user.name}! You are logged in as ${res.data.user.role}.`,
+          {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Slide,
+          }
+        );
+
+        // Verify token and extract user
+        const user: TUser = verifyToken(res.data.accessToken) as TUser;
+
+        if (!user?.role) {
+          throw new Error("User role is undefined. Please contact support.");
+        }
+
+        dispatch(setUser({ user, token: res.data.accessToken }));
+        navigate(`/${user.role}`);
+      } else {
+        throw new Error("User information is missing from the response.");
+      }
+    } catch (error: any) {
+      // Log error for debugging
+      console.error("Login error:", error);
+
+      // Extract and display error message from error response
+      const errorMessage =
+        error?.data?.message || // API error message
+        error?.message || // General error message
+        "An error occurred during login."; // Fallback message
+
+      toast.error(`Login Error: ${errorMessage}`, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Slide,
+      });
     }
-
-    
-
-
   };
 
-   if (isLoading) {
-     return (
-       <div>
-        <Loading></Loading>
-       </div>
-     );
-   }
-
-  
+  if (isLoading) {
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <div className="flex">
@@ -99,7 +132,6 @@ export default function Login() {
           loop={true}
         />
       </div>
-      {/* Form Section */}
       <div className="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-48">
         <div className="mx-auto w-full max-w-sm lg:w-96">
           <div>
@@ -107,10 +139,8 @@ export default function Login() {
               Sign in to your account
             </h2>
           </div>
-          {/* Login Form */}
           <div className="mt-2">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              {/* Email Input */}
               <div>
                 <label
                   htmlFor="email"
@@ -128,7 +158,6 @@ export default function Login() {
                   />
                 </div>
               </div>
-              {/* Password Input */}
               <div>
                 <label
                   htmlFor="password"
@@ -146,7 +175,6 @@ export default function Login() {
                   />
                 </div>
               </div>
-              {/* Remember Me Checkbox and Forgot Password Link */}
               <div className="flex items-center justify-between pb-4">
                 <div className="flex items-center">
                   <input
@@ -169,7 +197,6 @@ export default function Login() {
                   </a>
                 </div>
               </div>
-              {/* Sign In Button */}
               <button
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
@@ -177,7 +204,6 @@ export default function Login() {
               </button>
             </form>
           </div>
-          {/* Sign Up Link */}
           <p className="mt-2 text-sm leading-6 text-gray-500">
             Not a member?{" "}
             <Link
@@ -186,47 +212,51 @@ export default function Login() {
               Register Here
             </Link>
           </p>
-          {/* Social Login Buttons */}
           <div className="mt-6 grid grid-cols-2 gap-4">
             <a
               href="#"
               className="flex w-full items-center justify-center gap-3 rounded-md bg-[#eaeaea] px-3 py-1.5 text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D9BF0]">
               <svg
-                viewBox="0 0 262.00 262.00"
-                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 262 262"
                 className="h-5 w-5"
-                aria-hidden="true"
-                fill="currentColor">
+                xmlns="http://www.w3.org/2000/svg">
                 <path
-                  d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027"
-                  fill="#4285F4"></path>
-                <path
-                  d="M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055-34.523 0-63.824-22.773-74.269-54.25l-1.531.13-40.298 31.187-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1"
-                  fill="#34A853"></path>
-                <path
-                  d="M56.281 156.37c-2.756-8.123-4.351-16.827-4.351-25.82 0-8.994 1.595-17.697 4.206-25.82l-.073-1.73L15.26 71.312l-1.335.635C5.077 89.644 0 109.517 0 130.55s5.077 40.905 13.925 58.602l42.356-32.782"
-                  fill="#FBBC05"></path>
-                <path
-                  d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0 79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251"
-                  fill="#EB4335"></path>
+                  fill="#1D9BF0"
+                  d="M262 48.2a107 107 0 0 1-30 8.2 53 53 0 0 0 23-29.2 106 106 0 0 1-34 13 53 53 0 0 0-90 48.5A150 150 0 0 1 18 34a53 53 0 0 0 16.5 70.8 53 53 0 0 1-24-6.6c0 .2 0 .3 0 .5a53 53 0 0 0 42.3 51.8 53 53 0 0 1-23.9.9 53 53 0 0 0 49.5 36.8A107 107 0 0 1 0 219.2 150 150 0 0 0 81 240c97.1 0 150.2-80.4 150.2-150.2 0-2.3-.1-4.5-.2-6.7a107 107 0 0 0 26.4-27.2z"
+                />
               </svg>
-              <span className="text-sm font-semibold leading-6">Google</span>
+              <span className="text-sm font-semibold leading-6 text-black">
+                Twitter
+              </span>
             </a>
             <a
               href="#"
-              className="flex w-full items-center justify-center gap-3 rounded-md bg-[#24292F] px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#24292F]">
+              className="flex w-full items-center justify-center gap-3 rounded-md bg-[#eaeaea] px-3 py-1.5 text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
               <svg
                 className="h-5 w-5"
-                aria-hidden="true"
-                fill="currentColor"
-                viewBox="0 0 20 20">
+                viewBox="0 0 48 48"
+                width="48px"
+                height="48px">
                 <path
-                  fillRule="evenodd"
-                  d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
-                  clipRule="evenodd"
+                  fill="#4285F4"
+                  d="M46.6,24.6c0-1.6-0.1-3.1-0.4-4.6H24v9.2h12.7c-0.5,2.8-2,5.2-4.2,6.8v5.6h6.8C43.8,37.4,46.6,31.5,46.6,24.6z"
+                />
+                <path
+                  fill="#34A853"
+                  d="M24,48c6.3,0,11.7-2.1,15.6-5.8l-7-5.7c-2.1,1.4-4.9,2.2-8.6,2.2c-6.6,0-12.2-4.4-14.2-10.4H2.6v6.5C6.5,43.8,14.8,48,24,48z"
+                />
+                <path
+                  fill="#FBBC05"
+                  d="M9.8,28.3c-1-2.8-1-5.8,0-8.5v-6.5H2.6c-2.6,5.2-2.6,11.4,0,16.6L9.8,28.3z"
+                />
+                <path
+                  fill="#EA4335"
+                  d="M24,9.5c3.4-0.1,6.6,1.2,9,3.6l6.7-6.7C33.8,2.1,28.4,0,24,0C14.8,0,6.5,4.2,2.6,11.1l7.2,5.7C11.8,13.9,17.4,9.5,24,9.5z"
                 />
               </svg>
-              <span className="text-sm font-semibold leading-6">GitHub</span>
+              <span className="text-sm font-semibold leading-6 text-black">
+                Google
+              </span>
             </a>
           </div>
         </div>

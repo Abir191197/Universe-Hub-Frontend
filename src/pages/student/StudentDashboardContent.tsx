@@ -32,6 +32,7 @@ const StudentDashboardContent = () => {
         <div className="bg-white rounded-lg shadow-lg w-full max-w-8xl p-4">
           <div className="text-center text-2xl text-blue-500 font-bold">
             Subscribed Courses
+
           </div>
         </div>
       </div>
@@ -39,6 +40,14 @@ const StudentDashboardContent = () => {
       <EnrolCourse />
     </div>
   );
+    return (
+      <div>
+        <StudentDashboardProfile></StudentDashboardProfile>
+        <div className="text-center text-2xl text-orange-500  font-bold mt-11">Enrol Courses</div>
+        <EnrolCourse></EnrolCourse>
+      </div>
+    );
+
 };
 
 export default StudentDashboardContent;
