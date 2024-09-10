@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import reqApi from "../redux/features/auth/regApi";
 import RegAnimation from "../assets/Landing Page/reg.json";
 import RegDoneModal from "../components/RegDoneModal";
+
 import Loading from "../components/Loading";
 import Lottie from "lottie-react";
 import { toast, ToastContainer } from "react-toastify";
