@@ -6,10 +6,11 @@ import {
 import { SetStateAction, useState } from "react";
 import Loading from "../../components/Loading";
 import { useGetAllCounsellingQuery } from "../../redux/features/Admin Management/GetAllCounselling";
-import AllCounselling from "./AllCounselling";
+
 import MyCounselling from "./MyCounselling";
 import MyCompleteCounseling from "./MyCompleteCounseling";
 import { Link } from "react-router-dom";
+import AllCounselling from "./AllCounselling";
 
 const tabs = [
   { name: "All Counselling", href: "#", icon: UserIcon, current: true },

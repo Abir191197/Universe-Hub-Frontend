@@ -29,7 +29,16 @@ const navigation = [
     to: "/admin/counselling",
     icon: UserGroupIcon,
   },
-
+  {
+    name: "User Manage",
+    to: "/admin/AllUser",
+    icon: UserGroupIcon,
+  },
+  {
+    name: "Resource Manage ",
+    to: "/admin/AllResource",
+    icon: UserGroupIcon,
+  },
   { name: "F.A.Q Bot", to: "/admin/faq-bot", icon: LightBulbIcon },
   {
     name: "Messages",
@@ -160,7 +169,7 @@ export default function AdminSidebarLayout() {
         {/* Static sidebar for desktop */}
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-52 lg:flex-col ">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-[#9DBAFF]   px-6 pb-4">
+          <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-[#719cff]   px-6 pb-4">
             <Link to="/student" className="flex h-16 shrink-0 items-center">
               <img
                 className="h-20 w-40 pt-5" // Adjust `h-12` for a larger image and `pt-4` for padding-top
@@ -204,7 +213,7 @@ export default function AdminSidebarLayout() {
         </div>
 
         <div className="lg:pl-52">
-          <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border  bg-[#ffdabc] px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
+          <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border  bg-[#ff933a] px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
             <button
               type="button"
               className="-m-2.5 p-2.5 text-gray-700 lg:hidden"
@@ -299,8 +308,8 @@ export default function AdminSidebarLayout() {
             </div>
           </div>
 
-          <main className="py-10 bg-sky-100 ">
-            <div className="px-4 sm:px-6 lg:px-8">
+          <main className="py-10 bg-[#f8f8e1] ">
+            <div className="px-4 sm:px- lg:px-8">
               <Outlet></Outlet>
             </div>
           </main>

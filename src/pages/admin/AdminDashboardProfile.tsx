@@ -1,30 +1,17 @@
-import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/20/solid";
+import {
+  EnvelopeIcon,
+  PhoneIcon,
+  IdentificationIcon,
+  UserIcon,
+  StarIcon,
+  AcademicCapIcon,
+  PencilSquareIcon,
+} from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
 import { useGetWhoLogInQuery } from "../../redux/features/Student Management/getWhoLogInAPI";
 import Loader from "../../components/Loader";
-import React from "react";
 
-// Define a type for the ProfileItem component props
-interface ProfileItemProps {
-  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>; // Type for Icon
-  label: string;
-  value: string | number;
-}
-
-// A reusable component for displaying profile items in a card format
-const ProfileItem: React.FC<ProfileItemProps> = ({ Icon, label, value }) => (
-  <div className="border rounded-lg p-4 shadow-lg bg-white">
-    <div className="flex items-center">
-      <Icon className="h-6 w-6 text-blue-500 mr-3" aria-hidden="true" />
-      <div>
-        <h4 className="text-sm font-medium text-gray-700">{label}</h4>
-        <p className="text-sm text-gray-900">{value}</p>
-      </div>
-    </div>
-  </div>
-);
-
-export default function StudentDashboardProfile() {
+export default function AdminDashboardProfile() {
   const { data, isLoading } = useGetWhoLogInQuery(undefined);
 
   if (isLoading) {
@@ -45,95 +32,97 @@ export default function StudentDashboardProfile() {
   };
 
   return (
-    <div>
+    <div className="bg-white shadow rounded-lg">
       <div>
         <img
-          className="h-32 w-full object-cover lg:h-48"
+          className="h-32 w-full object-cover lg:h-48 rounded-t-lg"
           src={profile.backgroundImage}
           alt="Cover"
         />
       </div>
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <div className="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5">
-          <div className="flex">
+        <div className="relative -mt-16 sm:-mt-20 flex items-center">
+          <div className="flex-shrink-0">
             <img
-              className="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32"
+              className="h-32 w-32 rounded-full ring-4 ring-white"
               src={profile.avatar}
-              alt=""
+              alt="Avatar"
             />
           </div>
-          <div className="mt-11 flex-col  sm:flex sm:min-w-0 sm:flex-1 sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
-            <div className="mt-6 min-w-0 flex-1 block  md:block ">
-              <h1 className="truncate text-2xl font-bold text-gray-900">
+          <div className="ml-4">
+            <div className="bg-white p-4 rounded-md shadow-md">
+              <h1 className="text-3xl font-bold text-gray-900">
                 {profile.name}
               </h1>
             </div>
-            <div className="pl-24 mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0">
-              <div className=" inline-flex justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                <EnvelopeIcon
-                  className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400"
-                  aria-hidden="true"
-                />
-                <span>{profile.email}</span>
-              </div>
-              <div className="inline-flex justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                <EnvelopeIcon
-                  className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400"
-                  aria-hidden="true"
-                />
-                <span>{profile.id}</span>
-              </div>
-              <div className="inline-flex justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                <EnvelopeIcon
-                  className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400"
-                  aria-hidden="true"
-                />
-                <span>{profile.role}</span>
-              </div>
-              <div className="inline-flex justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                <PhoneIcon
-                  className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400"
-                  aria-hidden="true"
-                />
-                <span>{profile.role}</span>
-              </div>
-              <div className="inline-flex justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                <PhoneIcon
-                  className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400"
-                  aria-hidden="true"
-                />
-                <span>{profile.phone}</span>
-              </div>
-              <div className="inline-flex justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                <PhoneIcon
-                  className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400"
-                  aria-hidden="true"
-                />
-                <span>{profile.status}</span>
-              </div>
-              <div className="inline-flex justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                <PhoneIcon
-                  className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400"
-                  aria-hidden="true"
-                />
-                <span>{profile.program}</span>
-              </div>
-              <Link
-                to="EditProfile"
-                className="inline-flex justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                <PhoneIcon
-                  className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400"
-                  aria-hidden="true"
-                />
-                <span>Edit</span>
-              </Link>
-            </div>
           </div>
         </div>
-        <div className="mt-6 hidden min-w-0 flex-1 sm:block md:hidden">
-          <h1 className="truncate text-2xl font-bold text-gray-900">
-            {profile.name}
-          </h1>
+
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {/* Email */}
+          <div className="flex items-center bg-gray-50 p-4 rounded-lg shadow-sm">
+            <EnvelopeIcon
+              className="h-6 w-6 text-indigo-500 mr-3"
+              aria-hidden="true"
+            />
+            <span className="text-gray-700">{profile.email}</span>
+          </div>
+
+          {/* ID */}
+          <div className="flex items-center bg-gray-50 p-4 rounded-lg shadow-sm">
+            <IdentificationIcon
+              className="h-6 w-6 text-indigo-500 mr-3"
+              aria-hidden="true"
+            />
+            <span className="text-gray-700">{profile.id}</span>
+          </div>
+
+          {/* Role */}
+          <div className="flex items-center bg-gray-50 p-4 rounded-lg shadow-sm">
+            <UserIcon
+              className="h-6 w-6 text-indigo-500 mr-3"
+              aria-hidden="true"
+            />
+            <span className="text-gray-700 capitalize">{profile.role}</span>
+          </div>
+
+          {/* Phone */}
+          <div className="flex items-center bg-gray-50 p-4 rounded-lg shadow-sm">
+            <PhoneIcon
+              className="h-6 w-6 text-indigo-500 mr-3"
+              aria-hidden="true"
+            />
+            <span className="text-gray-700">{profile.phone}</span>
+          </div>
+
+          {/* Status */}
+          <div className="flex items-center bg-gray-50 p-4 rounded-lg shadow-sm">
+            <StarIcon
+              className="h-6 w-6 text-indigo-500 mr-3"
+              aria-hidden="true"
+            />
+            <span className="text-gray-700 capitalize">{profile.status}</span>
+          </div>
+
+          {/* Program */}
+          <div className="flex items-center bg-gray-50 p-4 rounded-lg shadow-sm">
+            <AcademicCapIcon
+              className="h-6 w-6 text-indigo-500 mr-3"
+              aria-hidden="true"
+            />
+            <span className="text-gray-700">{profile.program}</span>
+          </div>
+
+          {/* Edit Profile */}
+          <Link
+            to="EditProfile"
+            className="flex items-center justify-center bg-indigo-500 p-2 rounded-lg shadow-sm text-white hover:bg-indigo-600 transition duration-300 border-4 border-white mt-8 mx-4 mb-4 border-b-8">
+            <PencilSquareIcon
+              className="h-5 w-5 text-white mr-2"
+              aria-hidden="true"
+            />
+            <span className="text-sm">Edit Profile</span>
+          </Link>
         </div>
       </div>
     </div>

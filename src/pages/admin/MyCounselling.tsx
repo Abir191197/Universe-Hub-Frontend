@@ -1,23 +1,20 @@
-import { Bounce, toast } from "react-toastify";
+import { Bounce, toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; // Import CSS for Toastify
+import { useDeleteEventMutation } from "../../redux/features/Admin Management/DeleteEvent";
 import { useGetOwnerCounsellingQuery } from "../../redux/features/Admin Management/GetOwnerCounselling";
 import { useMarkCompletedMutation } from "../../redux/features/Admin Management/MarkCompletedEvent";
-import { useDeleteEventMutation } from "../../redux/features/Admin Management/DeleteEvent";
 
 export default function MyCounselling() {
   const { data: AllCounsellingData } = useGetOwnerCounsellingQuery(undefined);
 
-
-  //Mark As Completed Mutation
-
+  // Mark As Completed Mutation
   const [markCompleted] = useMarkCompletedMutation();
 
-  //Delete Mutation
-  
-  const [DeleteEventId] = useDeleteEventMutation();
-
+  // Delete Mutation
+  const [deleteEvent] = useDeleteEventMutation();
 
   // Helper function to format date and time
-  const formatDateTime = (dateTimeString: string | number | Date) => {
+  const formatDateTime = (dateTimeString) => {
     const options = {
       weekday: "long",
       year: "numeric",
@@ -30,14 +27,11 @@ export default function MyCounselling() {
     return new Date(dateTimeString).toLocaleString("en-US", options);
   };
 
-//handle mark completed button 
-
-
-  const handleMarkCompleted = async (eventId: string) => {
+  // Handle mark completed button
+  const handleMarkCompleted = async (eventId: any) => {
     try {
       const res = await markCompleted(eventId).unwrap();
-      console.log(res.success === true);
-      if (res) {
+      if (res.success) {
         toast.success("Counseling session marked as completed", {
           position: "top-center",
           autoClose: 5000,
@@ -51,7 +45,7 @@ export default function MyCounselling() {
         });
       }
     } catch (err) {
-      toast.error("Failed to mark as completed:", {
+      toast.error("Failed to mark as completed", {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -65,15 +59,13 @@ export default function MyCounselling() {
     }
   };
 
-
-  //handle Delete button
-  
-  const handleDelete = async (eventId: string) => {
+  // Handle delete button
+  const handleDelete = async (eventId: any) => {
     try {
-      const res = await DeleteEventId(eventId).unwrap();
-     
-      if (res.success===true) {
-        toast.info("Event Delete Successfully", {
+      const res = await deleteEvent(eventId).unwrap();
+      console.log(res.success);
+      if (res.success) {
+        toast.info("Event deleted successfully", {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
@@ -86,7 +78,7 @@ export default function MyCounselling() {
         });
       }
     } catch (err) {
-      toast.error("Failed to Delete Event", {
+      toast.error("Failed to delete event", {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -100,19 +92,13 @@ export default function MyCounselling() {
     }
   };
 
-
-
-
-
-
-
   // Filter the counseling sessions to only show completed ones
   const completedCounsellingSessions = AllCounsellingData?.data?.filter(
-    (counselling) => counselling.isCompleted ===false
+    (counselling) => counselling.isCompleted === false
   );
 
   return (
-    <div className="">
+    <div>
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
         <h2 className="text-xl font-bold text-gray-900">
           My Active Counselling Sessions
@@ -223,7 +209,7 @@ export default function MyCounselling() {
                 {counselling.BookedByName && (
                   <button
                     onClick={() => handleMarkCompleted(counselling._id)}
-                    className="relative w-full flex items-center justify-center rounded-md bg-green-600 px-4 py-2  text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                    className="relative w-full flex items-center justify-center rounded-md bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
                     Mark Completed
                   </button>
                 )}
@@ -241,6 +227,8 @@ export default function MyCounselling() {
           ))}
         </div>
       </div>
+      {/* Toast Container */}
+      <ToastContainer />
     </div>
   );
 }

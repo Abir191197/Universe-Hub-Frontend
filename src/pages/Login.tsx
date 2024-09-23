@@ -37,27 +37,11 @@ export default function Login() {
 
       if (res.data?.user) {
         // Display success toast
-        toast.success(
-          `Welcome ${res.data.user.name}! You are logged in as ${res.data.user.role}.`,
-          {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            transition: Slide,
-          }
-        );
 
         // Verify token and extract user
-        const user: TUser = verifyToken(res.data.accessToken) as TUser;
-
-        if (!user?.role) {
-          throw new Error("User role is undefined. Please contact support.");
-        }
+        const user: TUser = verifyToken(
+          res.data.accessToken
+        ) as unknown as TUser;
 
         dispatch(setUser({ user, token: res.data.accessToken }));
         navigate(`/${user.role}`);
@@ -66,7 +50,7 @@ export default function Login() {
       }
     } catch (error: any) {
       // Log error for debugging
-      console.error("Login error:", error);
+     
 
       // Extract and display error message from error response
       const errorMessage =

@@ -82,7 +82,6 @@ export default function SingleCoursePreview() {
 
   return (
     <div>
-<<<<<<< HEAD
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
           <h1 className="text-base font-semibold leading-6 text-gray-900 mb-2">
@@ -110,36 +109,6 @@ export default function SingleCoursePreview() {
             className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
             Add Resource
           </Link>
-=======
-      {/* Section for file description and buttons */}
-      <div className="bg-white rounded-lg shadow p-6 mb-8">
-        <div className="sm:flex sm:items-center">
-          <div className="sm:flex-auto">
-            <h1 className="text-base font-semibold leading-6 text-gray-900 mb-2">
-              Files
-            </h1>
-            <p className="mt-2 text-sm text-gray-700 mb-5">
-              A list of all the files associated with this course, including their
-              name, description, type, and size.
-            </p>
-          </div>
-          <div className="flex space-x-4">
-            <button
-              onClick={handleDelete}
-              type="button"
-              className="block rounded-md bg-red-500 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-red-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              Unsubscribe
-            </button>
-            <Link
-              to={`/${user?.role}/fileUpload/${id}`}
-              type="button"
-              className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              Add Resource
-            </Link>
-          </div>
->>>>>>> d04c6545056eb6890f4515d744b1ee2fd4f47381
         </div>
       </div>
 

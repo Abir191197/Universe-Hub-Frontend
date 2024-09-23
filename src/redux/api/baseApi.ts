@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://universe-hub-backend.vercel.app/api",
+  baseUrl: "http://localhost:5000/api",
   credentials: "include",
 
   prepareHeaders: (headers, { getState }) => {
@@ -17,6 +17,14 @@ const baseQuery = fetchBaseQuery({
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: baseQuery,
-  tagTypes: ["Profile", "Course", "SingleCourse", "counselling"],
+  tagTypes: [
+    "Profile",
+    "Course",
+    "SingleCourse",
+    "counselling",
+    "RoleUpdated",
+    "Resource",
+    "Messages"
+  ],
   endpoints: () => ({}),
 });

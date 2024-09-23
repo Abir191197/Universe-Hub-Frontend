@@ -7,17 +7,13 @@ import {
   QrCodeIcon,
   UserGroupIcon,
   SwatchIcon,
-<<<<<<< HEAD
-=======
-  
->>>>>>> d04c6545056eb6890f4515d744b1ee2fd4f47381
   HomeIcon,
   LightBulbIcon,
   XMarkIcon,
   ChatBubbleLeftEllipsisIcon,
   SparklesIcon,
   ChatBubbleLeftRightIcon,
-  ChatBubbleBottomCenterTextIcon,
+  
 
 } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
@@ -31,17 +27,8 @@ const navigation = [
     to: "/student/dashboard",
     icon: HomeIcon,
   },
-<<<<<<< HEAD
   { name: "All Courses", to: "/student/AllCourse", icon: QrCodeIcon },
   
-=======
-
-  { name: "All Courses", 
-    to: "/student/AllCourse", 
-    icon: QrCodeIcon },
-  
-
->>>>>>> d04c6545056eb6890f4515d744b1ee2fd4f47381
   {
     name: "Counselling",
     to: "/student/counselling",
@@ -68,7 +55,6 @@ const navigation = [
     to: "/student/ai-tutor",
     icon: SparklesIcon,
   },
-<<<<<<< HEAD
   {
     name: "GroupStudyCreate",
     to: "/student/GroupStudyCreate",
@@ -78,16 +64,6 @@ const navigation = [
     name: "Forum",
     to: "/student/ForumPage",
     icon: SparklesIcon,
-=======
-
-
-  {
-    name: "Forum",
-    to: "/student/ForumPage",
-    icon: ChatBubbleBottomCenterTextIcon,
-
-
->>>>>>> d04c6545056eb6890f4515d744b1ee2fd4f47381
   },
 ];
 
@@ -166,11 +142,11 @@ export default function StudentSidebarLayout() {
                   <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
                     <div className="flex h-16 shrink-0 items-center">
                       <Link to="/student">
-                      <img
-             className="h-20 w-40 pt-5"  // Adjust `h-12` for a larger image and `pt-4` for padding-top
-            src={logo}
-             alt="UniverseHub"
-            />
+                        <img
+                          className="h-20 w-40 pt-5" // Adjust `h-12` for a larger image and `pt-4` for padding-top
+                          src={logo}
+                          alt="UniverseHub"
+                        />
                       </Link>
                     </div>
 
@@ -212,10 +188,9 @@ export default function StudentSidebarLayout() {
         {/* Static sidebar for desktop */}
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-52 lg:flex-col ">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-<<<<<<< HEAD
           <div
             className="flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-4"
-            style={{ backgroundColor: "#9DBAFF" }}>
+            style={{ backgroundColor: "#719cff" }}>
             <Link to="/student" className="flex h-16 shrink-0 items-center">
               <img
                 className="h-8 w-auto"
@@ -223,23 +198,10 @@ export default function StudentSidebarLayout() {
                 alt="Your Company"
               />
             </Link>
-=======
-
-          <div className="flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-4" style={{ backgroundColor: '#9DBAFF' }}>
-
-          <Link to="/student">
-                      <img
-             className="h-20 w-40 pt-5"  // Adjust `h-12` for a larger image and `pt-4` for padding-top
-            src={logo}
-             alt="UniverseHub"
-            />
-                      </Link>
->>>>>>> d04c6545056eb6890f4515d744b1ee2fd4f47381
             <nav className="flex flex-1 flex-col">
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
                 <li>
                   <ul role="list" className="-mx-2 space-y-1">
-<<<<<<< HEAD
                     {navigation.map((item) => (
                       <li key={item.name}>
                         <Link
@@ -264,33 +226,6 @@ export default function StudentSidebarLayout() {
                         </Link>
                       </li>
                     ))}
-=======
-                  {navigation.map((item) => (
-  <li key={item.name}>
-    <Link
-      to={item.to}
-      className={classNames(
-        currentNavItem === item.name
-          ? "bg-gray-50 text-black"
-          : "text-black hover:text-black hover:bg-gray-50",
-        "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-      )}
-      onClick={() => handleNavigationClick(item.name)}>
-      <item.icon
-        className={classNames(
-          currentNavItem === item.name
-            ? "text-black"
-            : "text-black group-hover:text-black",
-          "h-6 w-6 shrink-0"
-        )}
-        aria-hidden="true"
-      />
-      {item.name}
-    </Link>
-  </li>
-))}
-
->>>>>>> d04c6545056eb6890f4515d744b1ee2fd4f47381
                   </ul>
                 </li>
               </ul>
@@ -299,7 +234,7 @@ export default function StudentSidebarLayout() {
         </div>
 
         <div className="lg:pl-52">
-          <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border  bg-[#ffdabc] px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
+          <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border  bg-[#ff933a] px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
             <button
               type="button"
               className="-m-2.5 p-2.5 text-gray-700 lg:hidden"
@@ -394,7 +329,7 @@ export default function StudentSidebarLayout() {
             </div>
           </div>
 
-          <main className="py-10 bg-sky-100 ">
+          <main className="py-10 bg-[#f8f8e1] ">
             <div className="px-4 sm:px-6 lg:px-8">
               <Outlet></Outlet>
             </div>

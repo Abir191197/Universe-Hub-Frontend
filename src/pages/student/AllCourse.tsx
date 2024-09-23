@@ -1,14 +1,6 @@
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/20/solid";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
-<<<<<<< HEAD
-=======
-import { useGetAllCoursesQuery } from "../../redux/features/Student Management/getAllCourseAPI";
-import { usePutSingleCourseInProfileMutation } from "../../redux/features/Student Management/putSingleCourseInProfile";
-import { HeartIcon, ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/20/solid";
-
-
->>>>>>> d04c6545056eb6890f4515d744b1ee2fd4f47381
 import { Slide, toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loader from "../../components/Loader";
@@ -150,7 +142,6 @@ export default function AllCourse() {
             key={course._id}
             className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow">
             <div className="flex flex-1 flex-col p-8">
-<<<<<<< HEAD
               <img
                 className="mx-auto  flex-shrink-0 rounded-full"
                 src={
@@ -160,16 +151,6 @@ export default function AllCourse() {
                 alt={course.courseName}
               />
 
-=======
-            <img
-  className="mx-auto h-32 w-32 flex-shrink-0 rounded-full"
-  src={course.imageUrl || "https://img.freepik.com/free-vector/blue-shiny-abstract-background_1123-44.jpg?t=st=1725273710~exp=1725277310~hmac=9932daa2eb31bc07403d20fd6a1a67ab161457d9284f2cffe90d1d572cbf2001&w=740"} // Default image URL
-  alt={course.courseName}
-/>
-              <h3 className="mt-6 text-sm font-medium text-gray-900">
-                {course.courseName}
-              </h3>
->>>>>>> d04c6545056eb6890f4515d744b1ee2fd4f47381
               <dl className="mt-1 flex flex-grow flex-col justify-between">
                 <dd className="mt-3">
                   <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
@@ -184,7 +165,6 @@ export default function AllCourse() {
             </div>
             <div>
               <div className="-mt-px flex divide-x divide-gray-200">
-<<<<<<< HEAD
                 <div className="-ml-px flex w-0 flex-1">
                   <button
                     onClick={() => handleEnrol(course._id)}
@@ -196,19 +176,6 @@ export default function AllCourse() {
                     Enrol
                   </button>
                 </div>
-=======
-              <button
-  onClick={() => handleEnrol(course._id)}
-  className="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg border border-transparent py-4 text-sm font-semibold text-gray-900">
-  <HeartIcon
-    className="h-5 w-5 text-gray-400"
-    aria-hidden="true"
-  />
-  Subscribe!
-</button>
-
-
->>>>>>> d04c6545056eb6890f4515d744b1ee2fd4f47381
               </div>
             </div>
           </li>

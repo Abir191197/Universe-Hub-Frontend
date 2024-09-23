@@ -17,22 +17,11 @@ const posts = [
         "https://ichef.bbci.co.uk/news/976/cpsprodpb/574E/production/_90805322_image_00006.jpg",
     },
     description:
-<<<<<<< HEAD
       "Abir Hossain specializes in Node.js and React.js, making him an expert in modern web development. He has a talent for breaking down complex concepts into simple, understandable lessons, making him highly approachable for beginners. His patient and clear explanations make him an ideal mentor for anyone new to coding.",
   },
   {
     id: 2,
     title: "Kotha Islam",
-=======
-      "Abir Hossain specializes in Node.js and React.js, making him an expert in modern web development. He has a talent for breaking down complex concepts into simple, understandable lessons, making him highly approachable for beginners. Whether you're just starting out or looking to deepen your understanding of JavaScript frameworks, Abir's teaching style is designed to help you build a strong foundation in web development. His patient and clear explanations make him an ideal mentor for anyone new to coding.",
-  },
-  {
-    id: 2,
-    title: "Kotha Isams",
-
-    title: "Web Development with JavaScript",
-
->>>>>>> d04c6545056eb6890f4515d744b1ee2fd4f47381
     href: "#",
     imageUrl:
       "https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/62A2/production/_90805252_image_00001.jpg.webp",
@@ -124,12 +113,7 @@ const posts = [
     },
     description:
       "Shaila Haque is an accomplished educator in Cybersecurity and Ethical Hacking, with a deep passion for protecting digital assets. With her vast knowledge of network security, encryption, and ethical hacking practices, she guides students through the complexities of cybersecurity with ease. Shaila's teaching is highly interactive, involving simulations and practical exercises that equip students with the skills needed to identify and mitigate security threats.",
-<<<<<<< HEAD
   },
-=======
-  }
-
->>>>>>> d04c6545056eb6890f4515d744b1ee2fd4f47381
 ];
 
 export default function Counselors() {

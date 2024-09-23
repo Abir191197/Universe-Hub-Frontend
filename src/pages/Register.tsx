@@ -44,10 +44,10 @@ export default function Register() {
     try {
       await registerUser(userInfo).unwrap();
       toast.success("Registration successful");
-      console.log("Registration successful");
+     
     } catch (error) {
       toast.error(`Registration failed: ${error}`);
-      console.error("Registration failed:", error);
+      
     }
   };
 
