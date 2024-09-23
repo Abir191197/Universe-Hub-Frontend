@@ -117,14 +117,14 @@ export default function AllUserManage() {
           <div className="sm:flex sm:items-center mb-6">
             <div className="sm:flex-auto">
               <h1 className="text-2xl font-semibold text-gray-800">Users</h1>
-              <p className="mt-2 text-lg text-gray-700">
+              <p className="mt-2 text-lg text-gray-700 ">
                 Manage all the users in your account, including their name,
                 email, role, and status.
               </p>
             </div>
           </div>
-          <div className="overflow-x-auto bg-white shadow-md rounded-lg">
-            <table className="min-w-full divide-y divide-gray-300">
+          <div className="overflow-x-auto bg-white shadow-md rounded-lg ">
+            <table className="min-w-full divide-y divide-gray-300 ">
               <thead className="bg-gray-100">
                 <tr>
                   <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">
@@ -145,7 +145,7 @@ export default function AllUserManage() {
                   <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">
                     Status
                   </th>
-                  <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">
+                  <th className="py-3 px-4 text-left text-sm font-medium text-gray-700 ">
                     Action
                   </th>
                 </tr>

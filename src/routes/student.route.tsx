@@ -5,6 +5,7 @@ import AllCourse from "../pages/student/AllCourse";
 import SingleCoursePreview from "../pages/student/SingleCoursePreview";
 import FileUploaded from "../pages/student/FileUploaded";
 import FullCounsellingLayout from "../pages/student/FullCounsellingLayout";
+import Message from "../pages/admin/Message";
 
 export const studentPaths: RouteObject[] = [
   {
@@ -38,5 +39,9 @@ export const studentPaths: RouteObject[] = [
   {
     path: "Counselling",
     element: <FullCounsellingLayout></FullCounsellingLayout>,
+  },
+  {
+    path: "messages",
+    element: <Message></Message>,
   },
 ];

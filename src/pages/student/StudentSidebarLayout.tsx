@@ -41,7 +41,7 @@ const navigation = [
   },
   { name: "F.A.Q Bot", to: "/student/faq-bot", icon: LightBulbIcon },
   {
-    name: "Chat",
+    name: "Message",
     to: "/student/messages",
     icon: ChatBubbleLeftEllipsisIcon,
   },

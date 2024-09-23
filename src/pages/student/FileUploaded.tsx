@@ -40,7 +40,10 @@ export default function FileUploaded() {
 
     try {
       await uploadFile(uploadData).unwrap();
-      toast.success("File uploaded successfully");
+      toast.success("File uploaded successfully. Waiting for admin approval.");
+
+    
+      
       reset();
       setFileName("");
     } catch (error) {
@@ -101,9 +104,7 @@ export default function FileUploaded() {
                   placeholder="Provide a brief description of the file"
                 />
               </div>
-              <p className="mt-3 text-sm leading-6 text-gray-600">
-                
-              </p>
+              <p className="mt-3 text-sm leading-6 text-gray-600"></p>
               {errors.Description && (
                 <p className="text-red-500 text-xs mt-1">
                   Description is required

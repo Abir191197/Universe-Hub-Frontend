@@ -145,7 +145,7 @@ export default function ResourceMange() {
                         target="_blank"
                         rel="noopener noreferrer">
                         <img
-                          src="../../../public/download_465584.png"
+                          src="https://i.ibb.co.com/6DtSWnR/download-465584.png"
                           alt="Download"
                           className="w-6 h-6" // Adjust size here
                         />
@@ -160,7 +160,7 @@ export default function ResourceMange() {
                             isApproving ? "bg-green-500" : ""
                           } p-2 rounded`}>
                           <img
-                            src="../../../public/approved.png"
+                            src="https://i.ibb.co.com/MgTGL8r/approved.png"
                             alt="Approve"
                             className="w-8 h-8" // Adjust size here
                           />
@@ -175,7 +175,7 @@ export default function ResourceMange() {
                           isDeleting ? "bg-red-500" : ""
                         } p-2 rounded`}>
                         <img
-                          src="../../../public/delete.png"
+                          src="https://i.ibb.co.com/WfVq6M7/delete.png"
                           alt="Delete"
                           className="w-6 h-6" // Adjust size here
                         />
