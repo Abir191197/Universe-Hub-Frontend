@@ -1,15 +1,18 @@
-import React, { useEffect, useState, useCallback, useRef } from "react";
+import { Menu, Transition } from "@headlessui/react";
+import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
+import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
+import io from "socket.io-client";
+import { useGetAllUserWithSearchQuery } from "../../redux/features/Admin Management/getAllUser";
 import { selectCurrentUser } from "../../redux/features/auth/authSlice";
 import {
   useCreateMessageMutation,
   useGetMessagesQuery,
   useGetReceiverQuery,
 } from "../../redux/features/Student Management/messages";
-import io from "socket.io-client";
 
-const socket = io("http://localhost:5000", {
+const socket = io("https://universe-hub-backend.onrender.com", {
   transports: ["websocket"],
   reconnection: true,
   reconnectionAttempts: 5,
@@ -19,7 +22,7 @@ const socket = io("http://localhost:5000", {
 const formatTimestamp = (timestamp) => {
   const date = new Date(timestamp);
   return date.toLocaleTimeString([], {
-    month: "long", // e.g., "September"
+    month: "long",
     day: "numeric",
     hour: "2-digit",
     minute: "2-digit",
@@ -31,11 +34,12 @@ const Message = () => {
   const sender = useSelector(selectCurrentUser);
   const [receiver, setReceiver] = useState(null);
   const [messages, setMessages] = useState([]);
+  const [searchKeyWord, setSearchKeyWord] = useState("");
   const [socketConnected, setSocketConnected] = useState(false);
   const messagesEndRef = useRef(null);
 
   const { data: messagesData, refetch: refetchMessages } = useGetMessagesQuery(
-    receiver ? { sender: sender?.id, receiver } : { skip: true }
+    receiver ? { sender: sender?.id, receiver: receiver._id } : { skip: true }
   );
 
   const { data: receiverData } = useGetReceiverQuery({
@@ -45,6 +49,8 @@ const Message = () => {
   const [createMessage] = useCreateMessageMutation();
   const { register, handleSubmit, reset } = useForm();
 
+  const { data: AllUser } = useGetAllUserWithSearchQuery(searchKeyWord);
+
   useEffect(() => {
     if (messagesData) {
       setMessages(messagesData.data);
@@ -53,10 +59,7 @@ const Message = () => {
 
   const handleReceiveMessage = useCallback((newMessage) => {
     setMessages((prevMessages) => {
-      const messageExists = prevMessages.some(
-        (msg) => msg._id === newMessage._id
-      );
-      if (!messageExists) {
+      if (!prevMessages.some((msg) => msg._id === newMessage._id)) {
         return [...prevMessages, newMessage];
       }
       return prevMessages;
@@ -85,9 +88,9 @@ const Message = () => {
     if (receiver) {
       const message = {
         sender: sender?.id,
-        receiver,
+        receiver: receiver._id,
         content: data.message,
-        timestamp: new Date().toISOString(), // Add timestamp here
+        timestamp: new Date().toISOString(),
       };
       try {
         const result = await createMessage(message).unwrap();
@@ -128,8 +131,49 @@ const Message = () => {
               id="name"
               className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               placeholder="Jane Smith"
+              value={searchKeyWord}
+              onChange={(e) => setSearchKeyWord(e.target.value)}
             />
           </div>
+
+          {/* Dropdown Menu for Search Results */}
+          <Menu as="div" className="relative mt-2">
+            <Transition
+              show={
+                searchKeyWord &&
+                AllUser &&
+                AllUser.data &&
+                AllUser.data.length > 0
+              }
+              as={Fragment}
+              enter="transition ease-out duration-100"
+              enterFrom="transform opacity-0 scale-95"
+              enterTo="transform opacity-100 scale-100"
+              leave="transition ease-in duration-75"
+              leaveFrom="transform opacity-100 scale-100"
+              leaveTo="transform opacity-0 scale-95">
+              <Menu.Items
+                static
+                className="absolute left-0 z-10 mt-2 w-full origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                {AllUser?.data?.map((user) => (
+                  <Menu.Item key={user._id}>
+                    {({ active }) => (
+                      <button
+                        onClick={() => {
+                          setReceiver(user);
+                          setSearchKeyWord(""); // Clear search input
+                        }}
+                        className={`block w-full text-left px-4 py-2 text-sm ${
+                          active ? "bg-gray-100 text-gray-900" : "text-gray-700"
+                        }`}>
+                        {user.name}
+                      </button>
+                    )}
+                  </Menu.Item>
+                ))}
+              </Menu.Items>
+            </Transition>
+          </Menu>
 
           {/* Profile Card */}
           <div className="flex flex-col items-center bg-indigo-100 border border-gray-200 mt-4 w-full py-6 px-4 rounded-lg">
@@ -156,7 +200,7 @@ const Message = () => {
               {receiverData?.data?.map((receiverDetail) => (
                 <button
                   key={receiverDetail._id}
-                  onClick={() => setReceiver(receiverDetail._id)}
+                  onClick={() => setReceiver(receiverDetail)}
                   className="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2">
                   <div className="flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full">
                     {receiverDetail.name.charAt(0)}
@@ -175,120 +219,84 @@ const Message = () => {
           {receiver ? (
             <div className="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4">
               {/* Topper Bar */}
-              <div className="flex flex-row items-center justify-between bg-gray-300 rounded-lg p-2">
-                <div className="flex items-center space-x-3">
-                  <div className="h-10 w-10 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold">
-                    {receiverData?.data
-                      ?.find((r) => r._id === receiver)
-                      ?.name.charAt(0)}
-                  </div>
-                  <div>
-                    <h2 className="font-bold text-lg">
-                      {
-                        receiverData?.data?.find((r) => r._id === receiver)
-                          ?.name
-                      }
-                    </h2>
-                    <p className="text-sm text-gray-500">..............</p>
-                  </div>
+              <div className="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4">
+                <div className="flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full">
+                  {receiver.name.charAt(0)}
                 </div>
-                <div>
-                  {socketConnected ? (
-                    <span className="bg-green-500 text-white px-2 py-1 rounded-full text-xs">
-                      Active Now
-                    </span>
-                  ) : (
-                    <span className="bg-red-500 text-white px-2 py-1 rounded-full text-xs">
-                      Disconnected
-                    </span>
-                  )}
+                <div className="ml-2 text-sm font-semibold">
+                  {receiver.name}
+                </div>
+                <div className="flex items-center justify-center ml-auto">
+                  <button className="flex items-center justify-center rounded-full h-10 w-10 bg-gray-200 text-gray-500 hover:bg-gray-300">
+                    <EllipsisVerticalIcon className="w-5 h-5" />
+                  </button>
                 </div>
               </div>
 
-              {/* Messages */}
-              <div className="flex flex-col h-full overflow-x-auto mb-4">
-                <div className="flex flex-col h-full">
-                  <div className="grid grid-cols-12 gap-y-2">
-                    {messages.map((message, index) => (
+              {/* Messages Area */}
+              <div className="h-full overflow-hidden py-4">
+                <div className="flex flex-col h-full overflow-y-auto">
+                  <div className="  gap-y-2">
+                    {messages.map((msg) => (
                       <div
-                        key={index}
-                        className={`${
-                          message.sender === sender?.id
-                            ? "col-start-6 col-end-13"
-                            : "col-start-1 col-end-8"
+                        key={msg._id}
+                        className={`col-start-${
+                          msg.sender === sender.id ? "7" : "1"
+                        } col-end-${
+                          msg.sender === sender.id ? "13" : "7"
                         } p-3 rounded-lg`}>
                         <div
-                          className={`flex ${
-                            message.sender === sender?.id
-                              ? "flex-row-reverse"
-                              : "flex-row"
-                          } items-center`}>
+                          className={`flex flex-row items-center ${
+                            msg.sender === sender.id
+                              ? "justify-start flex-row-reverse"
+                              : ""
+                          }`}>
                           <div
-                            className={`flex items-center justify-center h-10 m-3 w-10 rounded-full ${
-                              message.sender === sender?.id
-                                ? "bg-indigo-500"
-                                : "bg-indigo-300"
-                            } flex-shrink-0`}>
-                            {message.sender === sender?.id ? "Me" : "Them"}
+                            className={`flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0`}>
+                            {msg.sender === sender.id
+                              ? sender.name.charAt(0)
+                              : receiver.name.charAt(0)}
                           </div>
                           <div
-                            className={`relative ml-3 text-sm py-2 px-5 shadow rounded-xl ${
-                              message.sender === sender?.id
+                            className={`relative ml-3 text-sm ${
+                              msg.sender === sender.id
                                 ? "bg-indigo-100"
                                 : "bg-white"
-                            }`}>
-                            <div>{message.content}</div>
+                            } py-2 px-4 shadow rounded-xl`}>
+                            <div>{msg.content}</div>
                           </div>
-                          <p className="text-xs text-gray-500 ml-2">
-                            {formatTimestamp(message.timestamp)}
-                          </p>
+                          <span className=" text-xs  ms-2 mr-2 text-gray-500">
+                            {formatTimestamp(msg.timestamp)}
+                          </span>
                         </div>
                       </div>
                     ))}
-                    <div ref={messagesEndRef} />
                   </div>
+                  <div ref={messagesEndRef} />{" "}
+                  {/* This is important for scrolling */}
                 </div>
               </div>
 
-              {/* Input Area */}
+              {/* Message Input Area */}
               <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4">
-                <div className="flex-grow ml-4">
-                  <input
-                    type="text"
-                    {...register("message", { required: true })}
-                    className="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
-                    placeholder="Type your message here..."
-                  />
-                </div>
-                <div className="ml-4">
-                  <button
-                    type="submit"
-                    className="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0">
-                    <span>Send</span>
-                    <span className="ml-2">
-                      <svg
-                        className="w-4 h-4 transform rotate-45 -mt-px"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-                        />
-                      </svg>
-                    </span>
-                  </button>
-                </div>
+                className="mt-4 flex items-center">
+                <input
+                  type="text"
+                  {...register("message", { required: true })}
+                  className="flex-1 rounded-full py-2 px-4 border border-gray-300"
+                  placeholder="Type a message..."
+                />
+                <button
+                  type="submit"
+                  className="ml-2 px-4 py-2 bg-blue-600 text-white rounded-full">
+                  Send
+                </button>
               </form>
             </div>
           ) : (
-            <div className="flex items-center justify-center h-full">
-              <p>Select a user to start chatting.</p>
+            <div className="flex items-center justify-center h-full text-gray-500">
+              Select a user to start chatting
             </div>
           )}
         </div>

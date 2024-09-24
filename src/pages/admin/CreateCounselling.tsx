@@ -15,29 +15,25 @@ export default function CreateCounseling() {
   } = useForm<CounselingFormData>();
 
   const [EventInformation, { isLoading }] = useCreateCounselingMutation();
-
   const [type, setType] = useState<"online" | "offline">("online");
   const [isFree, setIsFree] = useState<boolean>(true);
 
   const onSubmit = async (data: CounselingFormData) => {
     const formattedData = {
       ...data,
-      CashAmount: isFree ? 0 : Number(data.CashAmount), // Set CashAmount to 0 if free
-      Type: type, // Ensure the correct session type is sent
+      CashAmount: isFree ? 0 : Number(data.CashAmount),
+      Type: type,
       selectDate: new Date(data.selectDate).toISOString(),
       MeetLink: type === "online" ? data.MeetLink : null,
-      imgSrc: data.imgSrc
-        ? data.imgSrc
-        : "https://img.freepik.com/free-vector/organic-flat-customer-support-illustrated_23-2148923865.jpg?t=st=1725410152~exp=1725413752~hmac=b1f29afceebe0be8278aa844a1d4d500a70b6a60ce7974771630e876b62c3c80&w=996",
+      imgSrc:
+        data.imgSrc ||
+        "https://img.freepik.com/free-vector/organic-flat-customer-support-illustrated_23-2148923865.jpg?t=st=1725410152~exp=1725413752~hmac=b1f29afceebe0be8278aa844a1d4d500a70b6a60ce7974771630e876b62c3c80&w=996",
     };
 
     try {
-      if (isLoading) {
-        return <Loading />;
-      }
+      if (isLoading) return <Loading />;
 
       await EventInformation(formattedData).unwrap();
-
       toast.success("Counseling created successfully", {
         position: "top-right",
         autoClose: 5000,
@@ -45,7 +41,6 @@ export default function CreateCounseling() {
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        progress: undefined,
         theme: "light",
         transition: Slide,
       });
@@ -57,7 +52,6 @@ export default function CreateCounseling() {
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        progress: undefined,
         theme: "light",
         transition: Slide,
       });
@@ -71,9 +65,9 @@ export default function CreateCounseling() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen p-6">
+    <div className="flex justify-center items-center min-h-screen p-6 bg-gray-100">
       <div className="w-full max-w-4xl p-8 bg-white shadow-lg rounded-lg">
-        <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+        <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
           Create Counseling Session
         </h2>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -89,7 +83,7 @@ export default function CreateCounseling() {
               type="text"
               id="TopicName"
               placeholder="Enter the topic of the session"
-              className="block w-full rounded-md border-black border-2 py-2 px-3 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              className="block w-full rounded-md border border-gray-300 py-3 px-4 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
             {errors.TopicName && (
               <span className="text-red-500 text-sm">
@@ -112,7 +106,7 @@ export default function CreateCounseling() {
               id="Description"
               rows={4}
               placeholder="Provide a detailed description of the session"
-              className="block w-full rounded-md border-black border-2 py-2 px-3 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              className="block w-full rounded-md border border-gray-300 py-3 px-4 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
             {errors.Description && (
               <span className="text-red-500 text-sm">
@@ -131,7 +125,7 @@ export default function CreateCounseling() {
             <select
               {...register("Duration", { required: "Duration is required" })}
               id="Duration"
-              className="block w-full rounded-md border-black border-2 py-2 px-3 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+              className="block w-full rounded-md border border-gray-300 py-3 px-4 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
               {[10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60].map((duration) => (
                 <option key={duration} value={duration}>
                   {duration} minutes
@@ -157,7 +151,7 @@ export default function CreateCounseling() {
               type="text"
               id="imgSrc"
               placeholder="Optional: Provide a link to an image"
-              className="block w-full rounded-md border-black border-2 py-2 px-3 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              className="block w-full rounded-md border border-gray-300 py-3 px-4 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>
 
@@ -174,7 +168,7 @@ export default function CreateCounseling() {
               })}
               type="datetime-local"
               id="selectDate"
-              className="block w-full rounded-md border-black border-2 py-2 px-3 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              className="block w-full rounded-md border border-gray-300 py-3 px-4 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
             {errors.selectDate && (
               <span className="text-red-500 text-sm">
@@ -183,7 +177,7 @@ export default function CreateCounseling() {
             )}
           </div>
 
-          {/* Type */}
+          {/* Session Type */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
               Session Type
@@ -226,12 +220,12 @@ export default function CreateCounseling() {
                   type="text"
                   id="MeetLink"
                   placeholder="Enter or generate a Meet link"
-                  className="flex-1 block rounded-md border-black border-2 py-2 px-3 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  className="flex-1 block rounded-md border border-gray-300 py-3 px-4 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
                 <button
                   type="button"
                   onClick={handleCreateMeetLink}
-                  className="ml-4 px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                  className="ml-4 px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                   Create Meet Link
                 </button>
               </div>
@@ -252,7 +246,7 @@ export default function CreateCounseling() {
                 type="text"
                 id="StudyRoomNumber"
                 placeholder="Enter the study room number"
-                className="block w-full rounded-md border-black border-2 py-2 px-3 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                className="block w-full rounded-md border border-gray-300 py-3 px-4 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
               />
               {errors.StudyRoomNumber && (
                 <span className="text-red-500 text-sm">
@@ -304,7 +298,7 @@ export default function CreateCounseling() {
                 type="number"
                 id="CashAmount"
                 placeholder="Enter the cost amount"
-                className="block w-full rounded-md border-black border-2 py-2 px-3 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                className="block w-full rounded-md border border-gray-300 py-3 px-4 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
               />
               {errors.CashAmount && (
                 <span className="text-red-500 text-sm">
@@ -314,7 +308,7 @@ export default function CreateCounseling() {
             </div>
           )}
 
-          <div className="flex items-center justify-end gap-x-4 border-t border-gray-900/10 pt-4">
+          <div className="flex items-center justify-end gap-x-4 border-t border-gray-300 pt-4">
             <button
               type="button"
               className="text-sm font-semibold text-gray-900 hover:text-gray-700">

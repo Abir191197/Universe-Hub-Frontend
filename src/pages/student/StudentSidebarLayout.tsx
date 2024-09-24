@@ -6,7 +6,7 @@ import {
   BellIcon,
   QrCodeIcon,
   UserGroupIcon,
-  SwatchIcon,
+  
   HomeIcon,
   LightBulbIcon,
   XMarkIcon,
@@ -34,11 +34,6 @@ const navigation = [
     to: "/student/counselling",
     icon: UserGroupIcon,
   },
-  {
-    name: "Study Plan",
-    to: "/student/study-plan",
-    icon: SwatchIcon,
-  },
   { name: "F.A.Q Bot", to: "/student/faq-bot", icon: LightBulbIcon },
   {
     name: "Message",
@@ -47,18 +42,8 @@ const navigation = [
   },
   {
     name: "Group Study",
-    to: "/student/GroupStudyTop",
+    to: "/student/GroupStudy",
     icon: ChatBubbleLeftRightIcon,
-  },
-  {
-    name: "AI Tutor",
-    to: "/student/ai-tutor",
-    icon: SparklesIcon,
-  },
-  {
-    name: "GroupStudyCreate",
-    to: "/student/GroupStudyCreate",
-    icon: SparklesIcon,
   },
   {
     name: "Forum",

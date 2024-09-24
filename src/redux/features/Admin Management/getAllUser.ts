@@ -9,7 +9,15 @@ const getAllUserApi = baseApi.injectEndpoints({
       }),
       providesTags: ["RoleUpdated"],
     }),
+    getAllUserWithSearch: builder.query({
+      query: (searchKeyWord) => ({
+        url: `/users/AllUser?searchTerm=${searchKeyWord}`, // Endpoint for creating a course
+        method: "GET",
+      }),
+      providesTags: ["RoleUpdated"],
+    }),
   }),
 });
 
-export const { useGetAllUserQuery } = getAllUserApi;
+export const { useGetAllUserQuery, useGetAllUserWithSearchQuery } =
+  getAllUserApi;

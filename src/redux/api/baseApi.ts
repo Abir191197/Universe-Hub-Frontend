@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://universe-hub-backend.vercel.app/api",
+  baseUrl: "https://universe-hub-backend.onrender.com/api",
   credentials: "include",
 
   prepareHeaders: (headers, { getState }) => {
@@ -24,7 +24,8 @@ export const baseApi = createApi({
     "counselling",
     "RoleUpdated",
     "Resource",
-    "Messages"
+    "Messages",
+    "GroupStudy",
   ],
   endpoints: () => ({}),
 });
