@@ -1,3 +1,4 @@
+// Message.js
 import { Menu, Transition } from "@headlessui/react";
 import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
@@ -5,12 +6,12 @@ import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import io from "socket.io-client";
 import { useGetAllUserWithSearchQuery } from "../../redux/features/Admin Management/getAllUser";
-import { selectCurrentUser } from "../../redux/features/auth/authSlice";
 import {
   useCreateMessageMutation,
   useGetMessagesQuery,
   useGetReceiverQuery,
 } from "../../redux/features/Student Management/messages";
+import { selectCurrentUser } from "../../redux/features/auth/authSlice";
 
 const socket = io("https://universe-hub-backend.onrender.com", {
   transports: ["websocket"],
@@ -46,10 +47,9 @@ const Message = () => {
     sender: sender?.id,
   });
 
+  const { data: AllUser } = useGetAllUserWithSearchQuery(searchKeyWord);
   const [createMessage] = useCreateMessageMutation();
   const { register, handleSubmit, reset } = useForm();
-
-  const { data: AllUser } = useGetAllUserWithSearchQuery(searchKeyWord);
 
   useEffect(() => {
     if (messagesData) {
@@ -90,11 +90,14 @@ const Message = () => {
         sender: sender?.id,
         receiver: receiver._id,
         content: data.message,
-        timestamp: new Date().toISOString(),
       };
       try {
         const result = await createMessage(message).unwrap();
-        socket.emit("sendMessage", result.data);
+        socket.emit("sendMessage", {
+          sender: sender?.id,
+          receiver: receiver._id,
+          content: data.message,
+        });
         setMessages((prevMessages) => [...prevMessages, result.data]);
       } catch (error) {
         console.error("Failed to send message:", error);

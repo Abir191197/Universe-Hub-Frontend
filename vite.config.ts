@@ -14,7 +14,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: "0.0.0.0", // Bind to all available network interfaces
-    port: 3000, // Specify the port (optional)
+    port: 5173, // Specify the port (optional)
     open: true, // Optional: automatically open the app in the browser
   },
 });
