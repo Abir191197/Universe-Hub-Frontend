@@ -26,6 +26,8 @@ export const baseApi = createApi({
     "Resource",
     "Messages",
     "GroupStudy",
+    "Forum",
+    "comments",
   ],
   endpoints: () => ({}),
 });

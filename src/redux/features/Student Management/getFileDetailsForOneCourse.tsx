@@ -7,6 +7,7 @@ const courseFilesApi = baseApi.injectEndpoints({
         url: `/files-Upload/CourseFile/${id}`,
         method: "GET",
       }),
+      providesTags: ["Resource"],
     }),
   }),
 });

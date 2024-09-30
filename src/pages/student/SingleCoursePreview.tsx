@@ -93,8 +93,6 @@ export default function SingleCoursePreview() {
           </p>
         </div>
         <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-          
-
           <button
             onClick={handleDelete}
             type="button"
@@ -118,7 +116,7 @@ export default function SingleCoursePreview() {
           <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
               <table className="min-w-full">
-                <thead style={{ backgroundColor: '#8FBAD9' }}>
+                <thead style={{ backgroundColor: "#8FBAD9" }}>
                   <tr>
                     <th className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-white sm:pl-3">
                       File Name
@@ -166,14 +164,13 @@ export default function SingleCoursePreview() {
                           {file.uploadedBy}
                         </td>
                         <td className="relative whitespace-nowrap py-4 pr-4 text-center text-sm font-medium sm:pr-3">
-                          <button
-                            onClick={() =>
-                              handleDownload(file.fileUrl, file.fileName)
-                            }
-                            className="text-indigo-600 hover:text-indigo-900"
-                          >
+                          <a
+                            href={file.fileUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-indigo-600 hover:text-indigo-900">
                             Download
-                          </button>
+                          </a>
                         </td>
                       </tr>
                     </Fragment>

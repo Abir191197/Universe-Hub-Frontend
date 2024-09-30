@@ -1,19 +1,20 @@
-
 import AdminDashboardContent from "../pages/admin/AdminDashboardContent";
 
-import EditProfile from "../pages/student/EditProfile";
 import AllCourseAndCreate from "../pages/admin/AllCourseAndCreate";
-import SingleCoursePreview from "../pages/student/SingleCoursePreview";
+import EditProfile from "../pages/student/EditProfile";
 import FileUploaded from "../pages/student/FileUploaded";
+import SingleCoursePreview from "../pages/student/SingleCoursePreview";
 
-
-import CreateCounseling from "../pages/admin/CreateCounselling";
-import CounsellingPage from "../pages/admin/CounsellingPage";
 import AllUserManage from "../pages/admin/AllUserManage";
-import ResourceMange from "../pages/admin/ResourceMange";
+import CounsellingPage from "../pages/admin/CounsellingPage";
+import CreateCounseling from "../pages/admin/CreateCounselling";
 import Message from "../pages/admin/Message";
+import ResourceMange from "../pages/admin/ResourceMange";
 
-
+import Forum from "../pages/student/Forum";
+import SingleForum from "../pages/student/SingleForum";
+import GroupStudy from "../pages/student/GroupStudy";
+import GroupStudyCreate from "../pages/student/GroupStudyCreate";
 export const adminPaths = [
   {
     index: true,
@@ -63,5 +64,21 @@ export const adminPaths = [
   {
     path: "messages",
     element: <Message></Message>,
+  },
+  {
+    path: "GroupStudy",
+    element: <GroupStudy></GroupStudy>,
+  },
+  {
+    path: "GroupStudy/CreateCounselling",
+    element: <GroupStudyCreate></GroupStudyCreate>,
+  },
+  {
+    path: "Forum",
+    element: <Forum></Forum>,
+  },
+  {
+    path: "Forum/posts/:postId",
+    element: <SingleForum></SingleForum>,
   },
 ];

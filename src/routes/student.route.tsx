@@ -8,6 +8,8 @@ import GroupStudy from "../pages/student/GroupStudy";
 import GroupStudyCreate from "../pages/student/GroupStudyCreate";
 import SingleCoursePreview from "../pages/student/SingleCoursePreview";
 import DashboardContent from "../pages/student/StudentDashboardContent";
+import Forum from "../pages/student/Forum";
+import SingleForum from "../pages/student/SingleForum";
 
 export const studentPaths: RouteObject[] = [
   {
@@ -53,5 +55,13 @@ export const studentPaths: RouteObject[] = [
   {
     path: "GroupStudy/CreateCounselling",
     element: <GroupStudyCreate></GroupStudyCreate>,
+  },
+  {
+    path: "Forum",
+    element: <Forum></Forum>,
+  },
+  {
+    path: "Forum/posts/:postId",
+    element: <SingleForum></SingleForum>,
   },
 ];

@@ -1,14 +1,15 @@
-import { Menu, Transition } from "@headlessui/react";
-import { EllipsisHorizontalIcon } from "@heroicons/react/20/solid";
-import {  useEffect } from "react";
+
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
+  useDeleteGroupStudyMutation,
   useGetAllGroupStudyQuery,
   useUpdateGroupStudyMutation,
 } from "../../redux/features/Student Management/GroupStudy";
 import { Slide, toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../redux/features/auth/authSlice";
+import deleteIcon from "../../assets/delete.svg";
 
 // Define the status type and statuses for participants
 type Status = "Participant";
@@ -17,16 +18,13 @@ const statuses: Record<Status, string> = {
 };
 
 export default function GroupStudy() {
-  // Fetch all group studies
-  const { data } = useGetAllGroupStudyQuery(undefined);
-  const [updateGroupStudy, { isSuccess, error }] =
+  const { data, error, isLoading } = useGetAllGroupStudyQuery(undefined);
+  const [updateGroupStudy, { isSuccess, error: updateError }] =
     useUpdateGroupStudyMutation();
-
+  const [deleteGroupStudy] = useDeleteGroupStudyMutation();
   const user = useSelector(selectCurrentUser);
 
-
-  
-  // Show toast notifications based on mutation result using useEffect
+  // Handle toast notifications
   useEffect(() => {
     if (isSuccess) {
       toast.success("Successfully joined the group study!", {
@@ -40,9 +38,8 @@ export default function GroupStudy() {
         theme: "light",
         transition: Slide,
       });
-    } else if (error) {
-     
-      toast.error(error.data.message, {
+    } else if (updateError) {
+      toast.error(updateError.data.message, {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -54,30 +51,55 @@ export default function GroupStudy() {
         transition: Slide,
       });
     }
-  }, [isSuccess, error]); // This ensures the toast is shown only when `isSuccess` or `error` changes
+  }, [isSuccess, updateError]);
 
-const clients =
-  data?.data?.map((study) => ({
-    id: study._id, 
-    name: study.topic,
-    imageUrl: "https://tailwindui.com/img/logos/48x48/tuple.svg",
-    lastInvoice: {
-      dateTime: new Date(study.selectDate).toLocaleString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: true,
-      }), // Correctly formatted with options for month, day, and time
-      description: study.Description,
-      link: study.MeetLink,
-      status: "Participant" as Status,
-      TotalJoin: study.TotalJoin || 0,
-      alreadyJoined: study.BookedByEmail.includes(user?.email), // Check if the current user has already joined
-    },
-  })) || [];
+  // Transform group studies for UI
+  const clients =
+    data?.data?.map((study) => ({
+      id: study._id,
+      CreateByEmail: study.CreateByEmail,
+      name: study.topic,
+      imageUrl: "https://tailwindui.com/img/logos/48x48/tuple.svg",
+      lastInvoice: {
+        dateTime: new Date(study.selectDate).toLocaleString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true,
+        }),
+        description: study.Description,
+        link: study.MeetLink,
+        status: "Participant" as Status,
+        TotalJoin: study.TotalJoin || 0,
+        alreadyJoined: study.BookedByEmail.includes(user?.email),
+      },
+    })) || [];
 
+  const handleDelete = async (id) => {
+  
+
+    try {
+      await deleteGroupStudy(id).unwrap();
+      toast.success("Group study deleted successfully.");
+    } catch (error) {
+      console.error("Failed to delete group study:", error);
+      toast.error("Failed to delete group study.");
+    }
+  };
+
+  if (isLoading) {
+    return <div className="text-white text-center">Loading...</div>; // Display loading state
+  }
+
+  if (error) {
+    return (
+      <div className="text-red-500 text-center">
+        Error loading group studies!
+      </div>
+    ); // Display error state
+  }
 
   return (
     <div>
@@ -148,7 +170,7 @@ const clients =
                   </div>
                   <button
                     onClick={() => updateGroupStudy(client.id)}
-                    disabled={client.lastInvoice.alreadyJoined} // Disable button if already joined
+                    disabled={client.lastInvoice.alreadyJoined}
                     className={`ml-auto px-3 py-1 ${
                       client.lastInvoice.alreadyJoined
                         ? "bg-gray-300 text-gray-500 cursor-not-allowed"
@@ -156,6 +178,13 @@ const clients =
                     } rounded-md`}>
                     {client.lastInvoice.alreadyJoined ? "Joined" : "Join"}
                   </button>
+                  {user && user.email === client.CreateByEmail && (
+                    <button
+                      onClick={() => handleDelete(client.id)}
+                      aria-label="Delete group study">
+                      <img src={deleteIcon} alt="Delete" className="w-6 h-6" />
+                    </button>
+                  )}
                 </dd>
               </div>
             </dl>

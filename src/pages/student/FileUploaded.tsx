@@ -33,10 +33,7 @@ export default function FileUploaded() {
       uploadData.append("courseName", courseData.data.courseName);
     }
 
-    console.log(uploadData);
-    for (const pair of uploadData.entries()) {
-      console.log(`${pair[0]}: ${pair[1]}`);
-    }
+   
 
     try {
       await uploadFile(uploadData).unwrap();

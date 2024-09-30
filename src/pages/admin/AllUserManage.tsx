@@ -1,28 +1,29 @@
 import { Menu, Transition } from "@headlessui/react";
 import ChevronDownIcon from "@heroicons/react/24/solid/ChevronDownIcon";
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
+import { Slide, toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Loader from "../../components/Loader";
+import { useActiveUserMutation } from "../../redux/features/Admin Management/ActiveUser";
 import { useGetAllUserQuery } from "../../redux/features/Admin Management/getAllUser";
 import { useRoleChangeToAdminMutation } from "../../redux/features/Admin Management/RoleChangeToAdmin";
 import { useSuspendUserMutation } from "../../redux/features/Admin Management/UserSuspended";
-import { useActiveUserMutation } from "../../redux/features/Admin Management/ActiveUser";
 import { TUser } from "../../redux/features/auth/authSlice";
-import { toast, ToastContainer, Slide } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 export default function AllUserManage() {
-  const { data, isLoading, error } = useGetAllUserQuery(undefined); // Fetch all users
+  const { data, isLoading, error } = useGetAllUserQuery(undefined);
   const [roleChangeToAdmin] = useRoleChangeToAdminMutation();
   const [suspendUser] = useSuspendUserMutation();
   const [activateUser] = useActiveUserMutation();
+
   const [users, setUsers] = useState<TUser[]>([]);
 
-  // Avoid infinite loops by handling data fetch and updates properly
+  // Update users only when data changes
   useEffect(() => {
-    if (data?.data) {
-      setUsers(data.data); // Set users only when data is fetched
+    if (data?.data && JSON.stringify(data.data) !== JSON.stringify(users)) {
+      setUsers(data.data);
     }
-  }, [data]);
+  }, [data, users]);
 
   if (isLoading) {
     return <Loader />;
@@ -44,7 +45,7 @@ export default function AllUserManage() {
   const handleRoleChange = async (userId: string) => {
     try {
       await roleChangeToAdmin(userId).unwrap();
-      toast.success("User role updated to Admin", {
+      toast.success("User role updated", {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -110,6 +111,10 @@ export default function AllUserManage() {
     });
   };
 
+  const currentUser = users.find(
+    (user) => user.email === "current_user@example.com"
+  );
+
   return (
     <>
       <div className="min-h-screen p-6 ">
@@ -123,7 +128,8 @@ export default function AllUserManage() {
               </p>
             </div>
           </div>
-          <div className="overflow-x-auto bg-white shadow-md rounded-lg ">
+
+          <div className=" bg-[#fffff6] shadow-md rounded-lg pb-64 ">
             <table className="min-w-full divide-y divide-gray-300 ">
               <thead className="bg-gray-100">
                 <tr>
@@ -145,12 +151,12 @@ export default function AllUserManage() {
                   <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">
                     Status
                   </th>
-                  <th className="py-3 px-4 text-left text-sm font-medium text-gray-700 ">
+                  <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">
                     Action
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200 bg-[#fffff6]">
+              <tbody className="divide-y divide-gray-200 bg-[#fffff6] ">
                 {users.map((user: TUser) => (
                   <tr key={user._id}>
                     <td className="py-4 px-4 text-sm text-gray-900">
@@ -178,7 +184,7 @@ export default function AllUserManage() {
                         {user.status}
                       </span>
                     </td>
-                    <td className="py-4 px-4 text-sm">
+                    <td className="py-4 px-4 text-sm ">
                       <Menu
                         as="div"
                         className="relative inline-block text-left">
@@ -192,27 +198,27 @@ export default function AllUserManage() {
                           </Menu.Button>
                         </div>
 
-                        <Transition as={Fragment}>
-                          <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right bg-white shadow-lg ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 rounded-md focus:outline-none">
-                            <div className="py-1">
-                              {user.status === "Suspended" ? (
-                                <Menu.Item>
-                                  {({ active }) => (
-                                    <button
-                                      onClick={() =>
-                                        handleActivateUser(user._id)
-                                      }
-                                      className={`block px-4 py-2 text-sm w-full text-left ${
-                                        active
-                                          ? "bg-gray-100 text-gray-900"
-                                          : "text-gray-700"
-                                      }`}>
-                                      Activate User
-                                    </button>
-                                  )}
-                                </Menu.Item>
-                              ) : (
-                                <>
+                        <div>
+                          <Transition as={Fragment}>
+                            <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right bg-white shadow-lg ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 rounded-md focus:outline-none">
+                              <div className="py-1">
+                                {user.status === "Suspended" ? (
+                                  <Menu.Item>
+                                    {({ active }) => (
+                                      <button
+                                        onClick={() =>
+                                          handleActivateUser(user._id)
+                                        }
+                                        className={`block px-4 py-2 text-sm w-full text-left ${
+                                          active
+                                            ? "bg-gray-100 text-gray-900"
+                                            : "text-gray-700"
+                                        }`}>
+                                        Activate User
+                                      </button>
+                                    )}
+                                  </Menu.Item>
+                                ) : (
                                   <Menu.Item>
                                     {({ active }) => (
                                       <button
@@ -228,24 +234,24 @@ export default function AllUserManage() {
                                       </button>
                                     )}
                                   </Menu.Item>
-                                </>
-                              )}
-                              <Menu.Item>
-                                {({ active }) => (
-                                  <button
-                                    onClick={() => handleRoleChange(user._id)}
-                                    className={`block px-4 py-2 text-sm w-full text-left ${
-                                      active
-                                        ? "bg-gray-100 text-gray-900"
-                                        : "text-gray-700"
-                                    }`}>
-                                    Make Admin
-                                  </button>
                                 )}
-                              </Menu.Item>
-                            </div>
-                          </Menu.Items>
-                        </Transition>
+                                <Menu.Item>
+                                  {({ active }) => (
+                                    <button
+                                      onClick={() => handleRoleChange(user._id)}
+                                      className={`block px-4 py-2 text-sm w-full text-left ${
+                                        active
+                                          ? "bg-gray-100 text-gray-900"
+                                          : "text-gray-700"
+                                      }`}>
+                                      Change Role
+                                    </button>
+                                  )}
+                                </Menu.Item>
+                              </div>
+                            </Menu.Items>
+                          </Transition>
+                        </div>
                       </Menu>
                     </td>
                   </tr>

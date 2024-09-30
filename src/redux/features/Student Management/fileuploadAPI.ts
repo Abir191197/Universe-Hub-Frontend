@@ -8,6 +8,7 @@ const fileUploadApi = baseApi.injectEndpoints({
         method: "POST",
         body: formData,
       }),
+      invalidatesTags: ["Resource"],
     }),
   }),
   overrideExisting: false,
