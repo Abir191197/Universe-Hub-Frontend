@@ -11,6 +11,7 @@ import MyCounselling from "./MyCounselling";
 import MyCompleteCounseling from "./MyCompleteCounseling";
 import { Link } from "react-router-dom";
 import AllCounselling from "./AllCounselling";
+import Loader from "../../components/Loader";
 
 const tabs = [
   { name: "All Counselling", href: "#", icon: UserIcon, current: true },
@@ -129,7 +130,7 @@ export default function CounsellingPage() {
 
         {/* Tab content */}
         <div className="relative w-full px-4">
-          {isLoading && <Loading />}
+          {isLoading && <Loader />}
           {error && <p>Error fetching counselling data</p>}
 
           {currentTab === "All Counselling" &&

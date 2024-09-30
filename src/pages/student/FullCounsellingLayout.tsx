@@ -10,6 +10,7 @@ import MyCompleteCounsellingStudent from "./MyCompleteCounsellingStudent";
 import AllCounsellingStudent from "./AllCounsellingStudent";
 
 import MyBookedCounsellingStudent from "./MyBookedCounsellingStudent";
+import Loader from "../../components/Loader";
 
 const tabs = [
   { name: "All Counselling", href: "#", icon: UserIcon, current: true },
@@ -119,7 +120,7 @@ export default function FullCounsellingLayout() {
 
         {/* Tab content */}
         <div className="relative w-full px-4">
-          {isLoading && <Loading />}
+          {isLoading && <Loader />}
           {error && <p>Error fetching counselling data</p>}
 
           {currentTab === "All Counselling" &&

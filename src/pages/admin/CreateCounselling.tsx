@@ -3,8 +3,9 @@ import { useForm } from "react-hook-form";
 import { ToastContainer, Slide, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CounselingFormData } from "../../Types/FileType";
-import Loading from "../../components/Loading";
+
 import { useCreateCounselingMutation } from "../../redux/features/Admin Management/CreateCounselling";
+import Loader from "../../components/Loader";
 
 export default function CreateCounseling() {
   const {
@@ -31,7 +32,7 @@ export default function CreateCounseling() {
     };
 
     try {
-      if (isLoading) return <Loading />;
+      if (isLoading) return <div className="h-screen w-screen flex justify-center items-center"><Loader /></div>;
 
       await EventInformation(formattedData).unwrap();
       toast.success("Counseling created successfully", {

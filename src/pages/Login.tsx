@@ -18,10 +18,7 @@ export default function Login() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm<LoginFormInputs>({
-    defaultValues: {
-      email: "user1@gmail.com", // Default email for testing
-      password: "user123456", // Default password for testing
-    },
+   
   });
   const [login, { isLoading }] = authApi.useLoginMutation();
 
