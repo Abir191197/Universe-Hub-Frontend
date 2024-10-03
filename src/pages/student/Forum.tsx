@@ -1,10 +1,11 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useRef, useMemo } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { PaperClipIcon, TagIcon } from "@heroicons/react/20/solid";
 import { useCreatePostMutation } from "../../redux/features/Student Management/Forum";
 import { toast } from "react-toastify";
 import AllForum from "./AllForum";
-
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const labels = [
   { name: "Tags", value: null },
@@ -17,7 +18,6 @@ const labels = [
   { name: "Computer Science", value: "computer science" },
   { name: "Data Science", value: "data science" },
   { name: "Artificial Intelligence", value: "artificial intelligence" },
-  // Add more labels as needed
 ];
 
 function classNames(...classes: string[]) {
@@ -30,6 +30,40 @@ export default function CreateForumPost() {
   const [content, setContent] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [label, setLabel] = useState(labels[0]);
+
+  const quillRef = useRef<ReactQuill>(null);
+
+  const modules = useMemo(
+    () => ({
+      toolbar: [
+        [{ header: [1, 2, false] }],
+        ["bold", "italic", "underline", "strike", "blockquote"],
+        [
+          { list: "ordered" },
+          { list: "bullet" },
+          { indent: "-1" },
+          { indent: "+1" },
+        ],
+        ["link", "image"],
+        ["clean"],
+      ],
+    }),
+    []
+  );
+
+  const formats = [
+    "header",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "blockquote",
+    "list",
+    "bullet",
+    "indent",
+    "link",
+    "image",
+  ];
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -71,17 +105,12 @@ export default function CreateForumPost() {
   return (
     <>
       <div className="relative isolate overflow-hidden bg-gray-900 py-12 sm:py-16 rounded-lg">
-        {/* Background image */}
         <img
           src="https://img.freepik.com/premium-vector/vector-online-learning-teamwork-collaborative-digital-environment_1040088-6047.jpg?w=1060"
           alt="Online Learning and Teamwork"
           className="absolute inset-0 -z-20 h-full w-full object-cover rounded-lg"
         />
-
-        {/* Color overlay */}
         <div className="absolute inset-0 -z-10 bg-[#0a1244] opacity-70 rounded-lg"></div>
-
-        {/* Content */}
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:mx-0">
             <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
@@ -96,8 +125,6 @@ export default function CreateForumPost() {
         </div>
       </div>
       <div className="py-8">
-        {" "}
-        {/* Added padding above the form */}
         <form
           onSubmit={handleSubmit}
           className="relative border-black shadow-sm bg-white">
@@ -111,18 +138,19 @@ export default function CreateForumPost() {
               className="block w-full border-0 pt-2.5 text-lg font-medium placeholder:text-gray-400 focus:ring-0"
               placeholder="Title"
             />
-            <textarea
-              rows={4}
-              name="content"
-              id="content"
+            <ReactQuill
+              ref={quillRef}
+              theme="snow"
               value={content}
-              onChange={(e) => setContent(e.target.value)}
-              className="block w-full resize-none border-0 py-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+              onChange={setContent}
+              modules={modules}
+              formats={formats}
               placeholder="Write your post content..."
+              className="h-64"
             />
           </div>
 
-          <div className="relative inset-x-px bottom-0 border-black shadow-sm">
+          <div className="relative inset-x-px bottom-0 border-black shadow-sm mt-4">
             <div className="flex flex-nowrap justify-start space-x-2 px-2 py-2 sm:px-3">
               <Listbox
                 as="div"
@@ -217,7 +245,6 @@ export default function CreateForumPost() {
             </div>
           </div>
         </form>
-        {/* Container for forum cards */}
         <div className="mt-8 bg-[#85c1e9] rounded-lg p-4">
           <div className="-mx-3">
             <AllForum />

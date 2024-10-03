@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../redux/features/auth/authSlice";
 import { toast } from "react-toastify";
+import DOMPurify from "dompurify"; // Importing DOMPurify for sanitization
 import {
   useAddCommentMutation,
   useDeleteCommentMutation,
@@ -25,7 +26,6 @@ export default function SingleForum() {
   const { postId } = useParams();
   const author = useSelector(selectCurrentUser);
   const { data: SinglePostData, error, isLoading } = useGetPostQuery(postId);
-  console.log(SinglePostData);
   const [addComment] = useAddCommentMutation();
   const [deleteComment] = useDeleteCommentMutation();
   const { register, handleSubmit, reset } = useForm();
@@ -125,9 +125,12 @@ export default function SingleForum() {
 
         {/* Post Content */}
         <div className="p-6">
-          <p className="text-gray-700 text-lg leading-relaxed">
-            {post.content}
-          </p>
+          <p
+            className="text-gray-700 text-lg leading-relaxed"
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(post.content), // Sanitizing the post content
+            }}
+          />
         </div>
 
         {/* Comments Section */}
@@ -171,7 +174,11 @@ export default function SingleForum() {
                             {comment.CommentAuthorName || "Anonymous"}
                           </div>
                           <div className="mt-1 text-sm text-gray-700">
-                            {comment.content}
+                            <div
+                              dangerouslySetInnerHTML={{
+                                __html: DOMPurify.sanitize(comment.content), // Sanitizing the comment content
+                              }}
+                            />
                             <div className="flex justify-end">
                               {author &&
                                 comment.author &&

@@ -1,4 +1,6 @@
+
 import { Link } from "react-router-dom";
+import DOMPurify from "dompurify";
 import {
   useDeletePostMutation,
   useGetAllPostsQuery,
@@ -6,7 +8,7 @@ import {
 import { selectCurrentUser } from "../../redux/features/auth/authSlice";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import deleteIcon from "../../assets/delete.svg"; // Ensure this path is correct
+import deleteIcon from "../../assets/delete.svg";
 
 const AllForum = () => {
   const currentUser = useSelector(selectCurrentUser);
@@ -15,12 +17,17 @@ const AllForum = () => {
 
   const handleDelete = async (postId: any) => {
     try {
-      console.log(postId);
       await deletePost(postId).unwrap();
       toast.success("Post deleted successfully");
     } catch (error) {
       toast.error("Failed to delete post");
     }
+  };
+
+  const createMarkup = (html: string) => {
+    return {
+      __html: DOMPurify.sanitize(html),
+    };
   };
 
   if (isLoading) {
@@ -102,9 +109,10 @@ const AllForum = () => {
                           {post.title}
                         </h3>
 
-                        <p className="mt-3 text-gray-600 leading-relaxed line-clamp-3">
-                          {post.content}
-                        </p>
+                        <div
+                          className="mt-3 text-gray-600 leading-relaxed line-clamp-3 quill-content"
+                          dangerouslySetInnerHTML={createMarkup(post.content)}
+                        />
                       </Link>
                       <div className="mt-6 flex items-center justify-between">
                         <div className="flex items-center">
