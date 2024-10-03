@@ -22,12 +22,7 @@ export default function Register() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<RegisterFormInputs>({
-    defaultValues: {
-      email: "user1@gmail.com", // Default email for testing
-      password: "password123456", // Default password for testing
-    },
-  });
+  } = useForm<RegisterFormInputs>();
 
   const [registerUser, { isLoading, isSuccess }] =
     reqApi.useRegisterMutation();
