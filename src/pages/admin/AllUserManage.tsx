@@ -10,6 +10,7 @@ import { useRoleChangeToAdminMutation } from "../../redux/features/Admin Managem
 import { useSuspendUserMutation } from "../../redux/features/Admin Management/UserSuspended";
 import { TUser } from "../../redux/features/auth/authSlice";
 
+
 export default function AllUserManage() {
   const { data, isLoading, error } = useGetAllUserQuery(undefined);
   const [roleChangeToAdmin] = useRoleChangeToAdminMutation();
@@ -111,52 +112,68 @@ export default function AllUserManage() {
     });
   };
 
-  const currentUser = users.find(
-    (user) => user.email === "current_user@example.com"
-  );
+  
 
   return (
     <>
+      <div className="relative isolate overflow-hidden bg-gray-900 py-12 sm:py-16 pb-24 rounded-lg">
+        {" "}
+        {/* Increased bottom padding */}
+        {/* Background image */}
+        <img
+          src="https://img.freepik.com/free-vector/people-with-smartphones-huge-monitor-background_81522-1706.jpg?t=st=1727762689~exp=1727766289~hmac=39f7dfe4564fe59aca7094efd9a94444ca031c9d6a5038b6cbfd0af73c3ee264&w=826"
+          alt="User Management"
+          className="absolute inset-0 -z-20 h-full w-full object-cover rounded-lg"
+        />
+        {/* Color overlay */}
+        <div className="absolute inset-0 -z-10 bg-[#0a1244] opacity-70 rounded-lg"></div>
+        {/* Content */}
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl lg:mx-0">
+            <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+              Users
+            </h2>
+            <p className="mt-6 text-lg leading-8 text-gray-300">
+              Manage all the users in your account, including their name, email,
+              role, and status.
+            </p>
+          </div>
+        </div>
+      </div>
       <div className="min-h-screen p-6 ">
         <div className="max-w-7xl mx-auto">
           <div className="sm:flex sm:items-center mb-6">
-            <div className="sm:flex-auto">
-              <h1 className="text-2xl font-semibold text-gray-800">Users</h1>
-              <p className="mt-2 text-lg text-gray-700 ">
-                Manage all the users in your account, including their name,
-                email, role, and status.
-              </p>
-            </div>
+            <div className="sm:flex-auto"></div>
           </div>
 
-          <div className=" bg-[#fffff6] shadow-md rounded-lg pb-64 ">
-            <table className="min-w-full divide-y divide-gray-300 ">
-              <thead className="bg-gray-100">
+          <div className="bg-white border-4 border-[#8dade6] shadow-md rounded-lg pb-6">
+            <table className="min-w-full divide-y divide-gray-300">
+              <thead className="bg-[#8dade6]">
                 <tr>
-                  <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">
+                  <th className="py-3 px-4 text-left text-sm font-bold text-white">
                     ID
                   </th>
-                  <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">
+                  <th className="py-3 px-4 text-left text-sm font-bold text-white">
                     Name
                   </th>
-                  <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">
+                  <th className="py-3 px-4 text-left text-sm font-bold text-white">
                     Email
                   </th>
-                  <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">
+                  <th className="py-3 px-4 text-left text-sm font-bold text-white">
                     Phone
                   </th>
-                  <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">
+                  <th className="py-3 px-4 text-left text-sm font-bold text-white">
                     Role
                   </th>
-                  <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">
+                  <th className="py-3 px-4 text-left text-sm font-bold text-white">
                     Status
                   </th>
-                  <th className="py-3 px-4 text-left text-sm font-medium text-gray-700">
+                  <th className="py-3 px-4 text-left text-sm font-bold text-white">
                     Action
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200 bg-[#fffff6] ">
+              <tbody className="divide-y divide-gray-200 bg-white">
                 {users.map((user: TUser) => (
                   <tr key={user._id}>
                     <td className="py-4 px-4 text-sm text-gray-900">
@@ -244,7 +261,7 @@ export default function AllUserManage() {
                                           ? "bg-gray-100 text-gray-900"
                                           : "text-gray-700"
                                       }`}>
-                                      Change Role
+                                     Change Role
                                     </button>
                                   )}
                                 </Menu.Item>

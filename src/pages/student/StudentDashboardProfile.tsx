@@ -11,8 +11,6 @@ import { Link } from "react-router-dom";
 import { useGetWhoLogInQuery } from "../../redux/features/Student Management/getWhoLogInAPI";
 import Loader from "../../components/Loader";
 
-
-
 export default function StudentDashboardProfile() {
   const { data, isLoading } = useGetWhoLogInQuery(undefined);
 
@@ -34,98 +32,63 @@ export default function StudentDashboardProfile() {
   };
 
   return (
-    <div className="bg-white shadow rounded-lg">
-      <div>
+    <div className="bg-white shadow-xl rounded-3xl overflow-hidden">
+      <div className="relative">
+        {/* Background Image with Gradient Overlay */}
         <img
-          className="h-32 w-full object-cover lg:h-48 rounded-t-lg"
+          className="h-40 w-full object-cover lg:h-56"
           src={profile.backgroundImage}
           alt="Cover"
         />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900 opacity-75"></div>
       </div>
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <div className="relative -mt-16 sm:-mt-20 flex items-center">
-          <div className="flex-shrink-0">
-            <img
-              className="h-32 w-32 rounded-full ring-4 ring-white"
-              src={profile.avatar}
-              alt="Avatar"
-            />
-          </div>
-          <div className="ml-4">
-            <div className="bg-white p-4 rounded-md shadow-md">
-              <h1 className="text-3xl font-bold text-gray-900">
-                {profile.name}
-              </h1>
+
+      <div className="relative flex items-center justify-center -mt-16">
+        <div className="flex-shrink-0">
+          <img
+            className="h-32 w-32 rounded-full border-4 border-white shadow-lg"
+            src={profile.avatar}
+            alt="Avatar"
+          />
+        </div>
+      </div>
+
+      <div className="text-center mt-6">
+        <h1 className="text-4xl font-bold text-gray-900">{profile.name}</h1>
+        <p className="text-gray-500 text-sm capitalize">{profile.role}</p>
+      </div>
+
+      <div className="px-6 py-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Profile Info Cards */}
+          {[
+            { icon: EnvelopeIcon, label: profile.email },
+            { icon: IdentificationIcon, label: profile.id },
+            { icon: UserIcon, label: profile.role, capitalize: true },
+            { icon: PhoneIcon, label: profile.phone },
+            { icon: StarIcon, label: profile.status, capitalize: true },
+            { icon: AcademicCapIcon, label: profile.program },
+          ].map((item, index) => (
+            <div
+              key={index}
+              className="flex items-center p-5 bg-white shadow-md rounded-lg border border-gray-200 transition-transform transform hover:scale-105">
+              <item.icon className="h-8 w-8 text-indigo-500 mr-4" />
+              <span
+                className={`text-gray-700 ${
+                  item.capitalize ? "capitalize" : ""
+                }`}>
+                {item.label}
+              </span>
             </div>
-          </div>
+          ))}
         </div>
-
-        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {/* Email */}
-          <div className="flex items-center bg-gray-50 p-4 rounded-lg shadow-sm">
-            <EnvelopeIcon
-              className="h-6 w-6 text-indigo-500 mr-3"
-              aria-hidden="true"
-            />
-            <span className="text-gray-700">{profile.email}</span>
-          </div>
-
-          {/* ID */}
-          <div className="flex items-center bg-gray-50 p-4 rounded-lg shadow-sm">
-            <IdentificationIcon
-              className="h-6 w-6 text-indigo-500 mr-3"
-              aria-hidden="true"
-            />
-            <span className="text-gray-700">{profile.id}</span>
-          </div>
-
-          {/* Role */}
-          <div className="flex items-center bg-gray-50 p-4 rounded-lg shadow-sm">
-            <UserIcon
-              className="h-6 w-6 text-indigo-500 mr-3"
-              aria-hidden="true"
-            />
-            <span className="text-gray-700 capitalize">{profile.role}</span>
-          </div>
-
-          {/* Phone */}
-          <div className="flex items-center bg-gray-50 p-4 rounded-lg shadow-sm">
-            <PhoneIcon
-              className="h-6 w-6 text-indigo-500 mr-3"
-              aria-hidden="true"
-            />
-            <span className="text-gray-700">{profile.phone}</span>
-          </div>
-
-          {/* Status */}
-          <div className="flex items-center bg-gray-50 p-4 rounded-lg shadow-sm">
-            <StarIcon
-              className="h-6 w-6 text-indigo-500 mr-3"
-              aria-hidden="true"
-            />
-            <span className="text-gray-700 capitalize">{profile.status}</span>
-          </div>
-
-          {/* Program */}
-          <div className="flex items-center bg-gray-50 p-4 rounded-lg shadow-sm">
-            <AcademicCapIcon
-              className="h-6 w-6 text-indigo-500 mr-3"
-              aria-hidden="true"
-            />
-            <span className="text-gray-700">{profile.program}</span>
-          </div>
-
-          {/* Edit Profile */}
-          <Link
-            to="EditProfile"
-            className="flex items-center justify-center bg-indigo-500 p-2 rounded-lg shadow-sm text-white hover:bg-indigo-600 transition duration-300 border-4 border-white mt-8 mx-4 mb-4 border-b-8">
-            <PencilSquareIcon
-              className="h-5 w-5 text-white mr-2"
-              aria-hidden="true"
-            />
-            <span className="text-sm">Edit Profile</span>
-          </Link>
-        </div>
+        {/* Edit Profile Button */}
+        <Link
+          to="EditProfile"
+          className="mt-8 inline-flex items-center justify-center bg-indigo-600 text-white py-3 px-6 rounded-lg shadow-md hover:bg-indigo-700 transition-all duration-300">
+          <PencilSquareIcon className="h-6 w-6 mr-2" />
+          Edit Profile
+        </Link>
       </div>
     </div>
   );

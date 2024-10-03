@@ -1,25 +1,21 @@
-import { Fragment, SetStateAction, useState } from "react";
-import { Dialog, Menu, Transition } from "@headlessui/react";
-import logo from '../../Image/logo.png';
+import { Dialog, Transition } from "@headlessui/react";
 import {
+  AcademicCapIcon,
   Bars3Icon,
-  BellIcon,
-  QrCodeIcon,
-  UserGroupIcon,
-  
+  ChatBubbleLeftEllipsisIcon,
+  ChatBubbleLeftRightIcon,
   HomeIcon,
   LightBulbIcon,
-  XMarkIcon,
-  ChatBubbleLeftEllipsisIcon,
+  QrCodeIcon,
   SparklesIcon,
-  ChatBubbleLeftRightIcon,
-  
-
+  UserGroupIcon,
+  XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { Fragment, SetStateAction, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import { useAppDispatch } from "../../redux/hook";
+import logo from "../../Image/logo.png";
 import { logout } from "../../redux/features/auth/authSlice";
+import { useAppDispatch } from "../../redux/hook";
 
 const navigation = [
   {
@@ -28,13 +24,14 @@ const navigation = [
     icon: HomeIcon,
   },
   { name: "All Courses", to: "/student/AllCourse", icon: QrCodeIcon },
-  
+
   {
     name: "Counselling",
     to: "/student/counselling",
     icon: UserGroupIcon,
   },
-  { name: "F.A.Q Bot", to: "/student/faq-bot", icon: LightBulbIcon },
+  { name: "F.A.Q Bot", to: "/student/faqBot", icon: LightBulbIcon },
+  { name: "AI Tutor", to: "/student/AiTutor", icon: AcademicCapIcon },
   {
     name: "Message",
     to: "/student/messages",
@@ -179,7 +176,7 @@ export default function StudentSidebarLayout() {
             <Link to="/student" className="flex h-16 shrink-0 items-center">
               <img
                 className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                src="https://res.cloudinary.com/dymnilfcs/image/upload/v1727961145/u2mi01shjx0gsbi8qubc.svg"
                 alt="Your Company"
               />
             </Link>

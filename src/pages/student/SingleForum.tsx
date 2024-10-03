@@ -175,7 +175,7 @@ export default function SingleForum() {
                             <div className="flex justify-end">
                               {author &&
                                 comment.author &&
-                                author.id === comment.author&& (
+                                author.id === comment.author && (
                                   <button
                                     onClick={() => handleDelete(comment._id)}
                                     className="ml-4 text-red-600 hover:text-red-800 transition">

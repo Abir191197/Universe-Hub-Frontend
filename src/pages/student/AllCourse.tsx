@@ -9,6 +9,7 @@ import { usePutSingleCourseInProfileMutation } from "../../redux/features/Studen
 
 import { ArrowRightEndOnRectangleIcon } from "@heroicons/react/24/solid";
 
+
 export interface ICourse {
   Description: string;
   _id: string;
@@ -75,7 +76,7 @@ export default function AllCourse() {
   };
 
   if (isLoading) {
-    return <Loader></Loader>;
+    return <Loader />;
   }
 
   if (isError) {
@@ -84,13 +85,39 @@ export default function AllCourse() {
 
   return (
     <>
-      <div className="mb-6 w-2/5">
+      <div className="relative isolate overflow-hidden bg-gray-900 py-12 sm:py-16 rounded-lg">
+        {" "}
+        {/* Reduced padding */}
+        {/* Background image */}
+        <img
+          src="https://img.freepik.com/premium-vector/male-student-cartoon-style-studying-online-education-vector-illustration_1138841-28728.jpg?w=1060"
+          alt="Student Studying"
+          className="absolute inset-0 -z-20 h-full w-full object-cover rounded-lg"
+        />
+        {/* Color overlay */}
+        <div className="absolute inset-0 -z-10 bg-[#0a1244] opacity-70 rounded-lg"></div>
+        {/* Content */}
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl lg:mx-0">
+            <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+              Course Resources
+            </h2>
+            <p className="mt-6 text-lg leading-8 text-gray-300">
+              Explore various courses and enhance your learning experience by
+              adding resources such as PDFs, slides, and more.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="mb-6  bg-[#eabe3d] p-4 rounded-md shadow-lg mt-4">
+        {" "}
+        {/* Changed to w-full */}
         <label
           htmlFor="search"
-          className="block text-xl font-extrabold leading-6 text-black">
+          className="block text-xl font-extrabold leading-6 text-black mb-2">
           Search Course:
         </label>
-        <div className="mt-2 flex rounded-md shadow-sm">
+        <div className="flex rounded-md shadow-sm">
           <div className="relative flex flex-grow items-stretch focus-within:z-10">
             <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
               <MagnifyingGlassIcon
@@ -108,16 +135,6 @@ export default function AllCourse() {
               onChange={(e) => setSearchKeyWord(e.target.value)}
             />
           </div>
-          {/* <button
-            type="button"
-           
-            className="relative -ml-px inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-            <BarsArrowUpIcon
-              className="-ml-0.5 h-5 w-5 text-gray-400"
-              aria-hidden="true"
-            />
-            Search
-          </button> */}
         </div>
       </div>
 
@@ -143,7 +160,7 @@ export default function AllCourse() {
             className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow">
             <div className="flex flex-1 flex-col p-8">
               <img
-                className="mx-auto  flex-shrink-0 rounded-full"
+                className="mx-auto flex-shrink-0 rounded-full"
                 src={
                   course.imageUrl ||
                   "https://img.freepik.com/free-vector/students-watching-webinar-computer-studying-online_74855-15522.jpg?t=st=1725497751~exp=1725501351~hmac=6011ac615b935914772d908f044e02c61f229a341354afa4f47609de6c3d8e81&w=996"

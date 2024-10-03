@@ -11,6 +11,7 @@ import {
   XMarkIcon,
   SparklesIcon,
   ChatBubbleLeftRightIcon,
+  AcademicCapIcon,
 } from "@heroicons/react/24/outline";
 import { Fragment, SetStateAction, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
@@ -41,7 +42,8 @@ const navigation = [
     to: "/admin/AllResource",
     icon: UserGroupIcon,
   },
-  { name: "F.A.Q Bot", to: "/admin/faq-bot", icon: LightBulbIcon },
+  { name: "F.A.Q Bot", to: "/admin/faqBot", icon: LightBulbIcon },
+  { name: "AI Tutor", to: "/admin/Aitutor", icon: AcademicCapIcon },
   {
     name: "Messages",
     to: "/admin/messages",
@@ -137,7 +139,7 @@ export default function AdminSidebarLayout() {
                       <Link to="/admin">
                         <img
                           className="h-8 w-auto"
-                          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                          src="https://res.cloudinary.com/dymnilfcs/image/upload/v1727961145/u2mi01shjx0gsbi8qubc.svg"
                           alt="Your Company"
                         />
                       </Link>
@@ -255,8 +257,6 @@ export default function AdminSidebarLayout() {
                 /> */}
               </form>
               <div className="flex items-center gap-x-4 lg:gap-x-6">
-               
-
                 {/* Separator */}
                 <div
                   className="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-900"

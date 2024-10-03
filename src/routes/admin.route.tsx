@@ -15,6 +15,8 @@ import Forum from "../pages/student/Forum";
 import SingleForum from "../pages/student/SingleForum";
 import GroupStudy from "../pages/student/GroupStudy";
 import GroupStudyCreate from "../pages/student/GroupStudyCreate";
+import FaqBot from "../pages/student/FaqBot";
+import AiTutor from "../pages/student/AiTutor";
 export const adminPaths = [
   {
     index: true,
@@ -80,5 +82,13 @@ export const adminPaths = [
   {
     path: "Forum/posts/:postId",
     element: <SingleForum></SingleForum>,
+  },
+  {
+    path: "FaqBot",
+    element: <FaqBot></FaqBot>,
+  },
+  {
+    path: "AiTutor",
+    element: <AiTutor></AiTutor>,
   },
 ];

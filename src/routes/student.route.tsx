@@ -10,6 +10,8 @@ import SingleCoursePreview from "../pages/student/SingleCoursePreview";
 import DashboardContent from "../pages/student/StudentDashboardContent";
 import Forum from "../pages/student/Forum";
 import SingleForum from "../pages/student/SingleForum";
+import FaqBot from "../pages/student/FaqBot";
+import AiTutor from "../pages/student/AiTutor";
 
 export const studentPaths: RouteObject[] = [
   {
@@ -63,5 +65,13 @@ export const studentPaths: RouteObject[] = [
   {
     path: "Forum/posts/:postId",
     element: <SingleForum></SingleForum>,
+  },
+  {
+    path: "FaqBot",
+    element: <FaqBot></FaqBot>,
+  },
+  {
+    path: "AiTutor",
+    element: <AiTutor></AiTutor>,
   },
 ];

@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -78,8 +77,6 @@ export default function GroupStudy() {
     })) || [];
 
   const handleDelete = async (id) => {
-  
-
     try {
       await deleteGroupStudy(id).unwrap();
       toast.success("Group study deleted successfully.");
@@ -103,14 +100,15 @@ export default function GroupStudy() {
 
   return (
     <div>
-      <div className="relative isolate overflow-hidden bg-gray-900 py-16 sm:py-20 -mx-8 -mt-11">
+      <div className="relative isolate overflow-hidden bg-gray-900 py-16 sm:py-20 -mx-8 -mt-11 rounded-lg p-8">
+        {" "}
+        {/* Increased padding to 'p-8' */}
         <img
           src="https://img.freepik.com/free-photo/young-students-learning-together-group-study_23-2149211067.jpg?t=st=1725297474~exp=1725301074~hmac=bb91371714767cb312e27e823fb967e37a26c0fa6328353feb984be43ff16cfe&w=826"
           alt=""
           className="absolute inset-0 -z-10 h-full w-full object-cover rounded-lg"
         />
         <div className="absolute inset-0 bg-blue-900 opacity-50 rounded-lg"></div>
-
         <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
           <div className="mx-auto max-w-2xl lg:mx-0">
             <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
@@ -124,7 +122,7 @@ export default function GroupStudy() {
       </div>
 
       <Link to="CreateCounselling">
-        <button className="mb-8 px-4 py-2 bg-blue-500 text-black rounded-md hover:bg-blue-300 mt-6">
+        <button className="mb-8 px-4 py-2 bg-blue-500 text-white font-bold rounded-md hover:bg-blue-300 mt-6">
           Create Group Study
         </button>
       </Link>

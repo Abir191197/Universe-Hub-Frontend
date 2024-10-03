@@ -64,55 +64,60 @@ export default function EnrolCourse() {
         transition={Slide}
       />
 
-      <ul
-        role="list"
-        className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-14">
-        {profile.courses && profile.courses.length > 0 ? (
-          profile.courses.map((course: ICourse) => (
-            <li
-              key={course._id}
-              className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow">
-              <div className="flex flex-1 flex-col p-8">
-                <img
-                  className="mx-auto flex-shrink-0 rounded-full h-32 w-32"
-                  src={course.imageUrl || defaultImageUrl}
-                  alt={course.courseName}
-                />
-                <dd className="mt-3">
-                  <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
-                    {course.courseName}
-                  </span>
-                </dd>
-                <dl className="mt-1 flex flex-grow flex-col justify-between">
-                  <dt className="sr-only">Title</dt>
-                  <dd className="text-sm text-gray-500">
-                    {course.Description || "No description available"}
+      {/* Light blue container for course cards with custom color */}
+      <div
+        className="rounded-lg p-6 mx-4 shadow-lg"
+        style={{ backgroundColor: "#aed6f1" }}>
+        <ul
+          role="list"
+          className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-14">
+          {profile.courses && profile.courses.length > 0 ? (
+            profile.courses.map((course: ICourse) => (
+              <li
+                key={course._id}
+                className="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow-lg transform hover:scale-105 transition duration-300">
+                <div className="flex flex-1 flex-col p-8">
+                  <img
+                    className="mx-auto flex-shrink-0 rounded-full h-32 w-32 border-2 border-blue-100"
+                    src={course.imageUrl || defaultImageUrl}
+                    alt={course.courseName}
+                  />
+                  <dd className="mt-3">
+                    <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+                      {course.courseName}
+                    </span>
                   </dd>
-                </dl>
-              </div>
-              <div>
-                <div className="-mt-px flex divide-x divide-gray-200">
-                  <div className="-ml-px flex w-0 flex-1">
-                    <Link
-                      to={`/${user?.role}/course/${course._id}`}
-                      className="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg border border-transparent py-4 text-sm font-semibold text-gray-900">
-                      <EyeIcon
-                        className="h-5 w-5 text-gray-400"
-                        aria-hidden="true"
-                      />
-                      Preview
-                    </Link>
+                  <dl className="mt-1 flex flex-grow flex-col justify-between">
+                    <dt className="sr-only">Title</dt>
+                    <dd className="text-sm text-gray-500 mt-2">
+                      {course.Description || "No description available"}
+                    </dd>
+                  </dl>
+                </div>
+                <div>
+                  <div className="-mt-px flex divide-x divide-gray-200">
+                    <div className="-ml-px flex w-0 flex-1">
+                      <Link
+                        to={`/${user?.role}/course/${course._id}`}
+                        className="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg border border-transparent py-4 text-sm font-semibold text-gray-900 hover:bg-blue-50 transition duration-300">
+                        <EyeIcon
+                          className="h-5 w-5 text-gray-400"
+                          aria-hidden="true"
+                        />
+                        Preview
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </li>
-          ))
-        ) : (
-          <div className="flex justify-center items-center h-screen">
-            <p>No courses available</p>
-          </div>
-        )}
-      </ul>
+              </li>
+            ))
+          ) : (
+            <div className="flex justify-center items-center h-screen">
+              <p>No courses available</p>
+            </div>
+          )}
+        </ul>
+      </div>
     </>
   );
 }

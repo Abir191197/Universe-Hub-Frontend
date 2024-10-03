@@ -33,14 +33,10 @@ export default function FileUploaded() {
       uploadData.append("courseName", courseData.data.courseName);
     }
 
-   
-
     try {
       await uploadFile(uploadData).unwrap();
       toast.success("File uploaded successfully. Waiting for admin approval.");
 
-    
-      
       reset();
       setFileName("");
     } catch (error) {
@@ -214,20 +210,19 @@ export default function FileUploaded() {
               </fieldset>
             </div>
           </div>
+        </div>{" "}
+        <div className="mt-6 flex items-center justify-start gap-x-6">
+          <button
+            type="button"
+            className="text-sm font-semibold leading-6 text-gray-900">
+            Cancel
+          </button>
+          <button
+            type="submit"
+            className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+            Upload
+          </button>
         </div>
-      </div>
-
-      <div className="mt-6 flex items-center justify-end gap-x-6">
-        <button
-          type="button"
-          className="text-sm font-semibold leading-6 text-gray-900">
-          Cancel
-        </button>
-        <button
-          type="submit"
-          className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-          Upload
-        </button>
       </div>
     </form>
   );

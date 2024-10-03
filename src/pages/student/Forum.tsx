@@ -5,6 +5,7 @@ import { useCreatePostMutation } from "../../redux/features/Student Management/F
 import { toast } from "react-toastify";
 import AllForum from "./AllForum";
 
+
 const labels = [
   { name: "Tags", value: null },
   { name: "Engineering", value: "engineering" },
@@ -69,10 +70,37 @@ export default function CreateForumPost() {
 
   return (
     <>
-      <div className=" ">
+      <div className="relative isolate overflow-hidden bg-gray-900 py-12 sm:py-16 rounded-lg">
+        {/* Background image */}
+        <img
+          src="https://img.freepik.com/premium-vector/vector-online-learning-teamwork-collaborative-digital-environment_1040088-6047.jpg?w=1060"
+          alt="Online Learning and Teamwork"
+          className="absolute inset-0 -z-20 h-full w-full object-cover rounded-lg"
+        />
+
+        {/* Color overlay */}
+        <div className="absolute inset-0 -z-10 bg-[#0a1244] opacity-70 rounded-lg"></div>
+
+        {/* Content */}
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl lg:mx-0">
+            <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+              Student Forum
+            </h2>
+            <p className="mt-6 text-lg leading-8 text-gray-300">
+              Post your questions and engage with fellow students to find
+              solutions. Collaborate, share ideas, and learn from each other in
+              this interactive forum.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="py-8">
+        {" "}
+        {/* Added padding above the form */}
         <form
           onSubmit={handleSubmit}
-          className="relative border-black shadow-sm bg bg-white">
+          className="relative border-black shadow-sm bg-white">
           <div className="overflow-hidden rounded-lg border border-black shadow-sm focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
             <input
               type="text"
@@ -80,7 +108,7 @@ export default function CreateForumPost() {
               id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="block w-full border-0 pt-2.5 text-lg font-medium placeholder:text-gray-400 focus:ring-0  "
+              className="block w-full border-0 pt-2.5 text-lg font-medium placeholder:text-gray-400 focus:ring-0"
               placeholder="Title"
             />
             <textarea
@@ -189,8 +217,11 @@ export default function CreateForumPost() {
             </div>
           </div>
         </form>
-        <div className="-mx-3">
-          <AllForum></AllForum>
+        {/* Container for forum cards */}
+        <div className="mt-8 bg-[#85c1e9] rounded-lg p-4">
+          <div className="-mx-3">
+            <AllForum />
+          </div>
         </div>
       </div>
     </>
