@@ -12,6 +12,13 @@ import Forum from "../pages/student/Forum";
 import SingleForum from "../pages/student/SingleForum";
 import FaqBot from "../pages/student/FaqBot";
 import AiTutor from "../pages/student/AiTutor";
+import TicTacToe from "../pages/student/game/TicTacToe";
+import MemoryGame from "../pages/student/game/MemoryGame";
+import Hangman from "../pages/student/game/Hangman";
+import TypeSpeed from "../pages/student/game/TypeSpeed";
+import LoFiPlayer from "../pages/student/game/LoFiPlayer";
+import ColorMatchingGame from "../pages/student/game/ColorMatchingGame";
+import StudyBreakTimer from "../pages/student/game/StudyBreakTimer";
 
 export const studentPaths: RouteObject[] = [
   {
@@ -73,5 +80,35 @@ export const studentPaths: RouteObject[] = [
   {
     path: "AiTutor",
     element: <AiTutor></AiTutor>,
+  },
+
+  {
+    path: "TicTacToe",
+    element: <TicTacToe></TicTacToe>,
+  },
+  {
+    path: "MemoryGame",
+    element: <MemoryGame />,
+  },
+  {
+    path: "StudyBreakTimer",
+    element: <StudyBreakTimer />,
+  },
+
+  {
+    path: "ColorMatchingGame",
+    element: <ColorMatchingGame />,
+  },
+  {
+    path: "Hangman",
+    element: <Hangman />,
+  },
+  {
+    path: "TypeSpeed",
+    element: <TypeSpeed />,
+  },
+  {
+    path: "LoFiPlayer",
+    element: <LoFiPlayer />,
   },
 ];

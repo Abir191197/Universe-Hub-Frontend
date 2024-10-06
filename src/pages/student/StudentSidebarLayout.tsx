@@ -1,21 +1,31 @@
-import { Dialog, Transition } from "@headlessui/react";
-import {
-  AcademicCapIcon,
-  Bars3Icon,
-  ChatBubbleLeftEllipsisIcon,
-  ChatBubbleLeftRightIcon,
-  HomeIcon,
-  LightBulbIcon,
-  QrCodeIcon,
-  SparklesIcon,
-  UserGroupIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
 import { Fragment, SetStateAction, useState } from "react";
+import { Dialog, Menu, Transition } from "@headlessui/react";
+import logo from '../../Image/logo.png';
+import {
+  Bars3Icon,
+  BellIcon,
+  QrCodeIcon,
+  UserGroupIcon,
+  AcademicCapIcon,
+  UserIcon,
+  SwatchIcon,
+  Square2StackIcon,
+  MusicalNoteIcon,
+  BoltIcon,
+  HomeIcon,
+  FaceSmileIcon,
+  LightBulbIcon,
+  XMarkIcon,
+  ChatBubbleLeftEllipsisIcon,
+  SquaresPlusIcon,
+  ClockIcon,
+  ChatBubbleLeftRightIcon,
+  
+
+} from "@heroicons/react/24/outline";
 import { Link, Outlet } from "react-router-dom";
-import logo from "../../Image/logo.png";
-import { logout } from "../../redux/features/auth/authSlice";
 import { useAppDispatch } from "../../redux/hook";
+import { logout } from "../../redux/features/auth/authSlice";
 
 const navigation = [
   {
@@ -23,8 +33,8 @@ const navigation = [
     to: "/student/dashboard",
     icon: HomeIcon,
   },
-  { name: "All Courses", to: "/student/AllCourse", icon: QrCodeIcon },
-
+  { name: "All Courses", to: "/student/AllCourse", icon: SquaresPlusIcon },
+  
   {
     name: "Counselling",
     to: "/student/counselling",
@@ -40,12 +50,49 @@ const navigation = [
   {
     name: "Group Study",
     to: "/student/GroupStudy",
-    icon: ChatBubbleLeftRightIcon,
+    icon: FaceSmileIcon,
   },
   {
     name: "Forum",
     to: "/student/Forum",
-    icon: SparklesIcon,
+    icon: ChatBubbleLeftRightIcon,
+  },
+  {
+    name: "Speed Tester",
+    to: "/student/TypeSpeed",
+    icon: BoltIcon,
+  },
+  {
+    name: "Study Timer",
+    to: "/student/StudyBreakTimer",
+    icon: ClockIcon,
+  },
+ 
+  {
+    name: "Lo-Fi Player",
+    to: "/student/LoFiPlayer",
+    icon: MusicalNoteIcon,
+  },
+  {
+    name: "TicTacToe",
+    to: "/student/TicTacToe",
+    icon: XMarkIcon,
+  },
+  {
+    name: "Memory Game",
+    to: "/student/MemoryGame",
+    icon: Square2StackIcon,
+  },
+  
+  {
+    name: "Color Matching",
+    to: "/student/ColorMatchingGame",
+    icon: SwatchIcon,
+  },
+  {
+    name: "HangMan",
+    to: "/student/Hangman",
+    icon: UserIcon,
   },
 ];
 
@@ -176,7 +223,7 @@ export default function StudentSidebarLayout() {
             <Link to="/student" className="flex h-16 shrink-0 items-center">
               <img
                 className="h-8 w-auto"
-                src="https://res.cloudinary.com/dymnilfcs/image/upload/v1727961145/u2mi01shjx0gsbi8qubc.svg"
+                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                 alt="Your Company"
               />
             </Link>
