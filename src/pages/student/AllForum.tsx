@@ -50,12 +50,7 @@ const AllForum = () => {
     <div className="bg-gray-100 -mx-5 py-12 sm:py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:max-w-4xl">
-          <h2 className="text-4xl font-extrabold text-gray-900 sm:text-5xl text-center mb-2">
-            Forum Discussions
-          </h2>
-          <p className="mt-2 text-xl text-gray-600 text-center mb-12">
-            Join the conversation and explore our community insights.
-          </p>
+          
           <div className="mt-12 space-y-10 sm:space-y-16">
             {postData &&
               postData.data.map((post) => (

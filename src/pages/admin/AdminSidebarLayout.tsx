@@ -187,7 +187,7 @@ export default function AdminSidebarLayout() {
             <Link to="/student" className="flex h-16 shrink-0 items-center">
               <img
                 className="h-20 w-40 pt-5" // Adjust `h-12` for a larger image and `pt-4` for padding-top
-                src={logo}
+                src="https://res.cloudinary.com/dymnilfcs/image/upload/v1727961145/u2mi01shjx0gsbi8qubc.svg"
                 alt="UniverseHub"
               />
             </Link>

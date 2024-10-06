@@ -66,7 +66,7 @@ export default function CreateCounseling() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen p-6 bg-gray-100">
+    <div className="text-black flex justify-center items-center min-h-screen p-6 bg-gray-100">
       <div className="w-full max-w-4xl p-8 bg-white shadow-lg rounded-lg">
         <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
           Create Counseling Session

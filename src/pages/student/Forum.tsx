@@ -127,7 +127,7 @@ export default function CreateForumPost() {
       <div className="py-8">
         <form
           onSubmit={handleSubmit}
-          className="relative border-black shadow-sm bg-white">
+          className="text-black relative border-black shadow-sm bg-white">
           <div className="overflow-hidden rounded-lg border border-black shadow-sm focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
             <input
               type="text"
