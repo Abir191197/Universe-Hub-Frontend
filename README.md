@@ -1,3 +1,10 @@
+loginInfo:
+admin:
+email: admin@gmail.com  pass:123456789
+
+user:>
+email: ardhrubo908@gmail.com pass:123456789
+
 # UniverseHub
 
 ![Logo]()
